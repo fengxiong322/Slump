@@ -69,7 +69,7 @@ public class MainWindow extends JFrame{
     g.fillRect(0, 0, getWidth(), getHeight());
     if(curScreen.equals("menu")){
       try {
-        BufferedImage background = ImageIO.read(new File("LogoMakr_7PqrnC.png"));
+        BufferedImage background = ImageIO.read(new File("companylogo.png"));
         g.drawImage(background, 0, 0, null);
       } catch (IOException e) {
       }
