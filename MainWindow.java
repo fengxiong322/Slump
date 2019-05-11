@@ -22,7 +22,15 @@ public class MainWindow extends JFrame{
         if(curScreen.equals("menu")){
           System.out.println(x+ " " + y);
           if(x<100)
-            openLevel();
+            newGame();
+        }else if(curScreen.equals("level")){
+          openLevel();
+        }else if(curScreen.equals("highScore")){
+          openHighScore();
+        }else if(curScreen.equals("resume")){
+          resumeGame();
+        }else if(curScreen.equals("newGame")){
+          newGame();
         }
       } 
     });
@@ -32,7 +40,8 @@ public class MainWindow extends JFrame{
   }
   
   public void openMenu(){
-
+    curScreen = "menu";
+    repaint();
   }
   
   public void openLevel(){
@@ -41,7 +50,8 @@ public class MainWindow extends JFrame{
   }
   
   public void openHighScore(){
-
+    curScreen = "highScore";
+    repaint();
   }
 
   public void resumeGame(){
@@ -51,6 +61,7 @@ public class MainWindow extends JFrame{
   public void newGame(){
     gameScreen = new Game(1);
     add(gameScreen);
+    pack();
   }
 
   public void paint(Graphics g){
