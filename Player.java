@@ -32,12 +32,10 @@ public class Player{
 
 	public void update(Graphics g, ArrayList<Platform> platforms){
 		int temp;
-		System.out.println(onGround);
-		temp = checkObstacle(platforms, x+xSpeed, y-ySpeed+GRAVITY);
+			temp = checkObstacle(platforms, x+xSpeed, y-ySpeed+GRAVITY);//Checks if there will be an obstacle at the predicted position
 		if(temp == 1){//If there is a platform where the block wants to go
 			ySpeed = 0;
-			x+=xSpeed;
-			onGround = true;
+			onGround = true;//The block is now on the ground
 		}else{
 			if(!onGround)
 				ySpeed-=GRAVITY;
@@ -52,10 +50,7 @@ public class Player{
 	private int checkObstacle(ArrayList<Platform> platforms, int newx, int newy){//May need another param for cannons
 		Rectangle playerRect = new Rectangle(newx, newy, sizeX, sizeY);
 		for(Platform i: platforms){
-
 			Rectangle platformRect = new Rectangle(i.getX(), i.getY(), i.getLength(), 30);
-			System.out.println(playerRect);
-			System.out.println(platformRect);
 			if(playerRect.intersects(platformRect)){
 				return 1;
 			}
@@ -72,18 +67,17 @@ public class Player{
 	public int getYSpeed(){return ySpeed;}
 
 	public void jump(){
-		System.out.println("jump");
 		if(onGround)
-			ySpeed+=5;
+			ySpeed+=20;
 	}
 
 	public void right(int speed){
-		System.out.println("right");
 		xSpeed=speed;
+		//ySpeed+=1;
 	}
 
 	public void left(int speed){
-		System.out.println("left");
 		xSpeed=-speed;
+		//ySpeed+=1;
 	}
 }
