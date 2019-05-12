@@ -32,16 +32,15 @@ public class Player{
 
 	public void update(Graphics g, ArrayList<Platform> platforms){
 		int temp;
-		if(onGround){
-			temp = checkObstacle(platforms, x+xSpeed, y);
-		}else
-			temp = checkObstacle(platforms, x+xSpeed, y-ySpeed+GRAVITY);
+		System.out.println(onGround);
+		temp = checkObstacle(platforms, x+xSpeed, y-ySpeed+GRAVITY);
 		if(temp == 1){//If there is a platform where the block wants to go
-			ySpeed = 0;			
-			xSpeed = 0;
+			ySpeed = 0;
+			x+=xSpeed;
 			onGround = true;
 		}else{
-			ySpeed-=GRAVITY;
+			if(!onGround)
+				ySpeed-=GRAVITY;
 			y-=ySpeed;
 			x+=xSpeed;
 			onGround = false;
@@ -51,7 +50,7 @@ public class Player{
 
 	//0 is no platform. 1 is hit something but no floor. 2 is has floor
 	private int checkObstacle(ArrayList<Platform> platforms, int newx, int newy){//May need another param for cannons
-		Rectangle playerRect = new Rectangle(newx, newy-100, sizeX, sizeY);
+		Rectangle playerRect = new Rectangle(newx, newy, sizeX, sizeY);
 		for(Platform i: platforms){
 
 			Rectangle platformRect = new Rectangle(i.getX(), i.getY(), i.getLength(), 30);
