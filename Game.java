@@ -16,17 +16,23 @@ public class Game extends Canvas implements ActionListener{
 	boolean gameOver;
 	BufferedImage background;
 	BufferedImage canvas;
+	Player player;
+	int canvasX;
+	int canvasY;
 
 	public Game(int level){
 		super();
 		setSize(400, 400);
+		player = new Player(0, 300, 20, 20);
+		canvasX = 0;
+		canvasY = 0;
 		addKeyListener(new PlayerListener());
-		canvas = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
+		canvas = new BufferedImage(1000, 1000, BufferedImage.TYPE_INT_RGB);
 		platforms = new ArrayList<Platform>();
-		try{background = ImageIO.read(new File("companylogo.png"));}catch(IOException e){}//Remember to add the actual background
+		try{background = ImageIO.read(new File("platform.png"));}catch(IOException e){}//Remember to add the actual background
 		gameOver = false;
 		timer = new Timer(20, this);
-		timer.setInitialDelay(10);
+		timer.setInitialDelay(30);
 		timer.start();
 		if(level == 1){
 			level1();
@@ -39,6 +45,7 @@ public class Game extends Canvas implements ActionListener{
 
 	public void level1(){
 		platforms.add(new Platform(50, 50, 30, 2, 150));
+		platforms.add(new Platform(0, 360, 40, 0, 0));
 	}
 
 	public void level2(){}
@@ -50,17 +57,30 @@ public class Game extends Canvas implements ActionListener{
 	}
 
 	public void update(Graphics g){
-		Graphics g1 = canvas.getGraphics();//Draw the graphics on a seperate picture so that we can add pictures without flickering
+		Graphics g1 = canvas.getGraphics();//Draw the graphics on a separate picture so that we can add pictures without flickering
 		//RedrawBackround
 		g1.setColor(new Color(0, 0, 0));
-		g1.fillRect(0, 0, getWidth(), getHeight());
-		g1.drawImage(background, 0, 0, null);
+		g1.fillRect(0, 0, 400, 400);
+		g1.drawImage(background, 0, 0,1000, 1000, null);
 		//Update all items on screen
 		for(Platform i : platforms){
-			g1.drawImage(i.getImage(), i.getStartX(), i.getStartY(), i.getStartX()+i.getLength(), i.getStartY()+20, 0, 0, 100, 100, null);
-			i.update();//Updates to a new position
+			i.update(g1);//Updates to a new position
 		}
-		g.drawImage(canvas, 0, 0, null);
+		player.update(g1, platforms);
+		if(player.getX()+canvasX<getWidth()*0.25){
+			canvasX+=2;
+		}
+		if(player.getX()+canvasX>getWidth()*0.75){
+			canvasX-=2;
+		}
+		if(player.getY()+canvasY<getHeight()*0.25){
+			canvasY+=2;
+		}
+		if(player.getY()+canvasY>getHeight()*0.75){
+			canvasY-=2;
+		}
+
+		g.drawImage(canvas, canvasX, canvasY, null);
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -74,10 +94,28 @@ public class Game extends Canvas implements ActionListener{
 	}
 
 	class PlayerListener extends KeyAdapter{
+
 		@Override
 		public void keyPressed(KeyEvent event){
-			char ch = event.getKeyChar();
-			//Keep track of key presses
+			int ch = event.getKeyCode();//Keep track of key presses
+			if(ch == KeyEvent.VK_UP || ch == KeyEvent.VK_W){
+				System.out.println("keypress");
+				player.jump();
+			}else if(ch == KeyEvent.VK_LEFT|| ch == KeyEvent.VK_A){
+				player.left(2);
+			}else if(ch == KeyEvent.VK_RIGHT || ch == KeyEvent.VK_D){
+				player.right(2);
+			}
+		}
+
+		@Override
+		public void keyReleased(KeyEvent event){
+			int ch = event.getKeyCode();//Keep track of key presses
+			if(ch == KeyEvent.VK_LEFT|| ch == KeyEvent.VK_A){
+				player.left(0);
+			}else if(ch == KeyEvent.VK_RIGHT || ch == KeyEvent.VK_D){
+				player.right(0);
+			}
 		}
 	}
 }

@@ -1,6 +1,7 @@
 import javax.imageio.ImageIO;
 import java.io.*;
 import java.awt.image.*;
+import java.awt.Graphics;
 
 public class Platform{
 	BufferedImage platform;
@@ -23,11 +24,11 @@ public class Platform{
 		right = true;
 	}
 
-	public int getStartX(){
+	public int getX(){
 		return startX;
 	}
 
-	public int getStartY(){
+	public int getY(){
 		return startY;
 	}
 
@@ -35,15 +36,8 @@ public class Platform{
 		return length;
 	}
 
-	public int getSpeed(){
-		return speed;
-	}
-
-	public BufferedImage getImage(){
-		return platform;
-	}
-
-	public void update(){
+	public void update(Graphics g){
+		g.drawImage(platform, startX, startY, startX + length, startY+30, 0, 0, 100, 100, null);
 		if(startX<startDist){
 			right = true;
 		}else if(startX>endDist){
