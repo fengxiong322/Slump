@@ -8,6 +8,7 @@ import java.awt.*;
 import javax.imageio.ImageIO;
 import java.io.*;
 import java.util.*;
+import java.awt.Rectangle;
 
 public class Player{
 	int x;
@@ -22,40 +23,41 @@ public class Player{
 
 	public Player(int x, int y, int sizeX, int sizeY){
 		try{player = ImageIO.read(new File("platform.png"));}catch(IOException e){}
+		onGround = false;
 		this.x = x;
 		this.y = y;
 		this.sizeX = sizeX;
 		this.sizeY = sizeY;
-		onGround = true;
 	}
 
 	public void update(Graphics g, ArrayList<Platform> platforms){
 		int temp;
-		if(onGround)
-			temp = checkObstacle(platforms, x+xSpeed, y-ySpeed);
-		else
+		if(onGround){
+			temp = checkObstacle(platforms, x+xSpeed, y);
+		}else
 			temp = checkObstacle(platforms, x+xSpeed, y-ySpeed+GRAVITY);
-		if(temp == 0){
-			if(!onGround)
-				ySpeed-=GRAVITY;
+		if(temp == 1){//If there is a platform where the block wants to go
+			ySpeed = 0;			
+			xSpeed = 0;
+			onGround = true;
+		}else{
+			ySpeed-=GRAVITY;
 			y-=ySpeed;
 			x+=xSpeed;
 			onGround = false;
-		}else{
-			if(temp == 2)
-				onGround = true;
-			ySpeed = 0;
-			x+=xSpeed;
 		}
 		g.drawImage(player, x, y, x+sizeX, y+sizeY, 0, 0, 100, 100, null);
 	}
 
-	public int checkObstacle(ArrayList<Platform> platforms, int newx, int newy){//May need another param for cannons
+	//0 is no platform. 1 is hit something but no floor. 2 is has floor
+	private int checkObstacle(ArrayList<Platform> platforms, int newx, int newy){//May need another param for cannons
+		Rectangle playerRect = new Rectangle(newx, newy-100, sizeX, sizeY);
 		for(Platform i: platforms){
-			if((newx>i.getX()+i.getLength() || newx+sizeX>i.getX()) && (newy>i.getY()+30 || newy+sizeY>i.getY())){
-				if(y>=i.getY()+30){
-					return 2;
-				}
+
+			Rectangle platformRect = new Rectangle(i.getX(), i.getY(), i.getLength(), 30);
+			System.out.println(playerRect);
+			System.out.println(platformRect);
+			if(playerRect.intersects(platformRect)){
 				return 1;
 			}
 		}
@@ -71,14 +73,18 @@ public class Player{
 	public int getYSpeed(){return ySpeed;}
 
 	public void jump(){
-		ySpeed+=10;
+		System.out.println("jump");
+		if(onGround)
+			ySpeed+=5;
 	}
 
 	public void right(int speed){
+		System.out.println("right");
 		xSpeed=speed;
 	}
 
 	public void left(int speed){
+		System.out.println("left");
 		xSpeed=-speed;
 	}
 }

@@ -99,7 +99,6 @@ public class Game extends Canvas implements ActionListener{
 		public void keyPressed(KeyEvent event){
 			int ch = event.getKeyCode();//Keep track of key presses
 			if(ch == KeyEvent.VK_UP || ch == KeyEvent.VK_W){
-				System.out.println("keypress");
 				player.jump();
 			}else if(ch == KeyEvent.VK_LEFT|| ch == KeyEvent.VK_A){
 				player.left(2);

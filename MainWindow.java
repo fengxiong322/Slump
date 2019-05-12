@@ -30,7 +30,7 @@ public class MainWindow extends JFrame{
         }else if(curScreen.equals("resume")){
           resumeGame();
         }else if(curScreen.equals("newGame")){
-          newGame();
+         newGame();
         }
       } 
     });
