@@ -52,6 +52,16 @@ public class Player{
 		for(Platform i: platforms){
 			Rectangle platformRect = new Rectangle(i.getX(), i.getY(), i.getLength(), 30);
 			if(playerRect.intersects(platformRect)){
+				if(xSpeed > 0){
+					x = i.getX();
+				}else if(xSpeed < 0){
+					x = i.getX()+i.getLength();
+				}
+				if(ySpeed < 0){
+					y = i.getY();
+				}else if(ySpeed > 0){
+					y = i.getY()+30;
+				}
 				return 1;
 			}
 		}
