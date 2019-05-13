@@ -1,7 +1,13 @@
+import java.awt.Canvas;
+import java.awt.Graphics;
+import javax.swing.JFrame;
+import javax.swing.Timer;
+import java.awt.event.*;
+import java.awt.image.*;
+import java.awt.*;
 import javax.imageio.ImageIO;
 import java.io.*;
-import java.awt.image.*;
-import java.awt.Graphics;
+import java.util.*;
 
 public class Platform{
 	BufferedImage platform;
@@ -37,7 +43,9 @@ public class Platform{
 	}
 
 	public void update(Graphics g){
-		g.drawImage(platform, startX, startY, startX + length, startY+30, 0, 0, 100, 100, null);
+		g.setColor(new Color(0, 255, 0));
+		g.fillRect(startX, startY, length, 30);
+		//g.drawImage(platform, startX, startY, startX + length, startY+30, 0, 0, 100, 100, null);
 		if(startX<startDist){
 			right = true;
 		}else if(startX>endDist){

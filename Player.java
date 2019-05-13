@@ -31,14 +31,10 @@ public class Player{
 	}
 
 	public void update(Graphics g, ArrayList<Platform> platforms){
-		int temp;
-			temp = checkObstacle(platforms, x+xSpeed, y-ySpeed+GRAVITY);//Checks if there will be an obstacle at the predicted position
-		if(temp == 1){//If there is a platform where the block wants to go
-			ySpeed = 0;
+		if(checkObstacle(platforms, x+xSpeed, y-ySpeed+GRAVITY)){//If there is a platform where the block wants to go
 			onGround = true;//The block is now on the ground
 		}else{
-			if(!onGround)
-				ySpeed-=GRAVITY;
+			ySpeed-=GRAVITY;
 			y-=ySpeed;
 			x+=xSpeed;
 			onGround = false;
@@ -47,25 +43,27 @@ public class Player{
 	}
 
 	//0 is no platform. 1 is hit something but no floor. 2 is has floor
-	private int checkObstacle(ArrayList<Platform> platforms, int newx, int newy){//May need another param for cannons
+	private boolean checkObstacle(ArrayList<Platform> platforms, int newx, int newy){//May need another param for cannons
 		Rectangle playerRect = new Rectangle(newx, newy, sizeX, sizeY);
 		for(Platform i: platforms){
 			Rectangle platformRect = new Rectangle(i.getX(), i.getY(), i.getLength(), 30);
 			if(playerRect.intersects(platformRect)){
 				if(xSpeed > 0){
-					x = i.getX();
+					x = i.getX()+sizeX;
 				}else if(xSpeed < 0){
 					x = i.getX()+i.getLength();
 				}
 				if(ySpeed < 0){
-					y = i.getY();
+					System.out.println("correct");
+					y = i.getY()-sizeY;
 				}else if(ySpeed > 0){
 					y = i.getY()+30;
+					System.out.println("correct1");
 				}
-				return 1;
+				return true;
 			}
 		}
-		return 0;
+		return false;
 	}
 
 	public int getX(){return x;}
@@ -78,7 +76,7 @@ public class Player{
 
 	public void jump(){
 		if(onGround)
-			ySpeed+=20;
+			ySpeed+=10;
 	}
 
 	public void right(int speed){
