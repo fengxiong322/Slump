@@ -12,7 +12,6 @@ import java.util.*;
 
 public class Game extends Canvas implements ActionListener{
 	ArrayList<Platform> platforms;
-	byte[][] worldMap;
 	Timer timer;
 	boolean gameOver;
 	BufferedImage background;

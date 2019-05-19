@@ -31,34 +31,40 @@ public class Player{
 	}
 
 	public void update(Graphics g, ArrayList<Platform> platforms){
-		if(checkPlatform(platforms)){//If there is a platform where the block wants to go
-			onGround = true;//The block is now on the ground
-		}else{
-			ySpeed-=GRAVITY;
-			y-=ySpeed;
-			x+=xSpeed;
-			onGround = false;
-		}
-		g.drawImage(player, x, y, x+sizeX, y+sizeY, 0, 0, 100, 100, null);
+		ySpeed+=GRAVITY;
+		checkPlatform(platforms);
+		x+=xSpeed;
+		y+=ySpeed;
+		g.setColor(Color.RED);
+		g.fillRect(x, y, sizeX, sizeY);
+		//g.drawImage(player, x, y, x+sizeX, y+sizeY, 0, 0, 100, 100, null);
 	}
 
-	private boolean checkPlatform(ArrayList<Platform> platforms){
-		Rectangle playerRect = new Rectangle(x+xSpeed, y-ySpeed, sizeX, sizeY);
-		Rectangle playerRectWithGravity = new Rectangle(x+xSpeed, y-ySpeed+GRAVITY, sizeX, sizeY);
+	private void checkPlatform(ArrayList<Platform> platforms){
+		boolean intersected = false;
+		Rectangle playerRect = new Rectangle(x+xSpeed, y+ySpeed, sizeX, sizeY);
 		for(Platform i: platforms){
 				Rectangle platformRect = new Rectangle(i.getX(), i.getY(), i.getLength(), 30);
 				if(playerRect.intersects(platformRect)){
-					ySpeed = 0;
-					xSpeed = 0;
-				}
-				if(playerRectWithGravity.intersects(platformRect)){
-					ySpeed = 0;
-					xSpeed = 0;
-					return true;
-				}
-				
+					intersected = true;
+					for(int j = 1; j <= ySpeed;j++){
+						playerRect.setLocation(x, y+j);
+						System.out.println(playerRect);
+						System.out.println(platformRect);
+						if(playerRect.intersects(platformRect)){
+							ySpeed = j-1;
+							break;
+						}
+					}
+					for(int j = 1; j <= xSpeed;j++){
+						playerRect.setLocation(x+j, y);
+						if(playerRect.intersects(platformRect)){
+							xSpeed = j-1;
+							break;
+						}
+					}
+				}	
 		}
-		return false;
 	}
 
 	public int getX(){return x;}
