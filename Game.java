@@ -23,13 +23,11 @@ public class Game extends Canvas implements ActionListener{
 	public Game(int level){
 		super();
 		setSize(400, 400);
-		player = new Player(0, 300, 20, 20);
 		canvasX = 0;
 		canvasY = 0;
 		addKeyListener(new PlayerListener());
 		canvas = new BufferedImage(1000, 1000, BufferedImage.TYPE_INT_RGB);
 		platforms = new ArrayList<Platform>();
-		try{background = ImageIO.read(new File("platform.png"));}catch(IOException e){}//Remember to add the actual background
 		gameOver = false;
 		timer = new Timer(20, this);
 		timer.setInitialDelay(30);
@@ -44,14 +42,20 @@ public class Game extends Canvas implements ActionListener{
 	}
 
 	public void level1(){
+		setSpawn(40, 200);
+		try{background = ImageIO.read(new File("platform.png"));}catch(IOException e){}//Remember to add the actual background
 		platforms.add(new Platform(50, 50, 30, 2, 150));
-		platforms.add(new Platform(0, 380, 60, 0, 0));
+		platforms.add(new Platform(0, 380, 400, 0, 0));
 		platforms.add(new Platform(100, 360, 30, 0, 0));
 	}
 
 	public void level2(){}
 
 	public void level3(){}
+
+	public void setSpawn(int x, int y){
+		player = new Player(x, y, 20, 20);
+	}
 
 	public void paint(Graphics g){
 		update(g);
