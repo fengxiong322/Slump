@@ -60,7 +60,7 @@ public class MainWindow extends JFrame implements ExitListener{
   public void newGame(){
     gameScreen = new Game(1, this);
     add(gameScreen);
-    gameScreen.requestFocusInWindow(); 
+    gameScreen .requestFocusInWindow(); 
     pack();
   }
 

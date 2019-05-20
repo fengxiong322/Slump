@@ -32,7 +32,6 @@ public class Player{
 
 	public void update(Graphics g, ArrayList<Platform> platforms){
 		ySpeed+=GRAVITY;
-		onGround = true;
 		checkPlatform(platforms);
 		x+=xSpeed;
 		y+=ySpeed;
@@ -43,7 +42,11 @@ public class Player{
 
 	private void checkPlatform(ArrayList<Platform> platforms){
 		boolean intersected = false;
+		onGround = false;
 		Rectangle playerRect = new Rectangle(x+xSpeed, y+ySpeed, sizeX, sizeY);
+		if(!(new Rectangle(0, 0, 400, 400)).contains(playerRect)){
+			xSpeed = 0;
+		}
 		for(Platform i: platforms){
 			Rectangle platformRect = new Rectangle(i.getX(), i.getY(), i.getLength(), 30);
 			if(playerRect.intersects(platformRect)){
@@ -97,7 +100,7 @@ public class Player{
 
 		public void jump(int speed){
 			if(onGround)
-				ySpeed-=speed;
+				ySpeed=0-speed;
 		}
 
 		public void move(int speed){

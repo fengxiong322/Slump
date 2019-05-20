@@ -52,6 +52,10 @@ public class Game extends Canvas implements ActionListener{
 		platforms.add(new Platform(50, 50, 30, 2, 150));
 		platforms.add(new Platform(0, 380, 400, 0, 0));
 		platforms.add(new Platform(100, 360, 30, 0, 0));
+		platforms.add(new Platform(130, 340, 30, 0, 0));
+		platforms.add(new Platform(190, 340, 30, 0, 0));
+		platforms.add(new Platform(190, 310, 30, 0, 0));
+		platforms.add(new Platform(190, 280, 30, 0, 0));
 	}
 
 	public void level2(){}
