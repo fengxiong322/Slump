@@ -47,13 +47,13 @@ public class Game extends Canvas implements ActionListener{
 	}
 
 	public void level1(){
-		setSpawn(40, 200);
+		setSpawn(100, 200);
 		try{background = ImageIO.read(new File("platform.png"));}catch(IOException e){}//Remember to add the actual background
 		platforms.add(new Platform(0, 380, 400, 0, 0));
 		platforms.add(new Platform(190, 340, 30, 0, 0));
 		platforms.add(new Platform(190, 280, 30, 0, 0));
 		platforms.add(new Platform(190, 220, 30, 0, 0));
-		platforms.add(new Platform(190, 160, 30, 0, 0));
+		platforms.add(new Platform(0, 160, 0, 0, 0));
 	}
 
 	public void level2(){}
@@ -72,7 +72,7 @@ public class Game extends Canvas implements ActionListener{
 		Graphics g1 = canvas.getGraphics();//Draw the graphics on a separate picture so that we can add pictures without flickering
 		//RedrawBackround
 		g1.setColor(new Color(0, 0, 0));
-		g1.fillRect(0, 0, 400, 400);
+		g1.fillRect(-100, -100, 1000, 1000);
 		g1.drawImage(background, 0, 0,1000, 1000, null);
 		//Update all items on screen
 		for(Platform i : platforms){

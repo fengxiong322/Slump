@@ -41,6 +41,7 @@ public class Player{
 	}
 
 	private void checkPlatform(ArrayList<Platform> platforms){
+
 		boolean intersected = false;
 		onGround = false;
 		Rectangle playerRect = new Rectangle(x+xSpeed, y+ySpeed, sizeX, sizeY);
@@ -50,18 +51,18 @@ public class Player{
 		for(Platform i: platforms){
 			Rectangle platformRect = new Rectangle(i.getX(), i.getY(), i.getLength(), 30);
 			if(playerRect.intersects(platformRect)){
-				onGround = true;
 				intersected = true;
 				if(ySpeed>0){
-					for(int j = 1; j <= ySpeed;j++){
+					for(int j = 0; j <= ySpeed;j++){
 						playerRect.setLocation(x, y+j);
 						if(playerRect.intersects(platformRect)){
 							ySpeed = j-1;
+							onGround = true;
 							break;
 						}
 					}
 				}else{
-					for(int j = -1; j >= ySpeed;j--){
+					for(int j = 0; j >= ySpeed;j--){
 						playerRect.setLocation(x, y+j);
 						if(playerRect.intersects(platformRect)){
 							ySpeed = j+1;
@@ -70,7 +71,7 @@ public class Player{
 					}
 				}
 				if(xSpeed>0){
-					for(int j = 1; j <= xSpeed;j++){
+					for(int j = 0; j <= xSpeed;j++){
 						playerRect.setLocation(x+j, y);
 						if(playerRect.intersects(platformRect)){
 							xSpeed = j-1;
@@ -78,7 +79,7 @@ public class Player{
 						}
 					}
 				}else{
-					for(int j = -1; j >= xSpeed;j--){
+					for(int j = 0; j >= xSpeed;j--){
 						playerRect.setLocation(x+j, y);
 						if(playerRect.intersects(platformRect)){
 							xSpeed = j+1;
