@@ -49,13 +49,11 @@ public class Game extends Canvas implements ActionListener{
 	public void level1(){
 		setSpawn(40, 200);
 		try{background = ImageIO.read(new File("platform.png"));}catch(IOException e){}//Remember to add the actual background
-		platforms.add(new Platform(50, 50, 30, 2, 150));
 		platforms.add(new Platform(0, 380, 400, 0, 0));
-		platforms.add(new Platform(100, 360, 30, 0, 0));
-		platforms.add(new Platform(130, 340, 30, 0, 0));
 		platforms.add(new Platform(190, 340, 30, 0, 0));
-		platforms.add(new Platform(190, 310, 30, 0, 0));
 		platforms.add(new Platform(190, 280, 30, 0, 0));
+		platforms.add(new Platform(190, 220, 30, 0, 0));
+		platforms.add(new Platform(190, 160, 30, 0, 0));
 	}
 
 	public void level2(){}
@@ -116,9 +114,9 @@ public class Game extends Canvas implements ActionListener{
 			if(ch == KeyEvent.VK_UP || ch == KeyEvent.VK_W){
 				player.jump(10);
 			}else if(ch == KeyEvent.VK_LEFT|| ch == KeyEvent.VK_A){
-				moveX = -2;
+				moveX = -3;
 			}else if(ch == KeyEvent.VK_RIGHT || ch == KeyEvent.VK_D){
-				moveX = 2;
+				moveX = 3;
 			}
 			if(ch == KeyEvent.VK_ESCAPE){
 				el.exit();
@@ -129,10 +127,10 @@ public class Game extends Canvas implements ActionListener{
 		public void keyReleased(KeyEvent event){
 			int ch = event.getKeyCode();//Keep track of key presses
 			if(ch == KeyEvent.VK_LEFT|| ch == KeyEvent.VK_A){
-				if(moveX != 2)
+				if(moveX != 3)
 					moveX = 0;
 			}else if(ch == KeyEvent.VK_RIGHT || ch == KeyEvent.VK_D){
-				if(moveX!=-2)
+				if(moveX!=-3)
 				moveX = 0;
 			}
 		}
