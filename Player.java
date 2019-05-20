@@ -32,6 +32,7 @@ public class Player{
 
 	public void update(Graphics g, ArrayList<Platform> platforms){
 		ySpeed+=GRAVITY;
+		onGround = true;
 		checkPlatform(platforms);
 		x+=xSpeed;
 		y+=ySpeed;
@@ -44,18 +45,28 @@ public class Player{
 		boolean intersected = false;
 		Rectangle playerRect = new Rectangle(x+xSpeed, y+ySpeed, sizeX, sizeY);
 		for(Platform i: platforms){
-				Rectangle platformRect = new Rectangle(i.getX(), i.getY(), i.getLength(), 30);
-				if(playerRect.intersects(platformRect)){
-					intersected = true;
+			Rectangle platformRect = new Rectangle(i.getX(), i.getY(), i.getLength(), 30);
+			if(playerRect.intersects(platformRect)){
+				onGround = true;
+				intersected = true;
+				if(ySpeed>0){
 					for(int j = 1; j <= ySpeed;j++){
 						playerRect.setLocation(x, y+j);
-						System.out.println(playerRect);
-						System.out.println(platformRect);
 						if(playerRect.intersects(platformRect)){
 							ySpeed = j-1;
 							break;
 						}
 					}
+				}else{
+					for(int j = -1; j >= ySpeed;j--){
+						playerRect.setLocation(x, y+j);
+						if(playerRect.intersects(platformRect)){
+							ySpeed = j+1;
+							break;
+						}
+					}
+				}
+				if(xSpeed>0){
 					for(int j = 1; j <= xSpeed;j++){
 						playerRect.setLocation(x+j, y);
 						if(playerRect.intersects(platformRect)){
@@ -63,29 +74,38 @@ public class Player{
 							break;
 						}
 					}
-				}	
+				}else{
+					for(int j = -1; j >= xSpeed;j--){
+						playerRect.setLocation(x+j, y);
+						if(playerRect.intersects(platformRect)){
+							xSpeed = j+1;
+							break;
+						}
+					}
+				}
+			}
 		}
 	}
 
-	public int getX(){return x;}
+		public int getX(){return x;}
 
-	public int getY(){return y;}
+		public int getY(){return y;}
 
-	public int getXSpeed(){return xSpeed;}
+		public int getXSpeed(){return xSpeed;}
 
-	public int getYSpeed(){return ySpeed;}
+		public int getYSpeed(){return ySpeed;}
 
-	public void jump(){
-		if(onGround)
-			ySpeed+=10;
-	}
+		public void jump(){
+			if(onGround)
+				ySpeed-=10;
+		}
 
-	public void right(int speed){
-		xSpeed=speed;
-	}
+		public void right(int speed){
+			xSpeed=speed;
+		}
 
-	public void left(int speed){
-		xSpeed=-speed;
+		public void left(int speed){
+			xSpeed=-speed;
 		//ySpeed+=1;
+		}
 	}
-}
