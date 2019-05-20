@@ -19,8 +19,11 @@ public class Game extends Canvas implements ActionListener{
 	Player player;
 	int canvasX;
 	int canvasY;
+	int moveX;
+	int moveY;
+	ExitListener el;
 
-	public Game(int level){
+	public Game(int level, ExitListener el){
 		super();
 		setSize(400, 400);
 		canvasX = 0;
@@ -29,6 +32,8 @@ public class Game extends Canvas implements ActionListener{
 		canvas = new BufferedImage(1000, 1000, BufferedImage.TYPE_INT_RGB);
 		platforms = new ArrayList<Platform>();
 		gameOver = false;
+		moveX = 0;
+		this.el = el;
 		timer = new Timer(20, this);
 		timer.setInitialDelay(30);
 		timer.start();
@@ -71,6 +76,7 @@ public class Game extends Canvas implements ActionListener{
 		for(Platform i : platforms){
 			i.update(g1);//Updates to a new position
 		}
+		player.move(moveX);
 		player.update(g1, platforms);
 		if(player.getX()+canvasX<getWidth()*0.25){
 			canvasX+=2;
@@ -104,11 +110,14 @@ public class Game extends Canvas implements ActionListener{
 		public void keyPressed(KeyEvent event){
 			int ch = event.getKeyCode();//Keep track of key presses
 			if(ch == KeyEvent.VK_UP || ch == KeyEvent.VK_W){
-				player.jump();
+				player.jump(10);
 			}else if(ch == KeyEvent.VK_LEFT|| ch == KeyEvent.VK_A){
-				player.left(2);
+				moveX = -2;
 			}else if(ch == KeyEvent.VK_RIGHT || ch == KeyEvent.VK_D){
-				player.right(2);
+				moveX = 2;
+			}
+			if(ch == KeyEvent.VK_ESCAPE){
+				el.exit();
 			}
 		}
 
@@ -116,9 +125,11 @@ public class Game extends Canvas implements ActionListener{
 		public void keyReleased(KeyEvent event){
 			int ch = event.getKeyCode();//Keep track of key presses
 			if(ch == KeyEvent.VK_LEFT|| ch == KeyEvent.VK_A){
-				player.left(0);
+				if(moveX != 2)
+					moveX = 0;
 			}else if(ch == KeyEvent.VK_RIGHT || ch == KeyEvent.VK_D){
-				player.right(0);
+				if(moveX!=-2)
+				moveX = 0;
 			}
 		}
 	}

@@ -95,17 +95,12 @@ public class Player{
 
 		public int getYSpeed(){return ySpeed;}
 
-		public void jump(){
+		public void jump(int speed){
 			if(onGround)
-				ySpeed-=10;
+				ySpeed-=speed;
 		}
 
-		public void right(int speed){
+		public void move(int speed){
 			xSpeed=speed;
-		}
-
-		public void left(int speed){
-			xSpeed=-speed;
-		//ySpeed+=1;
 		}
 	}

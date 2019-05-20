@@ -7,7 +7,7 @@ import java.awt.*;
 import javax.imageio.ImageIO;
 import java.io.*;
 
-public class MainWindow extends JFrame{
+public class MainWindow extends JFrame implements ExitListener{
   Game gameScreen;
   String curScreen;
   
@@ -20,7 +20,6 @@ public class MainWindow extends JFrame{
         int x = me.getX();
         int y = me.getY();
         if(curScreen.equals("menu")){
-          System.out.println(x+ " " + y);
           if(x<100)
             newGame();
         }else if(curScreen.equals("level")){
@@ -59,9 +58,14 @@ public class MainWindow extends JFrame{
   }
 
   public void newGame(){
-    gameScreen = new Game(1);
+    gameScreen = new Game(1, this);
     add(gameScreen);
     pack();
+  }
+
+  public void exit(){
+    remove(gameScreen);
+    curScreen = "menu";
   }
 
   public void paint(Graphics g){
