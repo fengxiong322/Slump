@@ -23,8 +23,8 @@ public class Player{
  BufferedImage left1;
  BufferedImage right1;
  BufferedImage right2;
- BufferedImage[] left = new BufferedImage[10];
- BufferedImage[] right = new BufferedImage[10];
+ BufferedImage[] left = new BufferedImage[2];
+ BufferedImage[] right = new BufferedImage[2];
  int xSpeed;
  int ySpeed;
  boolean onGround;
@@ -43,25 +43,9 @@ public class Player{
     right1 = ImageIO.read(new File("Player/right1.png"));
     right2 = ImageIO.read(new File("Player/right2.png"));
     left[0] = left1;
-    left[1] = left1;
-    left[2] = left1;
-    left[3] = left1;
-    left[4] = left1;
-    left[5] = left2;
-    left[6] = left2;
-    left[7] = left2;
-    left[8] = left2;
-    left[9] = left2;
+    left[1] = left2;
     right[0] = right1;
-    right[1] = right1;
-    right[2] = right1;
-    right[3] = right1;
-    right[4] = right1;
-    right[5] = right2;
-    right[6] = right2;
-    right[7] = right2;
-    right[8] = right2;
-    right[9] = right2;
+    right[1] = right2;
    // left = {left1,left1,left1,left1,left1,left2,left2,left2,left2,left2};
    // right = {right1,right1,right1,right1,right1,right2,right2,right2,right2,right2};
   }
@@ -96,25 +80,25 @@ public class Player{
    y+=ySpeed;
    //g.setColor(Color.RED);
    //g.fillRect(x, y, sizeX, sizeY);
-   if (xSpeed == 0)
+   if (xSpeed == 0 && onGround)//This runs when the character is completely stationary
      g.drawImage(idleLeft, x, y, x+sizeX, y+sizeY, 0, 0, 16, 51, null);
-   if (xSpeed > 0 && ySpeed == 0)
+   if (xSpeed > 0 && onGround)//This runs when the character is moving to the right, and is on the ground
    {
-     g.drawImage(right[lastImage], x, y, x+sizeX, y+sizeY, 0, 0, 24, 51, null);
+     g.drawImage(right[(int)(lastImage/5)], x, y, x+sizeX, y+sizeY, 0, 0, 24, 51, null);
      lastImage ++;
      if (lastImage > 9)
        lastImage = 0;
    }
-   if (xSpeed < 0 && ySpeed == 0)
+   if (xSpeed < 0 && onGround)//This runs when the character is moving to the right and is on the ground
    {
-     g.drawImage(left[lastImage], x, y, x+sizeX, y+sizeY, 0, 0, 24, 51, null);
+     g.drawImage(left[(int)(lastImage/5)], x, y, x+sizeX, y+sizeY, 0, 0, 24, 51, null);
      lastImage ++;
      if (lastImage > 9)
        lastImage = 0;
    }
-   if (xSpeed > 0 && ySpeed != 0)
+   if (xSpeed >= 0 && !onGround)//This runs when the character is stationary or moving to the right, while jumping
      g.drawImage(jumpRight, x, y, x+sizeX, y+sizeY, 0, 0, 16, 51, null);
-   if (xSpeed < 0 && ySpeed != 0)
+   if (xSpeed < 0 && !onGround)//This runs when the character is moving to the left, while jumping
      g.drawImage(jumpLeft, x, y, x+sizeX, y+sizeY, 0, 0, 16, 51, null);
  }
  
