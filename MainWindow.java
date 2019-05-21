@@ -10,11 +10,13 @@ import java.io.*;
 public class MainWindow extends JFrame implements ExitListener{
   Game gameScreen;
   String curScreen;
-  
+  int size;
+
   public MainWindow(){
     super("The Slump");
     curScreen = "menu";
-    setSize(943, 943);
+    size = Math.min((int)Toolkit.getDefaultToolkit().getScreenSize().getHeight(), (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth())-10;
+    setSize(size, size);
     addMouseListener(new MouseAdapter() { 
       public void mousePressed(MouseEvent me){
         int x = me.getX();
@@ -34,6 +36,7 @@ public class MainWindow extends JFrame implements ExitListener{
       } 
     });
     setLocationRelativeTo(null);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);
     repaint();
   }
@@ -75,7 +78,7 @@ public class MainWindow extends JFrame implements ExitListener{
     if(curScreen.equals("menu")){
       try {
         BufferedImage background = ImageIO.read(new File("Screens/Menu.png"));
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0, size, size, null);
       } catch (IOException e) {
       }
     }else if(curScreen.equals("level")){
