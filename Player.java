@@ -29,6 +29,7 @@ public class Player{
  int ySpeed;
  boolean onGround;
  int lastImage;
+ boolean lastDirection;
  final static int GRAVITY = 1;
 
  public Player(int x, int y, int sizeX, int sizeY){
@@ -80,26 +81,43 @@ public class Player{
    y+=ySpeed;
    //g.setColor(Color.RED);
    //g.fillRect(x, y, sizeX, sizeY);
-   if (xSpeed == 0 && onGround)//This runs when the character is completely stationary
+   if (xSpeed == 0 && onGround && !lastDirection)//This runs when the character is completely stationary
      g.drawImage(idleLeft, x, y, x+sizeX, y+sizeY, 0, 0, 16, 51, null);
-   if (xSpeed > 0 && onGround)//This runs when the character is moving to the right, and is on the ground
+   else if (xSpeed == 0 && onGround && lastDirection)
+     g.drawImage(idleRight, x, y, x+sizeX, y+sizeY, 0, 0, 16, 51, null);
+   else if (xSpeed > 0 && onGround)//This runs when the character is moving to the right, and is on the ground
    {
      g.drawImage(right[(int)(lastImage/5)], x, y, x+sizeX, y+sizeY, 0, 0, 24, 51, null);
      lastImage ++;
+     lastDirection = true;
      if (lastImage > 9)
        lastImage = 0;
    }
-   if (xSpeed < 0 && onGround)//This runs when the character is moving to the right and is on the ground
+   else if (xSpeed < 0 && onGround)//This runs when the character is moving to the right and is on the ground
    {
      g.drawImage(left[(int)(lastImage/5)], x, y, x+sizeX, y+sizeY, 0, 0, 24, 51, null);
      lastImage ++;
+     lastDirection = false;
      if (lastImage > 9)
        lastImage = 0;
    }
-   if (xSpeed >= 0 && !onGround)//This runs when the character is stationary or moving to the right, while jumping
-     g.drawImage(jumpRight, x, y, x+sizeX, y+sizeY, 0, 0, 16, 51, null);
-   if (xSpeed < 0 && !onGround)//This runs when the character is moving to the left, while jumping
-     g.drawImage(jumpLeft, x, y, x+sizeX, y+sizeY, 0, 0, 16, 51, null);
+   else if (xSpeed > 0 && !onGround)//This runs when the character is stationary or moving to the right, while jumping
+   {
+     g.drawImage(jumpRight, x, y, x+sizeX, y+sizeY, 0, 0, 25, 47, null);
+   }
+   else if (xSpeed < 0 && !onGround)//This runs when the character is moving to the left, while jumping
+   {
+     g.drawImage(jumpLeft, x, y, x+sizeX, y+sizeY, 0, 0, 25, 47, null);
+     
+   }
+   else if (xSpeed == 0 && !onGround)
+   {
+     if (lastDirection)
+       g.drawImage(jumpRight, x, y, x+sizeX, y+sizeY, 0, 0, 16, 51, null);
+     else
+       g.drawImage(jumpLeft, x, y, x+sizeX, y+sizeY, 0, 0, 16, 51, null);
+       
+   }
  }
  
 // public void update2(Graphics g, ArrayList<Platform> platforms){
