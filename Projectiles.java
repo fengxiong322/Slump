@@ -9,8 +9,9 @@ import javax.imageio.ImageIO;
 import java.io.*;
 import java.util.*;
 
-public class Platform{
-	BufferedImage platform;
+public class Projectiles{
+	BufferedImage generator;
+	BufferedImage projectiles;
 	private int startX;
 	private int startY;
 	private int length;
@@ -19,15 +20,21 @@ public class Platform{
 	private int endDist;//end pos
 	private boolean right;//if going right, true
 
-	public Platform(int startX, int startY, int length, int speed, int endDist){
-		try{platform = ImageIO.read(new File("platform.png"));}catch(IOException e){e.printStackTrace();}
+	public Projectiles(int startX, int startY, boolean isRight, int speed, int endDist){
 		this.startX = startX;
 		this.startY = startY;
-		this.length = length;
+		right = isRight;
 		this.speed = speed;
 		this.startDist = startX;
 		this.endDist = endDist;
-		right = true;
+		int counter;
+		try{
+			generator = ImageIO.read(new File("platform.png"));
+			projectiles = ImageIO.read(new File("platform.png"));
+			counter = 0;
+		}catch(IOException e){
+			System.out.println(e.printStackTrace());
+		}
 	}
 
 	public int getX(){
@@ -44,17 +51,10 @@ public class Platform{
 
 	public void update(Graphics g){
 		g.setColor(new Color(0, 255, 0));
-		g.fillRect(startX, startY, length, 30);
-		//g.drawImage(platform, startX, startY, startX + length, startY+30, 0, 0, 100, 100, null);
-		if(startX<startDist){
-			right = true;
-		}else if(startX>endDist){
-			right = false;
+		g.fillRect(startX, startY, length, 30);//Generator
+		counter++;
+		if(right){
+			if(end)
 		}
-		if(right)
-			startX+=speed;
-		else
-			startX-=speed;
-
 	}
 }
