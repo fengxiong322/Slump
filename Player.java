@@ -101,7 +101,7 @@ public class Player{
      if (lastImage > 9)
        lastImage = 0;
    }
-   else if (xSpeed > 0 && !onGround)//This runs when the character is stationary or moving to the right, while jumping
+   else if (xSpeed > 0 && !onGround)//This runs when the character is moving to the right, while jumping
    {
      g.drawImage(jumpRight, x, y, x+sizeX, y+sizeY, 0, 0, 25, 47, null);
    }
@@ -113,9 +113,9 @@ public class Player{
    else if (xSpeed == 0 && !onGround)
    {
      if (lastDirection)
-       g.drawImage(jumpRight, x, y, x+sizeX, y+sizeY, 0, 0, 16, 51, null);
+       g.drawImage(jumpRight, x, y, x+sizeX, y+sizeY, 0, 0, 25, 47, null);
      else
-       g.drawImage(jumpLeft, x, y, x+sizeX, y+sizeY, 0, 0, 16, 51, null);
+       g.drawImage(jumpLeft, x, y, x+sizeX, y+sizeY, 0, 0, 25, 47, null);
        
    }
  }

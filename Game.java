@@ -33,6 +33,7 @@ public class Game extends Canvas implements ActionListener{
   platforms = new ArrayList<Platform>();
   gameOver = false;
   moveX = 0;
+  moveY = 0;
   this.el = el;
   timer = new Timer(20, this);
   timer.setInitialDelay(30);
@@ -49,11 +50,10 @@ public class Game extends Canvas implements ActionListener{
  public void level1(){
   setSpawn(100, 200);
   try{background = ImageIO.read(new File("platform.png"));}catch(IOException e){}//Remember to add the actual background
-  platforms.add(new Platform(0, 380, 400, 0, 0));
-  platforms.add(new Platform(190, 340, 30, 0, 0));
-  platforms.add(new Platform(190, 280, 30, 0, 0));
-  platforms.add(new Platform(190, 220, 30, 0, 0));
-  platforms.add(new Platform(0, 160, 0, 0, 0));
+  platforms.add(new Platform(3, 380, 400, 0, 0));
+  platforms.add(new Platform(190, 340, 60, 0, 0));
+  platforms.add(new Platform(193, 300, 30, 0, 0));
+  platforms.add(new Platform(3, 160, 0, 0, 0));
  }
 
  public void level2(){}
@@ -79,6 +79,7 @@ public class Game extends Canvas implements ActionListener{
    i.update(g1);//Updates to a new position
   }
   player.move(moveX);
+  player.jump(moveY);
   player.update(g1, platforms);
   if(player.getX()+canvasX<getWidth()*0.25){
    canvasX+=2;
@@ -112,7 +113,7 @@ public class Game extends Canvas implements ActionListener{
   public void keyPressed(KeyEvent event){
    int ch = event.getKeyCode();//Keep track of key presses
    if(ch == KeyEvent.VK_UP || ch == KeyEvent.VK_W){
-    player.jump(10);
+    moveY = 10;
    }else if(ch == KeyEvent.VK_LEFT|| ch == KeyEvent.VK_A){
     moveX = -3;
    }else if(ch == KeyEvent.VK_RIGHT || ch == KeyEvent.VK_D){
@@ -126,12 +127,14 @@ public class Game extends Canvas implements ActionListener{
   @Override
   public void keyReleased(KeyEvent event){
    int ch = event.getKeyCode();//Keep track of key presses
-   if(ch == KeyEvent.VK_LEFT|| ch == KeyEvent.VK_A){
+   if(ch == KeyEvent.VK_UP || ch == KeyEvent.VK_W){
+    moveY = 0;
+   }else if(ch == KeyEvent.VK_LEFT|| ch == KeyEvent.VK_A){
     if(moveX != 3)
      moveX = 0;
    }else if(ch == KeyEvent.VK_RIGHT || ch == KeyEvent.VK_D){
     if(moveX!=-3)
-    moveX = 0;
+    	moveX = 0;
    }
   }
  }
