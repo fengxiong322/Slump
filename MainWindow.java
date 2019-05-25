@@ -15,16 +15,16 @@ public class MainWindow extends JFrame implements ExitListener{
   public MainWindow(){
     super("The Slump");
     curScreen = "menu";
-    size = Math.min((int)Toolkit.getDefaultToolkit().getScreenSize().getHeight(), (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth())-10;
-    setSize(size, size);
-    addMouseListener(new MouseAdapter() { 
+    size = Math.min((int)Toolkit.getDefaultToolkit().getScreenSize().getHeight(), (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth())-10;//finds the largest size it can be
+    setSize(size, size);//Sets the size
+    addMouseListener(new MouseAdapter() {//Allows for mouse interaction
       public void mousePressed(MouseEvent me){
         int x = me.getX();
         int y = me.getY();
-        if(curScreen.equals("menu")){
+        if(curScreen.equals("menu")){//When the screen is on menu
           if(x>290 && y> 130 && x < 623 && y > 262)
             newGame();
-        }else if(curScreen.equals("level")){
+        }else if(curScreen.equals("level")){//When the screen is on level
           openLevel();
         }else if(curScreen.equals("highScore")){
           openHighScore();
@@ -63,7 +63,7 @@ public class MainWindow extends JFrame implements ExitListener{
   public void newGame(){
     gameScreen = new Game(1, this);
     add(gameScreen);
-    gameScreen .requestFocusInWindow(); 
+    gameScreen.requestFocusInWindow(); 
     pack();
   }
 

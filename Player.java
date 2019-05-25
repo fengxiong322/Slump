@@ -17,12 +17,8 @@ public class Player{
  int sizeY;
  BufferedImage idleLeft;
  BufferedImage idleRight;
- BufferedImage left2;
  BufferedImage jumpLeft;
  BufferedImage jumpRight;
- BufferedImage left1;
- BufferedImage right1;
- BufferedImage right2;
  BufferedImage[] left = new BufferedImage[2];
  BufferedImage[] right = new BufferedImage[2];
  int xSpeed;
@@ -37,16 +33,12 @@ public class Player{
   {
     idleLeft = ImageIO.read(new File("Player/idleLeft.png"));
     idleRight = ImageIO.read(new File("Player/idleRight.png"));
-    left2 = ImageIO.read(new File("Player/left2.png"));
     jumpLeft = ImageIO.read(new File("Player/jumpLeft.png"));
     jumpRight = ImageIO.read(new File("Player/jumpRight.png"));
-    left1 = ImageIO.read(new File("Player/left1.png"));
-    right1 = ImageIO.read(new File("Player/right1.png"));
-    right2 = ImageIO.read(new File("Player/right2.png"));
-    left[0] = left1;
-    left[1] = left2;
-    right[0] = right1;
-    right[1] = right2;
+    left[0] = ImageIO.read(new File("Player/left1.png"));
+    left[1] = ImageIO.read(new File("Player/left2.png"));
+    right[0] = ImageIO.read(new File("Player/right1.png"));
+    right[1] = ImageIO.read(new File("Player/right2.png"));
    // left = {left1,left1,left1,left1,left1,left2,left2,left2,left2,left2};
    // right = {right1,right1,right1,right1,right1,right2,right2,right2,right2,right2};
   }

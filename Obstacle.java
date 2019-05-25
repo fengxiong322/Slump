@@ -1,0 +1,38 @@
+import java.awt.Canvas;
+import java.awt.Graphics;
+import javax.swing.JFrame;
+import javax.swing.Timer;
+import java.awt.event.*;
+import java.awt.image.*;
+import java.awt.*;
+import javax.imageio.ImageIO;
+import java.io.*;
+import java.util.*;
+import java.awt.Rectangle;
+
+public abstract class Obstacle{
+	private int x;
+	private int y;
+	private BufferedImage image;
+
+	public Obstacle(int x, int y){
+		this.x = x;
+		this.y = y;
+	}
+
+	public int getX(){return x;}
+
+	public int getY(){return y;}
+
+	public void setX(int x){this.x = x;}
+
+	public void setY(int y){this.y = y;}
+
+	public void setImage(BufferedImage bi){ image = bi;}
+
+	public BufferedImage getImage(){
+		return image;
+	}
+
+	public abstract void update(Graphics g);
+}

@@ -12,6 +12,7 @@ import java.util.*;
 
 public class Game extends Canvas implements ActionListener{
  ArrayList<Platform> platforms;
+ Projectile e;
  Timer timer;
  boolean gameOver;
  BufferedImage background;
@@ -54,6 +55,7 @@ public class Game extends Canvas implements ActionListener{
   platforms.add(new Platform(190, 340, 60, 0, 0));
   platforms.add(new Platform(193, 300, 30, 0, 0));
   platforms.add(new Platform(3, 160, 0, 0, 0));
+  e = new Projectile(100, 100, true, 5, 300);
  }
 
  public void level2(){}
@@ -93,7 +95,7 @@ public class Game extends Canvas implements ActionListener{
   if(player.getY()+canvasY>getHeight()*0.75){
    canvasY-=2;
   }
-
+  e.update(g1);
   g.drawImage(canvas, canvasX, canvasY, null);
  }
 
