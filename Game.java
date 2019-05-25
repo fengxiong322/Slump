@@ -80,6 +80,7 @@ public class Game extends Canvas implements ActionListener{
   for(Platform i : platforms){
    i.update(g1);//Updates to a new position
   }
+  e.update(g1);
   player.move(moveX);
   player.jump(moveY);
   player.update(g1, platforms);
@@ -95,7 +96,6 @@ public class Game extends Canvas implements ActionListener{
   if(player.getY()+canvasY>getHeight()*0.75){
    canvasY-=2;
   }
-  e.update(g1);
   g.drawImage(canvas, canvasX, canvasY, null);
  }
 
