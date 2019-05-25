@@ -17,6 +17,7 @@ public class Game extends Canvas implements ActionListener{
  boolean gameOver;
  BufferedImage background;
  BufferedImage canvas;
+ BufferedImage clear;
  Player player;
  int canvasX;
  int canvasY;
@@ -31,6 +32,7 @@ public class Game extends Canvas implements ActionListener{
   canvasY = 0;
   addKeyListener(new PlayerListener());
   canvas = new BufferedImage(1000, 1000, BufferedImage.TYPE_INT_RGB);
+  clear = new BufferedImage(1000, 1000, BufferedImage.TYPE_INT_RGB);
   platforms = new ArrayList<Platform>();
   gameOver = false;
   moveX = 0;
@@ -51,7 +53,7 @@ public class Game extends Canvas implements ActionListener{
  public void level1(){
   setSpawn(100, 200);
   try{background = ImageIO.read(new File("platform.png"));}catch(IOException e){}//Remember to add the actual background
-  platforms.add(new Platform(3, 380, 400, 0, 0));
+  platforms.add(new Platform(0, 380, 400, 0, 0));
   platforms.add(new Platform(190, 340, 60, 0, 0));
   platforms.add(new Platform(193, 300, 30, 0, 0));
   platforms.add(new Platform(3, 160, 0, 0, 0));
@@ -74,7 +76,7 @@ public class Game extends Canvas implements ActionListener{
   Graphics g1 = canvas.getGraphics();//Draw the graphics on a separate picture so that we can add pictures without flickering
   //RedrawBackround
   g1.setColor(new Color(0, 0, 0));
-  g1.fillRect(-100, -100, 1000, 1000);
+  g1.fillRect(0, 0, 1000, 1000);
   g1.drawImage(background, 0, 0,1000, 1000, null);
   //Update all items on screen
   for(Platform i : platforms){
@@ -96,7 +98,11 @@ public class Game extends Canvas implements ActionListener{
   if(player.getY()+canvasY>getHeight()*0.75){
    canvasY-=2;
   }
-  g.drawImage(canvas, canvasX, canvasY, null);
+  Graphics g2 = clear.getGraphics();//Triple buffer
+  g2.setColor(new Color(0, 0, 0));
+  g2.fillRect(0, 0, 1000, 1000);
+  g2.drawImage(canvas, canvasX, canvasY, null);
+  g.drawImage(clear, 0, 0, null);
  }
 
  public void actionPerformed(ActionEvent e) {
