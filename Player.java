@@ -140,7 +140,7 @@ public class Player{
    xSpeed = 0;
   }
   for(Platform i: platforms){
-   Rectangle platformRect = new Rectangle(i.getX(), i.getY(), i.getLength(), 30);
+   Rectangle platformRect = new Rectangle(i.getX(), i.getY(), i.getXSize(), i.getYSize());
    if(playerRect.intersects(platformRect)){
     intersected = true;
     if(ySpeed>0){

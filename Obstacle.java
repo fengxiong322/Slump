@@ -13,16 +13,24 @@ import java.awt.Rectangle;
 public abstract class Obstacle{
 	private int x;
 	private int y;
+	private int xSize;
+	private int ySize;
 	private BufferedImage image;
 
-	public Obstacle(int x, int y){
+	public Obstacle(int x, int y, int xSize, int ySize){
 		this.x = x;
 		this.y = y;
+		this.xSize = xSize;
+		this.ySize = ySize;
 	}
 
 	public int getX(){return x;}
 
 	public int getY(){return y;}
+
+	public int getXSize(){return xSize;}
+
+	public int getYSize(){return ySize;}
 
 	public void setX(int x){this.x = x;}
 

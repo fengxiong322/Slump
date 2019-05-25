@@ -16,7 +16,7 @@ public class Projectile extends Obstacle{
 	private boolean right;//if going right, true
 
 	public Projectile(int x, int y, boolean isRight, int speed, int endDist){
-		super(x, y);
+		super(x, y, 10, 10);
 		try{
 			setImage(ImageIO.read(new File("platform.png")));
 		}catch(IOException e){
@@ -30,7 +30,7 @@ public class Projectile extends Obstacle{
 
 	public void update(Graphics g){
 		g.setColor(new Color(0, 255, 0));
-		g.fillRect(getX(), getY(), 30, 30);
+		g.fillRect(getX(), getY(), getXSize(), getYSize());
 		if(right){
 			setX(getX()+1);
 			if(getX()>endDist)
