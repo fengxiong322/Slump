@@ -52,7 +52,11 @@ public class Game extends Canvas implements ActionListener{
 
  public void level1(){
   setSpawn(100, 200);
-  try{background = ImageIO.read(new File("platform.png"));}catch(IOException e){}//Remember to add the actual background
+  try{
+    background = ImageIO.read(new File("platform.png"));
+  }
+  catch(IOException e){
+  }//Remember to add the actual background
   platforms.add(new Platform(0, 380, 400, 0, 0));
   platforms.add(new Platform(190, 340, 60, 0, 0));
   platforms.add(new Platform(193, 300, 30, 0, 0));
@@ -142,7 +146,7 @@ public class Game extends Canvas implements ActionListener{
      moveX = 0;
    }else if(ch == KeyEvent.VK_RIGHT || ch == KeyEvent.VK_D){
     if(moveX!=-3)
-    	moveX = 0;
+     moveX = 0;
    }
   }
  }
