@@ -12,7 +12,6 @@ import java.util.*;
 
 public class Game extends Canvas implements ActionListener{
  ArrayList<Obstacle> platforms;
- Projectile e;
  Timer timer;
  boolean gameOver;
  BufferedImage background;
@@ -55,15 +54,15 @@ public class Game extends Canvas implements ActionListener{
   try{
     background = ImageIO.read(new File("platform.png"));
   //emember to add the actual background
-  platforms.add (new NPC (320, 300, 50, 100, ImageIO.read(new File("Screens/blank.png")), "i like cats"));
+  //platforms.add (new NPC (320, 270, 50, 30, ImageIO.read(new File("Screens/blank.png")), "i like cats"));
   }
   catch(IOException e){
   }//R
+  platforms.add(new Platform(320, 270, 50, 0, 0));
   platforms.add(new Platform(0, 380, 400, 0, 0));
   platforms.add(new Platform(190, 340, 60, 0, 0));
   platforms.add(new Platform(193, 300, 30, 0, 0));
   platforms.add(new Platform(3, 160, 0, 0, 0));
-  e = new Projectile(100, 100, true, 5, 300);
  }
 
  public void level2(){}
@@ -88,7 +87,6 @@ public class Game extends Canvas implements ActionListener{
   for(Obstacle i : platforms){
    i.update(g1);//Updates to a new position
   }
-  e.update(g1);
   player.move(moveX);
   player.jump(moveY);
   player.update(g1, platforms);

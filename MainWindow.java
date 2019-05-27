@@ -116,11 +116,7 @@ public class MainWindow extends JFrame implements ExitListener{
       } catch (IOException e) {
       }
     }else if(curScreen.equals("quit")){
-      try {
-        BufferedImage background = ImageIO.read(new File("Screens/blank.png"));
-        g.drawImage(background, 0, 20, 811, 811, null);
-      } catch (IOException e) {
-      }
+      dispose();
     }else if(curScreen.equals("highScore")){
       try {
         BufferedImage background = ImageIO.read(new File("Screens/blank.png"));
