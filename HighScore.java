@@ -22,13 +22,13 @@ public class HighScore extends Canvas{
 	BufferedReader br;
 
 	public HighScore(){//Added constructor Feng May 22 1 hour
-		//Reading files May 22 30 min
+		//Reading files Feng May 22 30 min
 		try{
 			background = ImageIO.read(new File("platform.png"));//Change this picture
 		}catch(IOException e){
 			e.printStackTrace();
 		}
-		//Prompt May 23 30 min
+		//Prompt Feng May 23 30 min
 		boolean completed = false;
 		path = "";
 		try{
