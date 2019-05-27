@@ -12,8 +12,10 @@ import java.util.*;
 /**
 * @author Feng, Michael
 * @version 2.0
-* Total time spent Feng: 5 hours
-* Total time spend Michael: 2.5 hours
+* Total time spent Feng: 3 hours
+* Total time spend Michael: 1.5 hours
+*Modifications: May 18, 2019, Feng, Total time: 3 hours
+* added the class and basic methods
 * Modifications: May 25, 2019, Michael Zhou, Total time: 1 hours
 * added a NPC object into level 1 for testing purposes
 * modified platform array so it works will all Obstacle objects
@@ -144,8 +146,8 @@ public class Game extends Canvas implements ActionListener{
    }
    else if (ch == KeyEvent.VK_DOWN)
    {
-    //added checking for npc and talking - michael
-     for (Obstacle n : platforms) //changed to obstacle - michael
+    //added checking for npc and talking May 22, 2019 - michael
+     for (Obstacle n : platforms) //changed to obstacle May 22, 2019 - michael
      {
      if (Math.abs (player.getX() - n.getX()) <= 33 && player.getY() == player.getX())
        ((NPC) n).speek ();
