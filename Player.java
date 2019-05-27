@@ -40,7 +40,7 @@ public class Player{
  boolean onGround;
  int lastImage;
  boolean lastDirection;
- final static int GRAVITY = 1; //modified gravity levels
+ final static int GRAVITY = 1; //modified gravity levels Michael May 20, 2019
 
  public Player(int x, int y, int sizeX, int sizeY){  //modified michael, added images for animations- may17
   //Added variable set up may 15 Feng Xiong 5 min
