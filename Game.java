@@ -9,9 +9,18 @@ import javax.imageio.ImageIO;
 import java.io.*;
 import java.util.*;
 
-
+/**
+* @author Feng, Michael
+* @version 2.0
+* Total time spent Feng: 5 hours
+* Total time spend Michael: 2.5 hours
+* Modifications: May 25, 2019, Michael Zhou, Total time: 1 hours
+* added a NPC object into level 1 for testing purposes
+* modified platform array so it works will all Obstacle objects
+* added converstations with NPCs when the player presses down arrow
+*/
 public class Game extends Canvas implements ActionListener{
- ArrayList<Obstacle> platforms;
+ ArrayList<Obstacle> platforms; //changed to obstacle
  Projectile e;
  Timer timer;
  boolean gameOver;
@@ -55,7 +64,7 @@ public class Game extends Canvas implements ActionListener{
   try{
     background = ImageIO.read(new File("platform.png"));
   //emember to add the actual background
-  platforms.add (new NPC (320, 300, 50, 100, ImageIO.read(new File("Screens/blank.png")), "i like cats"));
+  platforms.add (new NPC (320, 300, 50, 100, ImageIO.read(new File("Screens/blank.png")), "i like cats")); //added npc
   }
   catch(IOException e){
   }//R
@@ -135,7 +144,8 @@ public class Game extends Canvas implements ActionListener{
    }
    else if (ch == KeyEvent.VK_DOWN)
    {
-     for (Obstacle n : platforms)
+    //added checking for npc and talking - michael
+     for (Obstacle n : platforms) //changed to obstacle - michael
      {
      if (Math.abs (player.getX() - n.getX()) <= 33 && player.getY() == player.getX())
        ((NPC) n).speek ();
