@@ -10,6 +10,16 @@ import java.io.*;
 import java.util.*;
 import java.awt.Rectangle;
 
+/**
+* @author Feng, Michael
+* @version 2.0
+* Total time spent Feng: 3 hours
+* Total time spend Michael: 3 hours
+ *Modifications: May 17, 2019, Michael Zhou, Total time: 3 hours
+ * added changing animations for moving, jumping,
+* Modifications: May 23, 2019, Michael Zhou, Total time: 0.05 hours
+* modified gravity levels to make the player jump higher
+*/
 public class Player{
  int x;
  int y;
@@ -26,9 +36,9 @@ public class Player{
  boolean onGround;
  int lastImage;
  boolean lastDirection;
- final static int GRAVITY = 1;
+ final static int GRAVITY = 1; //modified gravity levels
 
- public Player(int x, int y, int sizeX, int sizeY){
+ public Player(int x, int y, int sizeX, int sizeY){  //modified michael, added images for animations- may17
   try
   {
     idleLeft = ImageIO.read(new File("Player/idleLeft.png"));
@@ -66,7 +76,7 @@ public class Player{
 //    return true;
 // }
  
- public void update(Graphics g, ArrayList<Obstacle> platforms){
+ public void update(Graphics g, ArrayList<Obstacle> platforms){ //modified michael, changing of aniamtions of player when moving - may17
    ySpeed+=GRAVITY;
    checkPlatform(platforms);
    x+=xSpeed;
