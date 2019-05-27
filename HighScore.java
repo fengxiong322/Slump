@@ -21,12 +21,14 @@ public class HighScore extends Canvas{
 	String path;
 	BufferedReader br;
 
-	public HighScore(){
+	public HighScore(){//Added constructor Feng May 22 1 hour
+		//Reading files May 22 30 min
 		try{
 			background = ImageIO.read(new File("platform.png"));//Change this picture
 		}catch(IOException e){
 			e.printStackTrace();
 		}
+		//Prompt May 23 30 min
 		boolean completed = false;
 		path = "";
 		try{
@@ -60,17 +62,7 @@ public class HighScore extends Canvas{
 	}
 
 
-	public void paint(Graphics g){
+	public void paint(Graphics g){//Created empy paint method Feng 20min
 
 	}
-
-	public static void main(String[] args) {
-		JFrame frame = new JFrame("test");
-		frame.setSize(300, 300);
-		frame.add(new HighScore());
-		frame.setLocationRelativeTo(null);
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setVisible(true);
-	}
-
 }
