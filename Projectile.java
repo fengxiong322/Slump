@@ -34,6 +34,7 @@ public class Projectile extends Obstacle{
 		this.endDist = endDist;
 	}
 
+	//Added May 17, 2019 - Feng
 	public void update(Graphics g){
 		g.setColor(new Color(0, 255, 0));
 		g.fillRect(getX(), getY(), getXSize(), getYSize());
