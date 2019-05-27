@@ -35,7 +35,7 @@ public class MainWindow extends JFrame implements ExitListener{
         int y = me.getY();
         //added coord detection for testing
         System.out.println(x + " " + y);
-        //added nagviagion between screens
+        //added nagviagion between screens - Michael Zhou, May 24, 2019 5mins
         if(curScreen.equals("menu")){//When the screen is on menu
           if(x>252 && y> 235 && x < 559 && y < 346)
             openLevel();
@@ -133,35 +133,37 @@ public class MainWindow extends JFrame implements ExitListener{
   /**
   * Set the background to the correct image
   * @param g The graphics for the background
+  * Changelog
+  * Michael - added the if statements to change between all the screens as well as imported the images 10 mins, May 24, 2019
   */
   public void paint(Graphics g){
     g.setColor(new Color(0, 0, 0));
     g.fillRect(0, 0, getWidth(), getHeight());
-    if(curScreen.equals("menu")){
+    if(curScreen.equals("menu")){ //michael - added image and option May 17, 2019 5mins
       try {
         BufferedImage background = ImageIO.read(new File("Screens/Menu.png"));
         g.drawImage(background, 0, 10, 811, 811, null);
       } catch (IOException e) {
-      }
-    }else if(curScreen.equals("level")){ //michael - added image and option
+      } 
+    }else if(curScreen.equals("level")){ //michael - added image and option   May 24, 2019 5 mins
       try {
         BufferedImage background = ImageIO.read(new File("Screens/Levels.png"));
         g.drawImage(background, 0, 10, 811, 811, null);
       } catch (IOException e) {
       }
-    }else if(curScreen.equals("instructions")){ //michael - added image and option
+    }else if(curScreen.equals("instructions")){ //michael - added image and option  May 24, 2019 5 mins
       try {
         BufferedImage background = ImageIO.read(new File("Screens/Instructions.png"));
         g.drawImage(background, 0, 20, 811, 811, null);
       } catch (IOException e) {
       }
-    }else if(curScreen.equals("quit")){ //michael - added image and option
+    }else if(curScreen.equals("quit")){ //michael - added image and option   May 24, 2019 5 mins
       try {
         BufferedImage background = ImageIO.read(new File("Screens/blank.png"));
         g.drawImage(background, 0, 20, 811, 811, null);
       } catch (IOException e) {
       }
-    }else if(curScreen.equals("highScore")){ //michael - added image and option
+    }else if(curScreen.equals("highScore")){ //michael - added image and option   May 24, 2019 5 mins
       try {
         BufferedImage background = ImageIO.read(new File("Screens/blank.png"));
         g.drawImage(background, 0, 20, 811, 811, null);
