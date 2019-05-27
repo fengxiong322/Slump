@@ -15,10 +15,14 @@ import java.awt.Rectangle;
 * @version 2.0
 * Total time spent Feng: 3 hours
 * Total time spend Michael: 3 hours
- *Modifications: May 17, 2019, Michael Zhou, Total time: 3 hours
- * added changing animations for moving, jumping,
+* Modifications: May 17, 2019, Michael Zhou, Total time: 3 hours
+* added changing animations for moving and jumping
+* Modifications: May 19, 2019, Feng Xiong, Total time: 2 hour
+* Player Edge detection bug fixing
 * Modifications: May 23, 2019, Michael Zhou, Total time: 0.05 hours
 * modified gravity levels to make the player jump higher
+* Feng Xiong, Total time: 30min
+* Fix player bug during variable resets
 */
 public class Player{
  int x;
