@@ -9,6 +9,11 @@ import javax.imageio.ImageIO;
 import java.io.*;
 import java.util.*;
 
+/**
+* @author Feng,
+* @version 2.0
+* Total time spent Feng: 1.5 hours
+*/
 public class Projectile extends Obstacle{
 	private int speed;
 	private int startDist;//start pos
