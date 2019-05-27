@@ -40,7 +40,7 @@ public class Game extends Canvas implements ActionListener{
  * @param level the specified level
  * @param el the ExitListener
  */
- public Game(int level, ExitListener el){
+ public Game(int level, ExitListener el){//Created the constructor Feng Xiong 2 hours May 13
   super();
   setSize(400, 400);
   canvasX = 0;
@@ -68,7 +68,7 @@ public class Game extends Canvas implements ActionListener{
  * Changelog
  * May 25, 2019 - 2 mins - added NPC to the platforms, Michael
  */
- public void level1(){
+ public void level1(){//Created a basic level set up Feng Xiong May 15 1 hour
   setSpawn(100, 200);
   try{
     background = ImageIO.read(new File("platform.png"));
@@ -101,12 +101,12 @@ public class Game extends Canvas implements ActionListener{
   player = new Player(x, y, 32, 102);
  }
 
- public void paint(Graphics g){
+ public void paint(Graphics g){//runs the update loop, added the logic, Feng Xiogn May 15 10 min
   update(g);
  }
 
  
- public void update(Graphics g){
+ public void update(Graphics g){//The update loop, added the logic, Feng Xiogn May 15 2 hours
   Graphics g1 = canvas.getGraphics();//Draw the graphics on a separate picture so that we can add pictures without flickering
   //RedrawBackround
   g1.setColor(new Color(0, 0, 0));
@@ -139,7 +139,7 @@ public class Game extends Canvas implements ActionListener{
   g.drawImage(clear, 0, 0, null);
  }
 
- public void actionPerformed(ActionEvent e) {
+ public void actionPerformed(ActionEvent e) {//Added an action listener for the Timer, Feng Xiong May 16 10min
   //update new positions
   if(!gameOver)
    timer.restart();
@@ -149,7 +149,7 @@ public class Game extends Canvas implements ActionListener{
   repaint();
  }
 
- class PlayerListener extends KeyAdapter{
+ class PlayerListener extends KeyAdapter{//Created a mouse listner class to read user input Feng Xiong May 16 1 hour
 
   @Override
   public void keyPressed(KeyEvent event){
