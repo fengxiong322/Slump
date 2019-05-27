@@ -12,6 +12,8 @@ import java.io.*;
 * @version 2.0
 * Total time spent Feng: 7 hours
 * Total time spend Michael: 5 hours
+* Modifications: May 21, 2019, Feng Xiong, Total time: 10 mins
+* Added auto resizing window
 * Modifications: May 24, 2019, Michael Zhou, Total time: 2 hours
 * add navigation to level, quit, instruction, and highscore screens
 * improved navigation between all screens 
