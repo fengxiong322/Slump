@@ -35,7 +35,11 @@ public class Game extends Canvas implements ActionListener{
  int moveX;
  int moveY;
  ExitListener el;
-
+ 
+ /** COnstructor sets basic values and initalizes arrays and images
+ * @param level the specified level
+ * @param el the ExitListener
+ */
  public Game(int level, ExitListener el){
   super();
   setSize(400, 400);
@@ -60,7 +64,9 @@ public class Game extends Canvas implements ActionListener{
    level3();
   }
  }
-
+ /** Sets up the first level
+ *
+ */
  public void level1(){
   setSpawn(100, 200);
   try{
@@ -77,10 +83,19 @@ public class Game extends Canvas implements ActionListener{
   e = new Projectile(100, 100, true, 5, 300);
  }
 
+ /** Sets up the second level
+ *
+ */
  public void level2(){}
 
+ /** Sets up the thrid level
+ *
+ */
  public void level3(){}
 
+ /** Sets up the player spawn location
+ *
+ */
  public void setSpawn(int x, int y){
   player = new Player(x, y, 32, 102);
  }
@@ -89,6 +104,7 @@ public class Game extends Canvas implements ActionListener{
   update(g);
  }
 
+ 
  public void update(Graphics g){
   Graphics g1 = canvas.getGraphics();//Draw the graphics on a separate picture so that we can add pictures without flickering
   //RedrawBackround
