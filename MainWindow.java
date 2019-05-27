@@ -7,7 +7,16 @@ import java.awt.image.*;
 import java.awt.*;
 import javax.imageio.ImageIO;
 import java.io.*;
-
+/**
+* @author Feng, Michael
+* @version 2.0
+* Total time spent Feng: 7 hours
+* Total time spend Michael: 5 hours
+* Modifications: May 24, 2019, Michael Zhou, Total time: 2 hours
+* add navigation to level, quit, instruction, and highscore screens
+* improved navigation between all screens 
+* added instructions image
+*/
 public class MainWindow extends JFrame implements ExitListener{
   Game gameScreen;
   String curScreen;
@@ -22,7 +31,9 @@ public class MainWindow extends JFrame implements ExitListener{
       public void mousePressed(MouseEvent me){
         int x = me.getX();
         int y = me.getY();
+        //added coord detection for testing
         System.out.println(x + " " + y);
+        //added nagviagion between screens
         if(curScreen.equals("menu")){//When the screen is on menu
           if(x>252 && y> 235 && x < 559 && y < 346)
             openLevel();
@@ -53,35 +64,55 @@ public class MainWindow extends JFrame implements ExitListener{
     repaint();
   }
   
+  /**
+  * Set screen to menu
+  */
   public void openMenu(){
     curScreen = "menu";
     repaint();
   }
   
+  /**
+  * Set screen to quit screen
+  */
   public void openQuit(){
     curScreen = "quit";
     repaint();
   }
   
+  /**
+  * Set screen to instructions
+  */
   public void openIns () {
     curScreen = "instructions";
     repaint();
   }
   
+  /**
+  * Set screen to level selection
+  */
   public void openLevel(){
     curScreen = "level";
     repaint();
   }
-  
+  /**
+  * Set screen to highscores
+  */
   public void openHighScore(){
     curScreen = "highScore";
     repaint();
   }
   
+  /**
+  * Set screen to resumed game
+  */
   public void resumeGame(){
     add(gameScreen);
   }
   
+  /**
+  * Set screen to a level
+  */
   public void newGame(int level){
     gameScreen = new Game(level, this);
     add(gameScreen);
@@ -89,11 +120,18 @@ public class MainWindow extends JFrame implements ExitListener{
     pack();
   }
   
+  /**
+  * Set screen to menu when exiting
+  */
   public void exit(){
     remove(gameScreen);
     curScreen = "menu";
   }
   
+  /**
+  * Set the background to the correct image
+  * @param g The graphics for the background
+  */
   public void paint(Graphics g){
     g.setColor(new Color(0, 0, 0));
     g.fillRect(0, 0, getWidth(), getHeight());
@@ -130,6 +168,9 @@ public class MainWindow extends JFrame implements ExitListener{
     }
   }
   
+  /**
+  * Run the game
+  */
   public static void main(String[]args){
     new MainWindow();
   }
