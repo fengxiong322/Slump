@@ -22,7 +22,7 @@ import java.util.*;
 * added converstations with NPCs when the player presses down arrow
 */
 public class Game extends Canvas implements ActionListener{
- ArrayList<Obstacle> platforms; //changed to obstacle
+ ArrayList<Obstacle> platforms; //changed to obstacle May 25, Michael 2019
  Projectile e;
  Timer timer;
  boolean gameOver;
@@ -65,7 +65,8 @@ public class Game extends Canvas implements ActionListener{
   }
  }
  /** Sets up the first level
- *
+ * Changelog
+ * May 25, 2019 - 2 mins - added NPC to the platforms, Michael
  */
  public void level1(){
   setSpawn(100, 200);
