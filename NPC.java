@@ -8,22 +8,32 @@ import java.awt.*;
 import javax.imageio.ImageIO;
 import java.io.*;
 
+/**
+* @author Michael
+* @version 2.0
+* Total time spend Michael: 0.5 hours
+* Modifications: May 24, 2019, Michael Zhou, Total time: 0.5 hours
+* added basic class structure
+* impleneted all the needed methods from OBstacle
+*added constuctor
+*/
+
 public class NPC extends Obstacle {
   String dialogue;
   
-  public NPC (int x, int y, int xSize, int ySize, BufferedImage image, String text)
+  public NPC (int x, int y, int xSize, int ySize, BufferedImage image, String text) //added constuctor
   {
     super (x, y, xSize, ySize);
     setImage(image);
     dialogue = text;
   }
   
-  public void speek ()
+  public void speek () //added speek method for testing
   {
     System.out.print (dialogue);
   }
   
-  public void update (Graphics g)
+  public void update (Graphics g) //implemented update
   {
     g.drawImage(getImage(), getX(), getY(), getX() + getXSize(), getY() + getYSize(), 5, 5, 90, 90, null);
   }
