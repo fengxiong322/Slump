@@ -9,7 +9,7 @@ import javax.imageio.ImageIO;
 import java.io.*;
 import java.util.*;
 
-/**
+/** Represents a moving projectile in the game
 * @author Feng,
 * @version 2.0
 * Total time spent Feng: 1.5 hours
@@ -20,6 +20,7 @@ public class Projectile extends Obstacle{
 	private int endDist;//end pos
 	private boolean right;//if going right, true
 
+	//Added May 17, 2019 - Feng
 	public Projectile(int x, int y, boolean isRight, int speed, int endDist){
 		super(x, y, 10, 10);
 		try{
