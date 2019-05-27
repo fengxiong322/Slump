@@ -13,8 +13,10 @@ import java.awt.Rectangle;
 /**
 * @author Feng, Michael
 * @version 2.0
-* Total time spent Feng: 0.5 hours
-* Total time spend Michael: 0.5 hours
+* Total time spent Feng: 0.25 hours
+* Total time spend Michael: 0.25 hours
+* Modifications: May 26, 2019, Michael Zhou and feng, Total time: 0.5 hours
+* created class and basic layout, implemented methods
 * Modifications: May 26, 2019, Michael Zhou, Total time: 0.05 hours
 * added get methods for xSize and ySize
 */
@@ -43,11 +45,11 @@ public abstract class Obstacle{
 
  public void setX(int x){this.x = x;}
  
- public void setXSize(int x){this.xSize = x;} //michael added get method
+ public void setXSize(int x){this.xSize = x;} //michael added get method May 25, 2019, 1 min
 
  public void setY(int y){this.y = y;}
  
- public void setYSize(int y){this.ySize = y;} //michael added get method
+ public void setYSize(int y){this.ySize = y;} //michael added get method May 25, 2019, 1 min
 
  public void setImage(BufferedImage bi){ image = bi;}
 
