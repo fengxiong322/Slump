@@ -10,9 +10,9 @@ import java.io.*;
 /**
 * @author Feng, Michael
 * @version 2.0
-* Total time spent Feng: 7 hours
+* Total time spent Feng: 1 hour
 * Total time spend Michael: 5 hours
-* Modifications: May 21, 2019, Feng Xiong, Total time: 10 mins
+* Modifications: May 21, 2019, Feng Xiong, Total time: 1 hour
 * Added auto resizing window
 * Modifications: May 24, 2019, Michael Zhou, Total time: 2 hours
 * add navigation to level, quit, instruction, and highscore screens
@@ -24,6 +24,7 @@ public class MainWindow extends JFrame implements ExitListener{
   String curScreen;
   int size;
   
+  //May 10, Created the constructor with its general structure, Feng
   public MainWindow(){
     super("The Slump");
     curScreen = "menu";
@@ -69,7 +70,7 @@ public class MainWindow extends JFrame implements ExitListener{
   /**
   * Set screen to menu
   */
-  public void openMenu(){
+  public void openMenu(){//Implemented open menu, Feng May 10 1 min
     curScreen = "menu";
     repaint();
   }
@@ -77,7 +78,7 @@ public class MainWindow extends JFrame implements ExitListener{
   /**
   * Set screen to quit screen
   */
-  public void openQuit(){
+  public void openQuit(){//Implemented open quit, Feng May 10 1 min
     curScreen = "quit";
     repaint();
   }
@@ -85,7 +86,7 @@ public class MainWindow extends JFrame implements ExitListener{
   /**
   * Set screen to instructions
   */
-  public void openIns () {
+  public void openIns () {//Implemented open instructions, Feng May 10 1 min
     curScreen = "instructions";
     repaint();
   }
@@ -93,14 +94,14 @@ public class MainWindow extends JFrame implements ExitListener{
   /**
   * Set screen to level selection
   */
-  public void openLevel(){
+  public void openLevel(){//Implemented open level selection, Feng May 10 1 min
     curScreen = "level";
     repaint();
   }
   /**
   * Set screen to highscores
   */
-  public void openHighScore(){
+  public void openHighScore(){//Implemented open highscores, Feng May 10 1 min
     curScreen = "highScore";
     repaint();
   }
@@ -108,14 +109,14 @@ public class MainWindow extends JFrame implements ExitListener{
   /**
   * Set screen to resumed game
   */
-  public void resumeGame(){
+  public void resumeGame(){//Implemented resumeGame, Feng May 10 1 min
     add(gameScreen);
   }
   
   /**
   * Set screen to a level
   */
-  public void newGame(int level){
+  public void newGame(int level){//Implemented new level, Feng May 10 1 min
     gameScreen = new Game(level, this);
     add(gameScreen);
     gameScreen.requestFocusInWindow(); 
@@ -125,7 +126,7 @@ public class MainWindow extends JFrame implements ExitListener{
   /**
   * Set screen to menu when exiting
   */
-  public void exit(){
+  public void exit(){//Implemented runs exit from the Exit Listener, Feng May 10 1 min
     remove(gameScreen);
     curScreen = "menu";
   }
@@ -136,7 +137,7 @@ public class MainWindow extends JFrame implements ExitListener{
   * Changelog
   * Michael - added the if statements to change between all the screens as well as imported the images 10 mins, May 24, 2019
   */
-  public void paint(Graphics g){
+  public void paint(Graphics g){//Implemented paint, Feng May 10 30 min
     g.setColor(new Color(0, 0, 0));
     g.fillRect(0, 0, getWidth(), getHeight());
     if(curScreen.equals("menu")){ //michael - added image and option May 17, 2019 5mins
@@ -158,11 +159,7 @@ public class MainWindow extends JFrame implements ExitListener{
       } catch (IOException e) {
       }
     }else if(curScreen.equals("quit")){ //michael - added image and option   May 24, 2019 5 mins
-      try {
-        BufferedImage background = ImageIO.read(new File("Screens/blank.png"));
-        g.drawImage(background, 0, 20, 811, 811, null);
-      } catch (IOException e) {
-      }
+      dispose();
     }else if(curScreen.equals("highScore")){ //michael - added image and option   May 24, 2019 5 mins
       try {
         BufferedImage background = ImageIO.read(new File("Screens/blank.png"));
