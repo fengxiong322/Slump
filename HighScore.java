@@ -9,6 +9,12 @@ import javax.imageio.ImageIO;
 import java.io.*;
 import java.util.*;
 
+/**
+* @author Feng
+* @version 2.0
+* Total time spent Feng: 0.5 hours
+
+*/
 public class HighScore extends Canvas{
 	BufferedImage background;
 	File information;
