@@ -7,22 +7,36 @@ import java.awt.image.*;
 import java.awt.*;
 import javax.imageio.ImageIO;
 import java.io.*;
-
+/**
+* @author Feng, Michael
+* @version 2.0
+* Total time spent Feng: 1 hour
+* Total time spend Michael: 5 hours
+* Modifications: May 21, 2019, Feng Xiong, Total time: 1 hour
+* Added auto resizing window
+* Modifications: May 24, 2019, Michael Zhou, Total time: 2 hours
+* add navigation to level, quit, instruction, and highscore screens
+* improved navigation between all screens
+* added instructions image
+*/
 public class MainWindow extends JFrame implements ExitListener{
   Game gameScreen;
   String curScreen;
   int size;
-  
+
+  //May 10, Created the constructor with its general structure, Feng
   public MainWindow(){
     super("The Slump");
     curScreen = "menu";
     //size = Math.min((int)Toolkit.getDefaultToolkit().getScreenSize().getHeight(), (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth())-10;//finds the largest size it can be
-    setSize(811, 821);//Sets the size  
-    addMouseListener(new MouseAdapter() {//Allows for mouse interaction         
+    setSize(811, 821);//Sets the size //May 24, modified to set a defualt screen size so cordinates do not change, Michael Zhou
+    addMouseListener(new MouseAdapter() {//Allows for mouse interaction
       public void mousePressed(MouseEvent me){
         int x = me.getX();
         int y = me.getY();
+        //added coord detection for testing
         System.out.println(x + " " + y);
+        //added nagviagion between screens - Michael Zhou, May 24, 2019 5mins
         if(curScreen.equals("menu")){//When the screen is on menu
           if(x>252 && y> 235 && x < 559 && y < 346)
             openLevel();
@@ -45,79 +59,108 @@ public class MainWindow extends JFrame implements ExitListener{
            if(x>361 && y> 709 && x < 487 && y < 786)
             openMenu ();
         }
-       
+
     });
     setLocationRelativeTo(null);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);
     repaint();
   }
-  
-  public void openMenu(){
+
+  /**
+  * Set screen to menu
+  */
+  public void openMenu(){//Implemented open menu, Feng May 10 1 min
     curScreen = "menu";
     repaint();
   }
-  
-  public void openQuit(){
+
+  /**
+  * Set screen to quit screen
+  */
+  public void openQuit(){//Implemented open quit, Feng May 10 1 min
     curScreen = "quit";
     repaint();
   }
-  
-  public void openIns () {
+
+  /**
+  * Set screen to instructions
+  */
+  public void openIns () {//Implemented open instructions, Feng May 10 1 min
     curScreen = "instructions";
     repaint();
   }
-  
-  public void openLevel(){
+
+  /**
+  * Set screen to level selection
+  */
+  public void openLevel(){//Implemented open level selection, Feng May 10 1 min
     curScreen = "level";
     repaint();
   }
-  
-  public void openHighScore(){
+  /**
+  * Set screen to highscores
+  */
+  public void openHighScore(){//Implemented open highscores, Feng May 10 1 min
     curScreen = "highScore";
     repaint();
   }
-  
-  public void resumeGame(){
+
+  /**
+  * Set screen to resumed game
+  */
+  public void resumeGame(){//Implemented resumeGame, Feng May 10 1 min
     add(gameScreen);
   }
-  
-  public void newGame(int level){
+
+  /**
+  * Set screen to a level
+  */
+  public void newGame(int level){//Implemented new level, Feng May 10 1 min
     gameScreen = new Game(level, this);
     add(gameScreen);
-    gameScreen.requestFocusInWindow(); 
+    gameScreen.requestFocusInWindow();
     pack();
   }
-  
-  public void exit(){
+
+  /**
+  * Set screen to menu when exiting
+  */
+  public void exit(){//Implemented runs exit from the Exit Listener, Feng May 10 1 min
     remove(gameScreen);
     curScreen = "menu";
   }
-  
-  public void paint(Graphics g){
+
+  /**
+  * Set the background to the correct image
+  * @param g The graphics for the background
+  * Changelog
+  * Michael - added the if statements to change between all the screens as well as imported the images 10 mins, May 24, 2019
+  */
+  public void paint(Graphics g){//Implemented paint, Feng May 10 30 min
     g.setColor(new Color(0, 0, 0));
     g.fillRect(0, 0, getWidth(), getHeight());
-    if(curScreen.equals("menu")){
+    if(curScreen.equals("menu")){ //michael - added image and option May 17, 2019 5mins
       try {
         BufferedImage background = ImageIO.read(new File("Screens/Menu.png"));
         g.drawImage(background, 0, 10, 811, 811, null);
       } catch (IOException e) {
       }
-    }else if(curScreen.equals("level")){
+    }else if(curScreen.equals("level")){ //michael - added image and option   May 24, 2019 5 mins
       try {
         BufferedImage background = ImageIO.read(new File("Screens/Levels.png"));
         g.drawImage(background, 0, 10, 811, 811, null);
       } catch (IOException e) {
       }
-    }else if(curScreen.equals("instructions")){
+    }else if(curScreen.equals("instructions")){ //michael - added image and option  May 24, 2019 5 mins
       try {
         BufferedImage background = ImageIO.read(new File("Screens/Instructions.png"));
         g.drawImage(background, 0, 20, 811, 811, null);
       } catch (IOException e) {
       }
-    }else if(curScreen.equals("quit")){
+    }else if(curScreen.equals("quit")){ //michael - added image and option   May 24, 2019 5 mins
       dispose();
-    }else if(curScreen.equals("highScore")){
+    }else if(curScreen.equals("highScore")){ //michael - added image and option   May 24, 2019 5 mins
       try {
         BufferedImage background = ImageIO.read(new File("Screens/blank.png"));
         g.drawImage(background, 0, 20, 811, 811, null);
@@ -125,9 +168,12 @@ public class MainWindow extends JFrame implements ExitListener{
       }
     }
   }
-  
+
+  /**
+  * Run the game
+  */
   public static void main(String[]args){
     new MainWindow();
   }
-  
+
 }

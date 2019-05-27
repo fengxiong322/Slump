@@ -9,7 +9,18 @@ import javax.imageio.ImageIO;
 import java.io.*;
 import java.util.*;
 
-
+/**
+* @author Feng, Michael
+* @version 2.0
+* Total time spent Feng: 3 hours
+* Total time spend Michael: 1.5 hours
+*Modifications: May 18, 2019, Feng, Total time: 3 hours
+* added the class and basic methods
+* Modifications: May 25, 2019, Michael Zhou, Total time: 1 hours
+* added a NPC object into level 1 for testing purposes
+* modified platform array so it works will all Obstacle objects
+* added converstations with NPCs when the player presses down arrow
+*/
 public class Game extends Canvas implements ActionListener{
  ArrayList<Obstacle> platforms;
  Timer timer;
@@ -24,7 +35,11 @@ public class Game extends Canvas implements ActionListener{
  int moveY;
  ExitListener el;
 
- public Game(int level, ExitListener el){
+ /** COnstructor sets basic values and initalizes arrays and images
+ * @param level the specified level
+ * @param el the ExitListener
+ */
+ public Game(int level, ExitListener el){//Created the constructor Feng Xiong 2 hours May 13
   super();
   setSize(400, 400);
   canvasX = 0;
@@ -48,13 +63,16 @@ public class Game extends Canvas implements ActionListener{
    level3();
   }
  }
-
- public void level1(){
+ /** Sets up the first level
+ * Changelog
+ * May 25, 2019 - 2 mins - added NPC to the platforms, Michael
+ */
+ public void level1(){//Created a basic level set up Feng Xiong May 15 1 hour
   setSpawn(100, 200);
   try{
     background = ImageIO.read(new File("platform.png"));
   //emember to add the actual background
-  //platforms.add (new NPC (320, 270, 50, 30, ImageIO.read(new File("Screens/blank.png")), "i like cats"));
+  platforms.add (new NPC (320, 300, 50, 100, ImageIO.read(new File("Screens/blank.png")), "i like cats")); //added npc
   }
   catch(IOException e){
   }//R
@@ -65,19 +83,29 @@ public class Game extends Canvas implements ActionListener{
   platforms.add(new Platform(3, 160, 0, 0, 0));
  }
 
+ /** Sets up the second level
+ *
+ */
  public void level2(){}
 
+ /** Sets up the thrid level
+ *
+ */
  public void level3(){}
 
+ /** Sets up the player spawn location
+ *
+ */
  public void setSpawn(int x, int y){
   player = new Player(x, y, 32, 102);
  }
 
- public void paint(Graphics g){
+ public void paint(Graphics g){//runs the update loop, added the logic, Feng Xiogn May 15 10 min
   update(g);
  }
 
- public void update(Graphics g){
+
+ public void update(Graphics g){//The update loop, added the logic, Feng Xiogn May 15 2 hours
   Graphics g1 = canvas.getGraphics();//Draw the graphics on a separate picture so that we can add pictures without flickering
   //RedrawBackround
   g1.setColor(new Color(0, 0, 0));
@@ -109,7 +137,7 @@ public class Game extends Canvas implements ActionListener{
   g.drawImage(clear, 0, 0, null);
  }
 
- public void actionPerformed(ActionEvent e) {
+ public void actionPerformed(ActionEvent e) {//Added an action listener for the Timer, Feng Xiong May 16 10min
   //update new positions
   if(!gameOver)
    timer.restart();
@@ -119,7 +147,7 @@ public class Game extends Canvas implements ActionListener{
   repaint();
  }
 
- class PlayerListener extends KeyAdapter{
+ class PlayerListener extends KeyAdapter{//Created a mouse listner class to read user input Feng Xiong May 16 1 hour
 
   @Override
   public void keyPressed(KeyEvent event){
@@ -133,7 +161,8 @@ public class Game extends Canvas implements ActionListener{
    }
    else if (ch == KeyEvent.VK_DOWN)
    {
-     for (Obstacle n : platforms)
+    //added checking for npc and talking May 22, 2019 - michael
+     for (Obstacle n : platforms) //changed to obstacle May 22, 2019 - michael
      {
      if (Math.abs (player.getX() - n.getX()) <= 33 && player.getY() == player.getX())
        ((NPC) n).speek ();
