@@ -66,7 +66,7 @@ public class Player{
   this.sizeX = sizeX;
   this.sizeY = sizeY;
  }
- public void update(Graphics g, ArrayList<Obstacle> platforms){ //modified michael, changing of aniamtions of player when moving - may17 1.5 hour
+ public void update(Graphics g, ArrayList<Obstacle> platforms){ //modified michael created method - changing of aniamtions of player when moving - may17 1.5 hour
    //Added general layout Feng Xiong may 16 20 min
    ySpeed+=GRAVITY;
    checkPlatform(platforms);
@@ -109,6 +109,7 @@ public class Player{
    }
  }
  
+ //first trail version of updage created my Michael, May 17, 2019 used the other method above instead (30 mins)
 // public void update2(Graphics g, ArrayList<Platform> platforms){
 //   ySpeed+=GRAVITY;
 //   checkPlatform(platforms);
@@ -132,7 +133,7 @@ public class Player{
 //     g.drawImage(jumpLeft, x, y, x+sizeX, y+sizeY, 0, 0, 16, 51, null);
 // }
  
- private void checkPlatform(ArrayList<Obstacle> platforms){//Added collision detection Feng Xiong may 15 3 hours
+ private void checkPlatform(ArrayList<Obstacle> platforms){//Added collision detection Feng Xiong may 15 - 3 hours
 
   boolean intersected = false;
   onGround = false;
