@@ -66,7 +66,7 @@ public class Player{
 //    return true;
 // }
  
- public void update(Graphics g, ArrayList<Platform> platforms){
+ public void update(Graphics g, ArrayList<Obstacle> platforms){
    ySpeed+=GRAVITY;
    checkPlatform(platforms);
    x+=xSpeed;
@@ -131,7 +131,7 @@ public class Player{
 //     g.drawImage(jumpLeft, x, y, x+sizeX, y+sizeY, 0, 0, 16, 51, null);
 // }
  
- private void checkPlatform(ArrayList<Platform> platforms){
+ private void checkPlatform(ArrayList<Obstacle> platforms){
 
   boolean intersected = false;
   onGround = false;
@@ -139,7 +139,7 @@ public class Player{
   if(!(new Rectangle(0, 0, 400, 400)).contains(playerRect)){
    xSpeed = 0;
   }
-  for(Platform i: platforms){
+  for(Obstacle i: platforms){
    Rectangle platformRect = new Rectangle(i.getX(), i.getY(), i.getXSize(), i.getYSize());
    if(playerRect.intersects(platformRect)){
     intersected = true;
@@ -198,8 +198,8 @@ public class Player{
   public void move(int speed){
    xSpeed=speed;
    if(xSpeed>0)
-   	lastDirection = true;
+    lastDirection = true;
    else if(xSpeed<0)
-   	lastDirection = false;
+    lastDirection = false;
   }
  }

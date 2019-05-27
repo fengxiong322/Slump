@@ -11,7 +11,7 @@ import java.util.*;
 
 
 public class Game extends Canvas implements ActionListener{
- ArrayList<Platform> platforms;
+ ArrayList<Obstacle> platforms;
  Projectile e;
  Timer timer;
  boolean gameOver;
@@ -33,7 +33,7 @@ public class Game extends Canvas implements ActionListener{
   addKeyListener(new PlayerListener());
   canvas = new BufferedImage(1000, 1000, BufferedImage.TYPE_INT_RGB);
   clear = new BufferedImage(1000, 1000, BufferedImage.TYPE_INT_RGB);
-  platforms = new ArrayList<Platform>();
+  platforms = new ArrayList<Obstacle>();
   gameOver = false;
   moveX = 0;
   moveY = 0;
@@ -54,9 +54,11 @@ public class Game extends Canvas implements ActionListener{
   setSpawn(100, 200);
   try{
     background = ImageIO.read(new File("platform.png"));
+  //emember to add the actual background
+  platforms.add (new NPC (320, 300, 50, 100, ImageIO.read(new File("Screens/blank.png")), "i like cats"));
   }
   catch(IOException e){
-  }//Remember to add the actual background
+  }//R
   platforms.add(new Platform(0, 380, 400, 0, 0));
   platforms.add(new Platform(190, 340, 60, 0, 0));
   platforms.add(new Platform(193, 300, 30, 0, 0));
@@ -83,7 +85,7 @@ public class Game extends Canvas implements ActionListener{
   g1.fillRect(0, 0, 1000, 1000);
   g1.drawImage(background, 0, 0,1000, 1000, null);
   //Update all items on screen
-  for(Platform i : platforms){
+  for(Obstacle i : platforms){
    i.update(g1);//Updates to a new position
   }
   e.update(g1);
@@ -130,6 +132,14 @@ public class Game extends Canvas implements ActionListener{
     moveX = -3;
    }else if(ch == KeyEvent.VK_RIGHT || ch == KeyEvent.VK_D){
     moveX = 3;
+   }
+   else if (ch == KeyEvent.VK_DOWN)
+   {
+     for (Obstacle n : platforms)
+     {
+     if (Math.abs (player.getX() - n.getX()) <= 33 && player.getY() == player.getX())
+       ((NPC) n).speek ();
+     }
    }
    if(ch == KeyEvent.VK_ESCAPE){
     el.exit();

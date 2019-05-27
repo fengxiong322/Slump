@@ -11,36 +11,40 @@ import java.util.*;
 import java.awt.Rectangle;
 
 public abstract class Obstacle{
-	private int x;
-	private int y;
-	private int xSize;
-	private int ySize;
-	private BufferedImage image;
+ private int x;
+ private int y;
+ private int xSize;
+ private int ySize;
+ private BufferedImage image;
 
-	public Obstacle(int x, int y, int xSize, int ySize){
-		this.x = x;
-		this.y = y;
-		this.xSize = xSize;
-		this.ySize = ySize;
-	}
+ public Obstacle(int x, int y, int xSize, int ySize){
+  this.x = x;
+  this.y = y;
+  this.xSize = xSize;
+  this.ySize = ySize;
+ }
 
-	public int getX(){return x;}
+ public int getX(){return x;}
 
-	public int getY(){return y;}
+ public int getY(){return y;}
 
-	public int getXSize(){return xSize;}
+ public int getXSize(){return xSize;}
 
-	public int getYSize(){return ySize;}
+ public int getYSize(){return ySize;}
 
-	public void setX(int x){this.x = x;}
+ public void setX(int x){this.x = x;}
+ 
+ public void setXSize(int x){this.xSize = x;}
 
-	public void setY(int y){this.y = y;}
+ public void setY(int y){this.y = y;}
+ 
+ public void setYSize(int y){this.ySize = y;}
 
-	public void setImage(BufferedImage bi){ image = bi;}
+ public void setImage(BufferedImage bi){ image = bi;}
 
-	public BufferedImage getImage(){
-		return image;
-	}
+ public BufferedImage getImage(){
+  return image;
+ }
 
-	public abstract void update(Graphics g);
+ public abstract void update(Graphics g);
 }
