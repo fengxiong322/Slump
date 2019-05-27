@@ -154,7 +154,7 @@ public class Player{
        break;
       }
      }
-    }else{
+    }else if(ySpeed < 0){
      for(int j = 0; j >= ySpeed;j--){
       playerRect.setLocation(x, y+j);
       if(playerRect.intersects(platformRect)){
@@ -171,7 +171,7 @@ public class Player{
        break;
       }
      }
-    }else{
+    }else if (xSpeed<0){
      for(int j = 0; j >= xSpeed;j--){
       playerRect.setLocation(x+j, y);
       if(playerRect.intersects(platformRect)){
