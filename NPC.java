@@ -21,6 +21,7 @@ import java.io.*;
 public class NPC extends Obstacle {
   String dialogue;
   
+  //May 24, Michael created constructor for class
   public NPC (int x, int y, int xSize, int ySize, BufferedImage image, String text) //added constuctor
   {
     super (x, y, xSize, ySize);
@@ -28,11 +29,13 @@ public class NPC extends Obstacle {
     dialogue = text;
   }
   
+  //May 24, Michael created basic method outiline 
   public void speek () //added speek method for testing
   {
     System.out.print (dialogue);
   }
   
+  //May 24, Michael implemented method
   public void update (Graphics g) //implemented update
   {
     g.drawImage(getImage(), getX(), getY(), getX() + getXSize(), getY() + getYSize(), 5, 5, 90, 90, null);
