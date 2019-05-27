@@ -43,6 +43,7 @@ public class Player{
  final static int GRAVITY = 1; //modified gravity levels
 
  public Player(int x, int y, int sizeX, int sizeY){  //modified michael, added images for animations- may17
+  //Added variable set up may 15 Feng Xiong 5 min
   try
   {
     idleLeft = ImageIO.read(new File("Player/idleLeft.png"));
@@ -65,22 +66,8 @@ public class Player{
   this.sizeX = sizeX;
   this.sizeY = sizeY;
  }
- 
-// public boolean bufferedImagesEqual(BufferedImage img1, BufferedImage img2) {
-//    if (img1.getWidth() == img2.getWidth() && img1.getHeight() == img2.getHeight()) {
-//        for (int x = 0; x < img1.getWidth(); x++) {
-//            for (int y = 0; y < img1.getHeight(); y++) {
-//                if (img1.getRGB(x, y) != img2.getRGB(x, y))
-//                    return false;
-//            }
-//        }
-//    } else {
-//        return false;
-//    }
-//    return true;
-// }
- 
- public void update(Graphics g, ArrayList<Obstacle> platforms){ //modified michael, changing of aniamtions of player when moving - may17
+ public void update(Graphics g, ArrayList<Obstacle> platforms){ //modified michael, changing of aniamtions of player when moving - may17 1.5 hour
+   //Added general layout Feng Xiong may 16 20 min
    ySpeed+=GRAVITY;
    checkPlatform(platforms);
    x+=xSpeed;
@@ -145,7 +132,7 @@ public class Player{
 //     g.drawImage(jumpLeft, x, y, x+sizeX, y+sizeY, 0, 0, 16, 51, null);
 // }
  
- private void checkPlatform(ArrayList<Obstacle> platforms){
+ private void checkPlatform(ArrayList<Obstacle> platforms){//Added collision detection Feng Xiong may 15 3 hours
 
   boolean intersected = false;
   onGround = false;
@@ -196,20 +183,21 @@ public class Player{
   }
  }
 
-  public int getX(){return x;}
+  
+  public int getX(){return x;}//Created method for user control Feng May 15 1 min
 
-  public int getY(){return y;}
+  public int getY(){return y;}//Created method for user control Feng May 15 1 min
 
-  public int getXSpeed(){return xSpeed;}
+  public int getXSpeed(){return xSpeed;}//Created method for user control Feng May 15 1 min
 
-  public int getYSpeed(){return ySpeed;}
+  public int getYSpeed(){return ySpeed;}//Created method for user control Feng May 15 1 min
 
-  public void jump(int speed){
+  public void jump(int speed){//Created method for user control Feng May 15 1 min
    if(onGround)
     ySpeed=0-speed;
   }
 
-  public void move(int speed){
+  public void move(int speed){//Created method for user control Feng May 15 1 min
    xSpeed=speed;
    if(xSpeed>0)
     lastDirection = true;
