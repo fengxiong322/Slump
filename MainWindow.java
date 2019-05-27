@@ -141,25 +141,25 @@ public class MainWindow extends JFrame implements ExitListener{
         g.drawImage(background, 0, 10, 811, 811, null);
       } catch (IOException e) {
       }
-    }else if(curScreen.equals("level")){
+    }else if(curScreen.equals("level")){ //michael - added image and option
       try {
         BufferedImage background = ImageIO.read(new File("Screens/Levels.png"));
         g.drawImage(background, 0, 10, 811, 811, null);
       } catch (IOException e) {
       }
-    }else if(curScreen.equals("instructions")){
+    }else if(curScreen.equals("instructions")){ //michael - added image and option
       try {
         BufferedImage background = ImageIO.read(new File("Screens/Instructions.png"));
         g.drawImage(background, 0, 20, 811, 811, null);
       } catch (IOException e) {
       }
-    }else if(curScreen.equals("quit")){
+    }else if(curScreen.equals("quit")){ //michael - added image and option
       try {
         BufferedImage background = ImageIO.read(new File("Screens/blank.png"));
         g.drawImage(background, 0, 20, 811, 811, null);
       } catch (IOException e) {
       }
-    }else if(curScreen.equals("highScore")){
+    }else if(curScreen.equals("highScore")){ //michael - added image and option
       try {
         BufferedImage background = ImageIO.read(new File("Screens/blank.png"));
         g.drawImage(background, 0, 20, 811, 811, null);
