@@ -156,7 +156,7 @@ public class Game extends Canvas implements ActionListener{
   public void keyPressed(KeyEvent event){
    int ch = event.getKeyCode();//Keep track of key presses
    if(ch == KeyEvent.VK_UP || ch == KeyEvent.VK_W){
-    moveY = 10;
+    moveY = 15;
    }else if(ch == KeyEvent.VK_LEFT|| ch == KeyEvent.VK_A){
     moveX = -3;
    }else if(ch == KeyEvent.VK_RIGHT || ch == KeyEvent.VK_D){
