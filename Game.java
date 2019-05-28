@@ -1,5 +1,6 @@
 import java.awt.Canvas;
 import java.awt.Graphics;
+import javax.swing.*;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 import java.awt.event.*;
@@ -41,7 +42,7 @@ public class Game extends Canvas implements ActionListener{
  */
  public Game(int level, ExitListener el){//Created the constructor Feng Xiong 2 hours May 13
   super();
-  setSize(400, 400);
+  setSize(800, 800);
   canvasX = 0;
   canvasY = 0;
   addKeyListener(new PlayerListener());
@@ -158,14 +159,20 @@ public class Game extends Canvas implements ActionListener{
    }else if(ch == KeyEvent.VK_RIGHT || ch == KeyEvent.VK_D){
     moveX = 3;
    }
-   else if (ch == KeyEvent.VK_DOWN)
+   else if (ch == KeyEvent.VK_DOWN || ch == KeyEvent.VK_S)
    {
     //added checking for npc and talking May 22, 2019 - michael
      for (Obstacle n : platforms) //changed to obstacle May 22, 2019 - michael
      {
-      if(n instanceof NPC)
-     if (Math.abs (player.getX() - n.getX()) <= 33 && player.getY() == player.getX())
-       ((NPC) n).speak ();
+       if(n instanceof NPC)
+       {
+         if (Math.abs (player.getX() - n.getX()) <= 33 && Math.abs (player.getY() - n.getY()) <= 102)
+         {
+           JLabel label = new JLabel(((NPC) n).speak ());
+           
+            
+         }
+       }
      }
    }
    if(ch == KeyEvent.VK_ESCAPE){

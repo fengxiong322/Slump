@@ -144,9 +144,9 @@ public class Player{
   for(Obstacle i: platforms){
 
    Rectangle platformRect = new Rectangle(i.getX(), i.getY(), i.getXSize(), i.getYSize());
-   if(i instanceof NPC){
-    System.out.println(platformRect);
-   }
+   //(i instanceof NPC){
+    //System.out.println(platformRect);
+   //}
    if(playerRect.intersects(platformRect)){
     intersected = true;
     if(ySpeed>0){
