@@ -20,19 +20,21 @@ import java.io.*;
 
 public class NPC extends Obstacle {
   String dialogue;
+  BufferedImage dialogueBox;
   
   //May 24, Michael created constructor for class
   public NPC (int x, int y, int xSize, int ySize, BufferedImage image, String text) //added constuctor
   {
     super (x, y, xSize, ySize);
     setImage(image);
+    try{dialogueBox = ImageIO.read(new File("Dialogue/dialogue.png"));}catch(IOException e){}
     dialogue = text;
   }
   
   //May 24, Michael created basic method outiline 
-  public String speak () //added speak method for testing
+  public void speak (Graphics g) //added speak method for testing
   {//Should speak, and then close the speach bubble
-    return dialogue;
+    g.drawImage(dialogueBox, 0, 0, null);
   }
   
   //May 24, Michael implemented method

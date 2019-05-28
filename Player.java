@@ -38,6 +38,7 @@ public class Player{
  int xSpeed;
  int ySpeed;
  boolean onGround;
+ boolean isNPC;
  int lastImage;
  boolean lastDirection;
  final static int GRAVITY = 1; //modified gravity levels Michael May 20, 2019
@@ -65,11 +66,12 @@ public class Player{
   this.y = y;
   this.sizeX = sizeX;
   this.sizeY = sizeY;
+  isNPC = false;
  }
  public void update(Graphics g, ArrayList<Obstacle> platforms){ //modified michael created method - changing of aniamtions of player when moving - may17 1.5 hour
    //Added general layout Feng Xiong may 16 20 min
    ySpeed+=GRAVITY;
-   checkPlatform(platforms);
+   checkPlatform(platforms, g);
    x+=xSpeed;
    y+=ySpeed;
    if (xSpeed == 0 && onGround && !lastDirection)//This runs when the character is completely stationary
@@ -133,7 +135,7 @@ public class Player{
 //     g.drawImage(jumpLeft, x, y, x+sizeX, y+sizeY, 0, 0, 16, 51, null);
 // }
  
- private void checkPlatform(ArrayList<Obstacle> platforms){//Added collision detection Feng Xiong may 15 - 3 hours
+ private void checkPlatform(ArrayList<Obstacle> platforms, Graphics g){//Added collision detection Feng Xiong may 15 - 3 hours
 
   boolean intersected = false;
   onGround = false;
@@ -142,7 +144,16 @@ public class Player{
    xSpeed = 0;
   }
   for(Obstacle i: platforms){
-
+        //added checking for npc and talking May 22, 2019 - michael
+    if(isNPC && i instanceof NPC)
+       {
+         if (Math.abs (getX() - i.getX()) <= 33 && Math.abs (getY() - i.getY()) <= 102)
+         {
+           ((NPC) i).speak (g);
+           
+            
+         }
+       }
    Rectangle platformRect = new Rectangle(i.getX(), i.getY(), i.getXSize(), i.getYSize());
    //(i instanceof NPC){
     //System.out.println(platformRect);
@@ -187,6 +198,10 @@ public class Player{
    }
   }
  }
+
+   public void isNPC(boolean downKey){
+    isNPC = downKey;
+  }
 
   
   public int getX(){return x;}//Created method for user control Feng May 15 1 min

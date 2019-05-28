@@ -34,6 +34,7 @@ public class Game extends Canvas implements ActionListener{
  int canvasY;
  int moveX;
  int moveY;
+ boolean checkNPC;
  ExitListener el;
 
  /** COnstructor sets basic values and initalizes arrays and images
@@ -50,6 +51,7 @@ public class Game extends Canvas implements ActionListener{
   clear = new BufferedImage(1000, 1000, BufferedImage.TYPE_INT_RGB);
   platforms = new ArrayList<Obstacle>();
   gameOver = false;
+  checkNPC = false;
   moveX = 0;
   moveY = 0;
   this.el = el;
@@ -117,6 +119,7 @@ public class Game extends Canvas implements ActionListener{
   }
   player.move(moveX);
   player.jump(moveY);
+  player.isNPC(checkNPC);
   player.update(g1, platforms);
   if(player.getX()+canvasX<getWidth()*0.25){
    canvasX+=2;
@@ -161,19 +164,7 @@ public class Game extends Canvas implements ActionListener{
    }
    else if (ch == KeyEvent.VK_DOWN || ch == KeyEvent.VK_S)
    {
-    //added checking for npc and talking May 22, 2019 - michael
-     for (Obstacle n : platforms) //changed to obstacle May 22, 2019 - michael
-     {
-       if(n instanceof NPC)
-       {
-         if (Math.abs (player.getX() - n.getX()) <= 33 && Math.abs (player.getY() - n.getY()) <= 102)
-         {
-           JLabel label = new JLabel(((NPC) n).speak ());
-           
-            
-         }
-       }
-     }
+    checkNPC = true;
    }
    if(ch == KeyEvent.VK_ESCAPE){
     el.exit();
@@ -191,6 +182,8 @@ public class Game extends Canvas implements ActionListener{
    }else if(ch == KeyEvent.VK_RIGHT || ch == KeyEvent.VK_D){
     if(moveX!=-3)
      moveX = 0;
+   }else if (ch == KeyEvent.VK_DOWN || ch == KeyEvent.VK_S){
+    checkNPC = false;
    }
   }
  }
