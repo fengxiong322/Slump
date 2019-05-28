@@ -25,25 +25,27 @@ import java.awt.Rectangle;
 * Fix player bug during variable resets
 */
 public class Player{
- int x;
- int y;
- int sizeX;
- int sizeY;
- BufferedImage idleLeft;
- BufferedImage idleRight;
- BufferedImage jumpLeft;
- BufferedImage jumpRight;
- BufferedImage[] left = new BufferedImage[2];
- BufferedImage[] right = new BufferedImage[2];
- int xSpeed;
- int ySpeed;
- boolean onGround;
- boolean isNPC;
- int lastImage;
- boolean lastDirection;
+ private int x;
+ private int y;
+ private int sizeX;
+ private int sizeY;
+ private BufferedImage idleLeft;
+ private BufferedImage idleRight;
+ private BufferedImage jumpLeft;
+ private BufferedImage jumpRight;
+ private BufferedImage[] left = new BufferedImage[2];
+ private BufferedImage[] right = new BufferedImage[2];
+ private int xSpeed;
+ private int ySpeed;
+ private boolean onGround;
+ private boolean isNPC;
+ private int lastImage;
+ private boolean lastDirection;
+ private int edgeX;
+ private int edgeY;
  final static int GRAVITY = 1; //modified gravity levels Michael May 20, 2019
 
- public Player(int x, int y, int sizeX, int sizeY){  //modified michael, added images for animations- may17
+ public Player(int x, int y, int sizeX, int sizeY, int edgeX, int edgeY){  //modified michael, added images for animations- may17
   //Added variable set up may 15 Feng Xiong 5 min
   try
   {
@@ -66,6 +68,8 @@ public class Player{
   this.y = y;
   this.sizeX = sizeX;
   this.sizeY = sizeY;
+  this.edgeX = edgeX;
+  this.edgeY = edgeY;
   isNPC = false;
  }
  public void update(Graphics g, ArrayList<Obstacle> platforms){ //modified michael created method - changing of aniamtions of player when moving - may17 1.5 hour
@@ -140,7 +144,7 @@ public class Player{
   boolean intersected = false;
   onGround = false;
   Rectangle playerRect = new Rectangle(x+xSpeed, y+ySpeed, sizeX, sizeY);
-  if(!(new Rectangle(0, 0, 400, 400)).contains(playerRect)){
+  if(!(new Rectangle(0, 0, edgeX, edgeY)).contains(playerRect)){
    xSpeed = 0;
   }
   for(Obstacle i: platforms){

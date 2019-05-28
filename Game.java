@@ -34,6 +34,8 @@ public class Game extends Canvas implements ActionListener{
  int canvasY;
  int moveX;
  int moveY;
+ int edgeX;
+ int edgeY;
  boolean checkNPC;
  ExitListener el;
 
@@ -71,7 +73,6 @@ public class Game extends Canvas implements ActionListener{
  * May 25, 2019 - 2 mins - added NPC to the platforms, Michael
  */
  public void level1(){//Created a basic level set up Feng Xiong May 15 1 hour
-  setSpawn(100, 200);
   try{
     background = ImageIO.read(new File("platform.png"));
   //emember to add the actual background
@@ -83,6 +84,10 @@ public class Game extends Canvas implements ActionListener{
   platforms.add(new Platform(0, 380, 400));
   platforms.add(new Platform(190, 350, 100));
   platforms.add(new Platform(3, 160, 0));
+
+  edgeX = 1000;
+  edgeY = 1000;
+  setSpawn(100, 200);
  }
 
  /** Sets up the second level
@@ -99,7 +104,7 @@ public class Game extends Canvas implements ActionListener{
  *
  */
  public void setSpawn(int x, int y){
-  player = new Player(x, y, 32, 102);
+  player = new Player(x, y, 32, 102, edgeX, edgeY);
  }
 
  public void paint(Graphics g){//runs the update loop, added the logic, Feng Xiogn May 15 10 min
@@ -112,7 +117,7 @@ public class Game extends Canvas implements ActionListener{
   //RedrawBackround
   g1.setColor(new Color(0, 0, 0));
   g1.fillRect(0, 0, 1000, 1000);
-  g1.drawImage(background, 0, 0,1000, 1000, null);
+  g1.drawImage(background, 0, 0, edgeX, edgeY, null);
   //Update all items on screen
   for(Obstacle i : platforms){
    i.update(g1);//Updates to a new position

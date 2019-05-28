@@ -35,7 +35,6 @@ public class NPC extends Obstacle {
   public void speak (Graphics g) //added speak method for testing
   {//Should speak, and then close the speach bubble
     g.drawImage(dialogueBox, 0, 600,800,200, 0,0,1520, 470, null);
-    Sysrem.out.println (":ASDASDA");
   }
   
   //May 24, Michael implemented method

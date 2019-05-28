@@ -31,6 +31,7 @@ public class MainWindow extends JFrame implements ExitListener{
     curScreen = "menu";
     //size = Math.min((int)Toolkit.getDefaultToolkit().getScreenSize().getHeight(), (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth())-10;//finds the largest size it can be
     setSize(811, 821);//Sets the size //May 24, modified to set a defualt screen size so cordinates do not change, Michael Zhou
+    setResizable(false);
     addMouseListener(new MouseAdapter() {//Allows for mouse interaction
       public void mousePressed(MouseEvent me){
         int x = me.getX();
