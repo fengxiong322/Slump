@@ -21,6 +21,7 @@ import java.io.*;
 */
 public class MainWindow extends JFrame implements ExitListener{
   Game gameScreen;
+  HighScore highScore;
   String curScreen;
   int size;
 
@@ -103,7 +104,10 @@ public class MainWindow extends JFrame implements ExitListener{
   */
   public void openHighScore(){//Implemented open highscores, Feng May 10 1 min
     curScreen = "highScore";
-    repaint();
+    highScore = new HighScore(this);
+    add(highScore);
+    highScore.requestFocusInWindow();
+    pack();
   }
 
   /**
@@ -117,6 +121,7 @@ public class MainWindow extends JFrame implements ExitListener{
   * Set screen to a level
   */
   public void newGame(int level){//Implemented new level, Feng May 10 1 min
+    curScreen = "game";
     gameScreen = new Game(level, this);
     add(gameScreen);
     gameScreen.requestFocusInWindow();
@@ -127,7 +132,11 @@ public class MainWindow extends JFrame implements ExitListener{
   * Set screen to menu when exiting
   */
   public void exit(){//Implemented runs exit from the Exit Listener, Feng May 10 1 min
-    remove(gameScreen);
+    if(curScreen == "game")
+      remove(gameScreen);
+    else if(curScreen == "highscore")
+      remove(highScore);
+    setSize(811, 821);
     curScreen = "menu";
   }
 
@@ -138,8 +147,8 @@ public class MainWindow extends JFrame implements ExitListener{
   * Michael - added the if statements to change between all the screens as well as imported the images 10 mins, May 24, 2019
   */
   public void paint(Graphics g){//Implemented paint, Feng May 10 30 min
-    g.setColor(new Color(0, 0, 0));
-    g.fillRect(0, 0, getWidth(), getHeight());
+    //g.setColor(new Color(0, 0, 0));
+    //g.fillRect(0, 0, getWidth(), getHeight());
     if(curScreen.equals("menu")){ //michael - added image and option May 17, 2019 5mins
       try {
         BufferedImage background = ImageIO.read(new File("Screens/Menu.png"));
@@ -158,7 +167,10 @@ public class MainWindow extends JFrame implements ExitListener{
         g.drawImage(background, 0, 20, 811, 811, null);
       } catch (IOException e) {
       }
-    }else if(curScreen.equals("quit")){ //michael - added image and option   May 24, 2019 5 mins
+    }else if(curScreen.equals("quit")){ //michael - added image and option  May 24, 2019 5 mins
+      int dialogButton = JOptionPane.YES_NO_OPTION;
+      int dialogResult = JOptionPane.showConfirmDialog (null, "Are you sure you would like to quit?","Warning",dialogButton);
+      if(dialogResult == JOptionPane.YES_OPTION)
       dispose();
     }else if(curScreen.equals("highScore")){ //michael - added image and option   May 24, 2019 5 mins
       try {

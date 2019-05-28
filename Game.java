@@ -76,11 +76,10 @@ public class Game extends Canvas implements ActionListener{
   }
   catch(IOException e){
   }//R
-  platforms.add(new Platform(320, 270, 50, 0, 0));
-  platforms.add(new Platform(0, 380, 400, 0, 0));
-  platforms.add(new Platform(190, 340, 60, 0, 0));
-  platforms.add(new Platform(193, 300, 30, 0, 0));
-  platforms.add(new Platform(3, 160, 0, 0, 0));
+  platforms.add(new Platform(320, 270, 50));
+  platforms.add(new Platform(0, 380, 400));
+  platforms.add(new Platform(190, 350, 100));
+  platforms.add(new Platform(3, 160, 0));
  }
 
  /** Sets up the second level
@@ -164,8 +163,9 @@ public class Game extends Canvas implements ActionListener{
     //added checking for npc and talking May 22, 2019 - michael
      for (Obstacle n : platforms) //changed to obstacle May 22, 2019 - michael
      {
+      if(n instanceof NPC)
      if (Math.abs (player.getX() - n.getX()) <= 33 && player.getY() == player.getX())
-       ((NPC) n).speek ();
+       ((NPC) n).speak ();
      }
    }
    if(ch == KeyEvent.VK_ESCAPE){

@@ -30,8 +30,8 @@ public class NPC extends Obstacle {
   }
   
   //May 24, Michael created basic method outiline 
-  public void speek () //added speek method for testing
-  {
+  public void speak () //added speak method for testing
+  {//Should speak, and then close the speach bubble
     System.out.print (dialogue);
   }
   

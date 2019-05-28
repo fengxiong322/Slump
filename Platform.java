@@ -18,7 +18,7 @@ import java.util.*;
 
 public class Platform extends Obstacle{
 
-	public Platform(int x, int y, int length, int speed, int endDist){
+	public Platform(int x, int y, int length){
 		super(x, y, length, 30);
 		try{setImage(ImageIO.read(new File("platform.png")));}catch(IOException e){e.printStackTrace();}
 	}
