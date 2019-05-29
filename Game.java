@@ -142,6 +142,18 @@ public class Game extends Canvas implements ActionListener{
   g2.setColor(new Color(0, 0, 0));
   g2.fillRect(0, 0, 1000, 1000);
   g2.drawImage(canvas, canvasX, canvasY, null);
+    for(Obstacle i: platforms){
+            //added checking for npc and talking May 22, 2019 - michael
+    if(checkNPC && i instanceof NPC)
+       {
+         if (Math.abs (player.getX() - i.getX()) <= 33 && Math.abs (player.getY() - i.getY()) <= 102)
+         {
+           ((NPC) i).speak (g2);
+           
+            
+         }
+       }
+  }
   g.drawImage(clear, 0, 0, null);
  }
 

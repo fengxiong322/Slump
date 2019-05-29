@@ -148,16 +148,7 @@ public class Player{
    xSpeed = 0;
   }
   for(Obstacle i: platforms){
-        //added checking for npc and talking May 22, 2019 - michael
-    if(isNPC && i instanceof NPC)
-       {
-         if (Math.abs (getX() - i.getX()) <= 33 && Math.abs (getY() - i.getY()) <= 102)
-         {
-           ((NPC) i).speak (g);
-           
-            
-         }
-       }
+
    Rectangle platformRect = new Rectangle(i.getX(), i.getY(), i.getXSize(), i.getYSize());
    //(i instanceof NPC){
     //System.out.println(platformRect);
