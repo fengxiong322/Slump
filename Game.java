@@ -76,7 +76,7 @@ public class Game extends Canvas implements ActionListener{
  */
  public void level1(){//Created a basic level set up Feng Xiong May 15 1 hour
   try{
-    background = ImageIO.read(new File("platform.png"));
+    background = ImageIO.read(new File("Screens/game1.jpg"));
   //emember to add the actual background
   platforms.add (new NPC (320, 300, 50, 100, ImageIO.read(new File("Player/idleLeft.png")), "WELCOME PLAYER \n like cats")); //added npc
   }

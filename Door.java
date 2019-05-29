@@ -19,6 +19,8 @@ import java.io.*;
 *added constuctor
 */
 
+//FENGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
+//REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 public class Door extends Obstacle{
   
   public Door (int x, int y, int xSize, int ySize, BufferedImage image)
@@ -29,7 +31,12 @@ public class Door extends Obstacle{
   
   public void update (Graphics g) //implemented update
   {
-    g.drawImage(getImage(), getX(), getY(), getX() + getXSize(), getY() + getYSize(), 5, 5, 90, 90, null);
+    g.drawImage(getImage(), getX(), getY(), getX() + getXSize(), getY() + getYSize(), getImage().getWidth(), getImage().getHeight(), null);
+  }
+  
+  public boolean nearPlayer (Player p)
+  {
+    return false;
   }
   
 }
