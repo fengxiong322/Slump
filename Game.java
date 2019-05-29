@@ -36,6 +36,7 @@ public class Game extends Canvas implements ActionListener{
  int moveY;
  int edgeX;
  int edgeY;
+ int level;
  boolean checkNPC;
  ExitListener el;
 
@@ -43,10 +44,11 @@ public class Game extends Canvas implements ActionListener{
  * @param level the specified level
  * @param el the ExitListener
  */
- public Game(int level, ExitListener el){//Created the constructor Feng Xiong 2 hours May 13
+ public Game(int l, ExitListener el){//Created the constructor Feng Xiong 2 hours May 13
   super();
   setSize(800, 800);
   canvasX = 0;
+  level = l;
   canvasY = 0;
   addKeyListener(new PlayerListener());
   canvas = new BufferedImage(1000, 1000, BufferedImage.TYPE_INT_RGB);
@@ -76,7 +78,7 @@ public class Game extends Canvas implements ActionListener{
   try{
     background = ImageIO.read(new File("platform.png"));
   //emember to add the actual background
-  platforms.add (new NPC (320, 300, 50, 100, ImageIO.read(new File("Screens/blank.png")), "i like cats")); //added npc
+  platforms.add (new NPC (320, 300, 50, 100, ImageIO.read(new File("Player/idleLeft.png")), "WELCOME PLAYER \n like cats")); //added npc
   }
   catch(IOException e){
   }//R
@@ -172,6 +174,9 @@ public class Game extends Canvas implements ActionListener{
   @Override
   public void keyPressed(KeyEvent event){
    int ch = event.getKeyCode();//Keep track of key presses
+   if (checkNPC = true) {
+     checkNPC = false;
+   }
    if(ch == KeyEvent.VK_UP || ch == KeyEvent.VK_W){
     moveY = 15;
    }else if(ch == KeyEvent.VK_LEFT|| ch == KeyEvent.VK_A){
@@ -183,9 +188,19 @@ public class Game extends Canvas implements ActionListener{
    {
     checkNPC = true;
    }
-   if(ch == KeyEvent.VK_ESCAPE){
+   else if(ch == KeyEvent.VK_ESCAPE){
     el.exit();
    }
+   if(ch == KeyEvent.VK_R){ //why u get rid of this
+     if(level == 1){
+       level1();
+     }else if(level == 2){
+       level2();
+     }else{
+       level3();
+     }
+   }
+  
   }
 
   @Override
@@ -199,9 +214,9 @@ public class Game extends Canvas implements ActionListener{
    }else if(ch == KeyEvent.VK_RIGHT || ch == KeyEvent.VK_D){
     if(moveX!=-3)
      moveX = 0;
-   }else if (ch == KeyEvent.VK_DOWN || ch == KeyEvent.VK_S){
-    checkNPC = false;
-   }
+   }//else if (ch == KeyEvent.VK_DOWN || ch == KeyEvent.VK_S){
+   // checkNPC = false;
+   //}
   }
  }
 }
