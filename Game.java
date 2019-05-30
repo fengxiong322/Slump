@@ -97,7 +97,31 @@ public class Game extends Canvas implements ActionListener{
  /** Sets up the second level
  *
  */
- public void level2(){}
+ public void level2(){
+ int lineCount = 0;
+  try {
+  BufferedReader br = new BufferedReader (new FileReader ("Levels/Level2-1"));
+  String line = br.readLine();
+  lineCount++;
+  edgeX = line.length() * 30;
+  while (line != null)
+	 {
+   for (int i = 0; i <line.length(); i++)
+   {
+    if (line.charAt(i) == '@')
+     platforms.add(new Platform (i *30, lineCount * 30, 30))
+   }
+		 line = br.readLine();
+   lineCount++;
+	 }
+  edgeY = lineCount * 30;
+  br.close();  
+ }
+ catch (IOException e)
+ {
+ }
+  
+ }
 
  /** Sets up the thrid level
  *
