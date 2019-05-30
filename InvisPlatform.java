@@ -16,6 +16,6 @@ public class InvisPlatform extends Platform{
   
   public void update(Graphics g){
     if(Player.getBounds().intersects(new Rectangle(getX()-50, getY()-50, getXSize()+100, getYSize()+100)))
-		  g.drawImage(getImage(), getX(), getY(), getXSize(), getYSize(), 5, 5, 90, 90, null);
+		  g.drawImage(getImage(), getX(), getY(), getXSize(), getYSize(), null);
 	}
 }
