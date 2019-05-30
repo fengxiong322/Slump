@@ -113,6 +113,7 @@ public class Game extends Canvas implements ActionListener{
    {
     if (line.charAt(i) == '@')
      platforms.add(new Platform (i *30, lineCount * 30, 30))
+	
    }
    line = br.readLine();
    lineCount++;
