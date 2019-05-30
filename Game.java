@@ -100,6 +100,9 @@ public class Game extends Canvas implements ActionListener{
  public void level2(){
  int lineCount = 0;
   try {
+  background = ImageIO.read(new File("Screens/game1.jpg"));
+  //emember to add the actual background
+  platforms.add (new NPC (320, 300, 50, 100, ImageIO.read(new File("Player/idleLeft.png")), "WELCOME PLAYER \n like cats")); //added npc
   BufferedReader br = new BufferedReader (new FileReader ("Levels/Level2-1"));
   String line = br.readLine();
   lineCount++;
@@ -111,7 +114,7 @@ public class Game extends Canvas implements ActionListener{
     if (line.charAt(i) == '@')
      platforms.add(new Platform (i *30, lineCount * 30, 30))
    }
-		 line = br.readLine();
+   line = br.readLine();
    lineCount++;
 	 }
   edgeY = lineCount * 30;
