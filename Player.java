@@ -43,6 +43,8 @@ public class Player{
  private boolean lastDirection;
  private int edgeX;
  private int edgeY;
+ private Rectangle playerRect;
+
  final static int GRAVITY = 1; //modified gravity levels Michael May 20, 2019
 
  public Player(int x, int y, int sizeX, int sizeY, int edgeX, int edgeY){  //modified michael, added images for animations- may17
@@ -70,8 +72,14 @@ public class Player{
   this.sizeY = sizeY;
   this.edgeX = edgeX;
   this.edgeY = edgeY;
+  playerRect = new Rectangle(x, y, sizeX, sizeY);
   isNPC = false;
  }
+
+ public Rectangle getBounds(){
+  return playerRect;
+ }
+
  public void update(Graphics g, ArrayList<Obstacle> platforms){ //modified michael created method - changing of aniamtions of player when moving - may17 1.5 hour
    //Added general layout Feng Xiong may 16 20 min
    ySpeed+=GRAVITY;
@@ -143,7 +151,7 @@ public class Player{
 
   boolean intersected = false;
   onGround = false;
-  Rectangle playerRect = new Rectangle(x+xSpeed, y+ySpeed, sizeX, sizeY);
+  playerRect = new Rectangle(x+xSpeed, y+ySpeed, sizeX, sizeY);
   if(!(new Rectangle(0, 0, edgeX, edgeY)).contains(playerRect)){
    xSpeed = 0;
   }

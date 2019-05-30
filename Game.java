@@ -39,6 +39,7 @@ public class Game extends Canvas implements ActionListener{
  int level;
  boolean checkNPC;
  ExitListener el;
+ Door door;
 
  /** COnstructor sets basic values and initalizes arrays and images
  * @param level the specified level
@@ -82,6 +83,7 @@ public class Game extends Canvas implements ActionListener{
   }
   catch(IOException e){
   }//R
+  door = new Door(100, 100, 100, 100, background);
   platforms.add(new Platform(320, 270, 50));
   platforms.add(new Platform(0, 380, 400));
   platforms.add(new Platform(190, 350, 100));
@@ -113,6 +115,10 @@ public class Game extends Canvas implements ActionListener{
   update(g);
  }
 
+ public void gameEnd(Graphics g){
+
+ }
+
 
  public void update(Graphics g){//The update loop, added the logic, Feng Xiogn May 15 2 hours
   Graphics g1 = canvas.getGraphics();//Draw the graphics on a separate picture so that we can add pictures without flickering
@@ -127,6 +133,11 @@ public class Game extends Canvas implements ActionListener{
   player.move(moveX);
   player.jump(moveY);
   player.isNPC(checkNPC);
+  door.update(g1);
+  if(door.intersects(player.getBounds())){
+    gameEnd(g1);
+    return;
+  }
   player.update(g1, platforms);
   if(player.getX()+canvasX<getWidth()*0.25){
    canvasX+=2;

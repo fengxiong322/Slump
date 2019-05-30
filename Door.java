@@ -18,25 +18,18 @@ import java.io.*;
 * impleneted all the needed methods from OBstacle
 *added constuctor
 */
+public class Door extends Rectangle{
+  BufferedImage door;
 
-//FENGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
-//REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-public class Door extends Obstacle{
-  
   public Door (int x, int y, int xSize, int ySize, BufferedImage image)
   {
     super (x, y, xSize, ySize);
-    setImage(image);
+    door = image;
   }
   
   public void update (Graphics g) //implemented update
   {
-    g.drawImage(getImage(), getX(), getY(), getX() + getXSize(), getY() + getYSize(), getImage().getWidth(), getImage().getHeight(), null);
-  }
-  
-  public boolean nearPlayer (Player p)
-  {
-    return false;
+    g.drawImage(door, (int)getX(), (int)getY(), (int)getWidth(), (int)getHeight(), null);
   }
   
 }
