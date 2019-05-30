@@ -23,23 +23,23 @@ import java.util.*;
 * added converstations with NPCs when the player presses down arrow
 */
 public class Game extends Canvas implements ActionListener{
- ArrayList<Obstacle> platforms;
- Timer timer;
- boolean gameOver;
- BufferedImage background;
- BufferedImage canvas;
- BufferedImage clear;
- Player player;
- int canvasX;
- int canvasY;
- int moveX;
- int moveY;
- int edgeX;
- int edgeY;
- int level;
- boolean checkNPC;
- ExitListener el;
- Door door;
+ private ArrayList<Obstacle> platforms;
+ private Timer timer;
+ private boolean gameOver;
+ private BufferedImage background;
+ private BufferedImage canvas;
+ private BufferedImage clear;
+ public Player player;
+ private int canvasX;
+ private int canvasY;
+ private int moveX;
+ private int moveY;
+ private int edgeX;
+ private int edgeY;
+ private int level;
+ private boolean checkNPC;
+ private ExitListener el;
+ private Door door;
 
  /** COnstructor sets basic values and initalizes arrays and images
  * @param level the specified level
