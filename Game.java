@@ -29,7 +29,7 @@ public class Game extends Canvas implements ActionListener{
  private BufferedImage background;
  private BufferedImage canvas;
  private BufferedImage clear;
- public Player player;
+ public static Player player;
  private int canvasX;
  private int canvasY;
  private int moveX;
