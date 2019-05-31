@@ -135,9 +135,9 @@ public class MainWindow extends JFrame implements ExitListener{
   * Set screen to menu when exiting
   */
   public void exit(){//Implemented runs exit from the Exit Listener, Feng May 10 1 min
-    if(curScreen == "game")
+    if(curScreen.equals( "game"))
       remove(gameScreen);
-    else if(curScreen == "highscore")
+    else if(curScreen.equals("highscore"))
       remove(highScore);
     setSize(811, 821);
     curScreen = "menu";

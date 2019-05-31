@@ -18,12 +18,13 @@ import java.util.*;
 
 public class Platform extends Obstacle{
 
-	public Platform(int x, int y, int length){
-		super(x, y, length, 30);
-		try{setImage(ImageIO.read(new File("Blocks/grey.png")));}catch(IOException e){e.printStackTrace();}
-	}
+ public Platform(int x, int y, int length){
+  super(x, y, length, 30);
+  try{setImage(ImageIO.read(new File("Blocks/grey.png")));}catch(IOException e){e.printStackTrace();}
+ }
 
-	public void update(Graphics g){
-		g.drawImage(getImage(), getX(), getY(), getX() + getXSize(), getY() + getYSize(), 5, 5, 90, 90, null);
-	}
+ public void update(Graphics g){
+   for (int i = 0; i <= length; i+=30)
+  g.drawImage(getImage(), getX()+i, getY(), getX() + getXSize(), getY() + getYSize(), 0, 0, getImage().getWidth(), getImage().getHeight(), null);
+ }
 }

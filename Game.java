@@ -29,7 +29,7 @@ public class Game extends Canvas implements ActionListener{
  private BufferedImage background;
  private BufferedImage canvas;
  private BufferedImage clear;
- public static Player player;
+ public Player player;
  private int canvasX;
  private int canvasY;
  private int moveX;
@@ -77,13 +77,13 @@ public class Game extends Canvas implements ActionListener{
  */
  public void level1(){//Created a basic level set up Feng Xiong May 15 1 hour
   try{
-    background = ImageIO.read(new File("Screens/game1.jpg"));
+    background = ImageIO.read(new File("platform.png"));
   //emember to add the actual background
   platforms.add (new NPC (320, 300, 50, 100, ImageIO.read(new File("Player/idleLeft.png")), "WELCOME PLAYER \n like cats")); //added npc
   }
   catch(IOException e){
   }//R
-  door = new Door(100, 100, 100, 100, background);
+  //door = new Door(100, 100, 100, 100, background);
   platforms.add(new Platform(320, 270, 50));
   platforms.add(new Platform(0, 380, 400));
   platforms.add(new Platform(190, 350, 100));
@@ -103,28 +103,37 @@ public class Game extends Canvas implements ActionListener{
   background = ImageIO.read(new File("Screens/game1.jpg"));
   //emember to add the actual background
   platforms.add (new NPC (320, 300, 50, 100, ImageIO.read(new File("Player/idleLeft.png")), "WELCOME PLAYER \n like cats")); //added npc
-  BufferedReader br = new BufferedReader (new FileReader ("Levels/Level2-1"));
+  BufferedReader br = new BufferedReader (new FileReader ("Levels/Level2-1.txt"));
   String line = br.readLine();
   lineCount++;
-  edgeX = line.length() * 30;
+  edgeX = (line.length() + 1) * 30;
   while (line != null)
-	 {
+  {
+   //System.out.println(line);
    for (int i = 0; i <line.length(); i++)
    {
+     int streak = 0;
     if (line.charAt(i) == '@')
-     platforms.add(new Platform (i *30, lineCount * 30, 30))
-	
+    {
+      streak++;
+    }
+    if (line.charAt(i) != '@' || i == line.length()-1)
+    {
+     platforms.add(new Platform (i *30, lineCount * 30, 30*streak));
+     streak = 0;
+    }
    }
    line = br.readLine();
    lineCount++;
-	 }
-  edgeY = lineCount * 30;
+  }
+  edgeY = (lineCount + 1) * 30;
   br.close();  
+  
  }
  catch (IOException e)
  {
  }
-  
+   setSpawn(100, 200);
  }
 
  /** Sets up the thrid level
@@ -136,7 +145,7 @@ public class Game extends Canvas implements ActionListener{
  *
  */
  public void setSpawn(int x, int y){
-  player = new Player(x, y, 32, 102, edgeX, edgeY);
+  player = new Player(x, y, 30, 85, edgeX, edgeY);
  }
 
  public void paint(Graphics g){//runs the update loop, added the logic, Feng Xiogn May 15 10 min
@@ -161,11 +170,11 @@ public class Game extends Canvas implements ActionListener{
   player.move(moveX);
   player.jump(moveY);
   player.isNPC(checkNPC);
-  door.update(g1);
-  if(door.intersects(player.getBounds())){
-    gameEnd(g1);
-    return;
-  }
+  //door.update(g1);
+  //if(door.intersects(player.getBounds())){
+  //  gameEnd(g1);
+  //  return;
+  //}
   player.update(g1, platforms);
   if(player.getX()+canvasX<getWidth()*0.25){
    canvasX+=2;
