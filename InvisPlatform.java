@@ -10,12 +10,18 @@ import java.io.*;
 import java.util.*;
 
 public class InvisPlatform extends Platform{
+	private Rectangle player;
+
   public InvisPlatform(int x, int y, int length){
     super(x, y, length);
   }
   
   public void update(Graphics g){
-    if(Player.getBounds().intersects(new Rectangle(getX()-50, getY()-50, getXSize()+100, getYSize()+100)))
+    if(player.intersects(new Rectangle(getX()-50, getY()-50, getXSize()+100, getYSize()+100)))
 		  g.drawImage(getImage(), getX(), getY(), getXSize(), getYSize(), null);
+	}
+
+	public void setPlayer(Rectangle rectangle){
+		player = rectangle;
 	}
 }

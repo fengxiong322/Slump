@@ -24,7 +24,7 @@ public class Platform extends Obstacle{
  }
 
  public void update(Graphics g){
-   for (int i = 0; i <= length; i+=30)
+   for (int i = 0; i <= getXSize(); i+=30)
   g.drawImage(getImage(), getX()+i, getY(), getX() + getXSize(), getY() + getYSize(), 0, 0, getImage().getWidth(), getImage().getHeight(), null);
  }
 }

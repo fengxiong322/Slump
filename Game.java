@@ -29,7 +29,7 @@ public class Game extends Canvas implements ActionListener{
  private BufferedImage background;
  private BufferedImage canvas;
  private BufferedImage clear;
- public Player player;
+ private Player player;
  private int canvasX;
  private int canvasY;
  private int moveX;
@@ -169,6 +169,8 @@ if (line.charAt(i) == '@')
   g1.drawImage(background, 0, 0, edgeX, edgeY, null);
   //Update all items on screen
   for(Obstacle i : platforms){
+    if(i instanceof InvisPlatform)
+      ((InvisPlatform)i).setPlayer(player.getBounds());
    i.update(g1);//Updates to a new position
   }
   player.move(moveX);

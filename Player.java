@@ -161,6 +161,7 @@ public class Player{
    //(i instanceof NPC){
     //System.out.println(platformRect);
    //}
+   playerRect = new Rectangle(x+xSpeed, y+ySpeed, sizeX, sizeY);
    if(playerRect.intersects(platformRect)){
     intersected = true;
     if(ySpeed>0){
