@@ -112,16 +112,20 @@ public class Game extends Canvas implements ActionListener{
    //System.out.println(line);
    for (int i = 0; i <line.length(); i++)
    {
-     int streak = 0;
-    if (line.charAt(i) == '@')
+if (line.charAt(i) == '@')
     {
-      streak++;
-    }
-    if (line.charAt(i) != '@' || i == line.length()-1)
-    {
-     platforms.add(new Platform (i *30, lineCount * 30, 30*streak));
-     streak = 0;
-    }
+      platforms.add(new Platform (i *30, lineCount * 30, 30));
+   }
+     //int streak = 0;
+   // if (line.charAt(i) == '@')
+  //  {
+  //    streak++;
+  //  }
+ //   if (line.charAt(i) != '@' || i == line.length()-1)
+ //   {
+ //    platforms.add(new Platform (i *30, lineCount * 30, 30*streak));
+ //    streak = 0;
+   // }
    }
    line = br.readLine();
    lineCount++;
@@ -241,9 +245,9 @@ public class Game extends Canvas implements ActionListener{
    }
    if(ch == KeyEvent.VK_R){ //why u get rid of this
      if(level == 1){
-       level1();
+       setSpawn (100,200);
      }else if(level == 2){
-       level2();
+       setSpawn (100,200);
      }else{
        level3();
      }
