@@ -15,21 +15,22 @@ import java.io.*;
 * Total time spend Michael: 0.5 hours
 * Modifications: May 24, 2019, Michael Zhou, Total time: 0.5 hours
 * added basic class structure
-* impleneted all the needed methods from OBstacle
+* impleneted all the needed methods from Obstacle
 *added constuctor
 */
-public class Door extends Rectangle{
-  BufferedImage door;
+public class Door extends Obstacle{
 
-  public Door (int x, int y, int xSize, int ySize, BufferedImage image)
+  public Door (int x, int y, int xSize, int ySize)
   {
     super (x, y, xSize, ySize);
-    door = image;
+    try{setImage(ImageIO.read(new File("Player/idleLeft.png")));}catch(IOException e){}
   }
   
   public void update (Graphics g) //implemented update
   {
-    g.drawImage(door, (int)getX(), (int)getY(), (int)getWidth(), (int)getHeight(), null);
+    g.drawImage(getImage(), (int)getX(), (int)getY(), (int)getXSize(), (int)getYSize(), null);
   }
+
+  
   
 }

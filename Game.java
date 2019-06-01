@@ -94,15 +94,19 @@ public class Game extends Canvas implements ActionListener{
    //System.out.println(line);
    for (int i = 0; i <line.length(); i++)
    {
-if (line.charAt(i) == '@')
+  if (line.charAt(i) == '@')
     {
       platforms.add(new Platform (i *30, lineCount * 30, 30));
-   }
-   if(line.charAt(i) == '\''){
+   }else if(line.charAt(i) == '\''){
     platforms.add(new InvisPlatform(i*30, lineCount * 30, 30));
    }
-     //int streak = 0;
-
+   else if(line.charAt(i) == 'd'){
+    platforms.add(new Door(i*30, lineCount * 30, 60, 90));
+   }else{
+    //Add projectiles
+   }
+    
+    //int streak = 0;
    // if (line.charAt(i) == '@')
   //  {
   //    streak++;
@@ -144,7 +148,7 @@ if (line.charAt(i) == '@')
  }
 
  public void gameEnd(Graphics g){
-
+  el.exit();
  }
 
 
@@ -155,31 +159,35 @@ if (line.charAt(i) == '@')
   g1.fillRect(0, 0, edgeX, edgeY);
   g1.drawImage(background, 0, 0, edgeX, edgeY, null);
   //Update all items on screen
-  for(Obstacle i : platforms){
-    if(i instanceof InvisPlatform)
-      ((InvisPlatform)i).setPlayer(player.getBounds());
-   i.update(g1);//Updates to a new position
-  }
   player.move(moveX);
   player.jump(moveY);
-  player.isNPC(checkNPC);
   //door.update(g1);
   //if(door.intersects(player.getBounds())){
   //  gameEnd(g1);
   //  return;
   //}
+  for(Obstacle i : platforms){
+    if(i instanceof Door && i.getBounds().intersects(player.getBounds())){
+    timer.stop();
+    gameEnd(g);
+    return;
+  }else if(i instanceof InvisPlatform)
+      ((InvisPlatform)i).setPlayer(player.getBounds());
+   i.update(g1);//Updates to a new position
+  }
+
   player.update(g1, platforms);
   if(player.getX()+canvasX<getWidth()*0.25){
-   canvasX+=2;
+   canvasX+=4;
   }
   if(player.getX()+canvasX>getWidth()*0.75){
-   canvasX-=2;
+   canvasX-=4;
   }
   if(player.getY()+canvasY<getHeight()*0.25){
-   canvasY+=2;
+   canvasY+=4;
   }
   if(player.getY()+canvasY>getHeight()*0.75){
-   canvasY-=2;
+   canvasY-=4;
   }
   Graphics g2 = clear.getGraphics();//Triple buffer
   g2.setColor(new Color(0, 0, 0));

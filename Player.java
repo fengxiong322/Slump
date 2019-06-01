@@ -38,7 +38,6 @@ public class Player{
  private int xSpeed;
  private int ySpeed;
  private boolean onGround;
- private boolean isNPC;
  private int lastImage;
  private boolean lastDirection;
  private int edgeX;
@@ -73,7 +72,6 @@ public class Player{
   this.edgeX = edgeX;
   this.edgeY = edgeY;
   playerRect = new Rectangle(x, y, sizeX, sizeY);
-  isNPC = false;
  }
 
  public Rectangle getBounds(){
@@ -156,11 +154,9 @@ public class Player{
    xSpeed = 0;
   }
   for(Obstacle i: platforms){
-
+    if(i instanceof Door)
+      continue;
    Rectangle platformRect = new Rectangle(i.getX(), i.getY(), i.getXSize(), i.getYSize());
-   //(i instanceof NPC){
-    //System.out.println(platformRect);
-   //}
    playerRect = new Rectangle(x+xSpeed, y+ySpeed, sizeX, sizeY);
    if(playerRect.intersects(platformRect)){
     intersected = true;
@@ -202,11 +198,6 @@ public class Player{
    }
   }
  }
-
-   public void isNPC(boolean downKey){
-    isNPC = downKey;
-  }
-
   
   public int getX(){return x;}//Created method for user control Feng May 15 1 min
 

@@ -53,6 +53,10 @@ public abstract class Obstacle{
 
  public void setImage(BufferedImage bi){ image = bi;}
 
+ public Rectangle getBounds(){
+ 	return new Rectangle(x, y, xSize, ySize);
+ }
+
  public BufferedImage getImage(){
   return image;
  }
