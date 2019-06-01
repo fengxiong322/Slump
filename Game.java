@@ -52,8 +52,6 @@ public class Game extends Canvas implements ActionListener{
   level = l;
   canvasY = 0;
   addKeyListener(new PlayerListener());
-  canvas = new BufferedImage(1000, 1000, BufferedImage.TYPE_INT_RGB);
-  clear = new BufferedImage(1000, 1000, BufferedImage.TYPE_INT_RGB);
   platforms = new ArrayList<Obstacle>();
   gameOver = false;
   checkNPC = false;
@@ -76,22 +74,7 @@ public class Game extends Canvas implements ActionListener{
  * May 25, 2019 - 2 mins - added NPC to the platforms, Michael
  */
  public void level1(){//Created a basic level set up Feng Xiong May 15 1 hour
-  try{
-    background = ImageIO.read(new File("platform.png"));
-  //emember to add the actual background
-  platforms.add (new NPC (320, 300, 50, 100, ImageIO.read(new File("Player/idleLeft.png")), "WELCOME PLAYER \n like cats")); //added npc
-  }
-  catch(IOException e){
-  }//R
-  //door = new Door(100, 100, 100, 100, background);
-  platforms.add(new Platform(320, 270, 50));
-  platforms.add(new Platform(0, 380, 400));
-  platforms.add(new Platform(190, 350, 100));
-  platforms.add(new Platform(3, 160, 0));
-
-  edgeX = 1000;
-  edgeY = 1000;
-  setSpawn(100, 200);
+  //Cleared to prepare for actual map
  }
 
  /** Sets up the second level
@@ -101,7 +84,6 @@ public class Game extends Canvas implements ActionListener{
  int lineCount = 0;
   try {
   background = ImageIO.read(new File("Screens/game1.jpg"));
-  //emember to add the actual background
   platforms.add (new NPC (320, 300, 50, 100, ImageIO.read(new File("Player/idleLeft.png")), "WELCOME PLAYER \n like cats")); //added npc
   BufferedReader br = new BufferedReader (new FileReader ("Levels/Level2-1.txt"));
   String line = br.readLine();
@@ -116,7 +98,11 @@ if (line.charAt(i) == '@')
     {
       platforms.add(new Platform (i *30, lineCount * 30, 30));
    }
+   if(line.charAt(i) == '\''){
+    platforms.add(new InvisPlatform(i*30, lineCount * 30, 30));
+   }
      //int streak = 0;
+
    // if (line.charAt(i) == '@')
   //  {
   //    streak++;
@@ -131,8 +117,9 @@ if (line.charAt(i) == '@')
    lineCount++;
   }
   edgeY = (lineCount + 1) * 30;
-  br.close();  
-  
+  canvas = new BufferedImage(edgeX, edgeY, BufferedImage.TYPE_INT_RGB);
+  clear = new BufferedImage(edgeX, edgeY, BufferedImage.TYPE_INT_RGB);
+  br.close();
  }
  catch (IOException e)
  {
@@ -140,7 +127,7 @@ if (line.charAt(i) == '@')
    setSpawn(100, 200);
  }
 
- /** Sets up the thrid level
+ /** Sets up the third level
  *
  */
  public void level3(){}
@@ -165,7 +152,7 @@ if (line.charAt(i) == '@')
   Graphics g1 = canvas.getGraphics();//Draw the graphics on a separate picture so that we can add pictures without flickering
   //RedrawBackround
   g1.setColor(new Color(0, 0, 0));
-  g1.fillRect(0, 0, 1000, 1000);
+  g1.fillRect(0, 0, edgeX, edgeY);
   g1.drawImage(background, 0, 0, edgeX, edgeY, null);
   //Update all items on screen
   for(Obstacle i : platforms){
