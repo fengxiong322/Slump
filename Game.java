@@ -24,6 +24,7 @@ import java.util.*;
 */
 public class Game extends Canvas implements ActionListener{
  private ArrayList<Obstacle> obstacles;
+ private Map map;
  private Timer timer;
  private boolean gameOver;
  private BufferedImage background;
@@ -76,8 +77,6 @@ public class Game extends Canvas implements ActionListener{
  * May 25, 2019 - 2 mins - added NPC to the obstacles, Michael
  */
  public void level1(){//Created a basic level set up Feng Xiong May 15 1 hour
-  time = 0;
-  obstacles = new ArrayList<Obstacle>();
   try {
   createLevel (new BufferedReader(new FileReader ("Levels/Level1.txt")));
   background = ImageIO.read(new File("Screens/game1.jpg"));
@@ -93,8 +92,6 @@ public class Game extends Canvas implements ActionListener{
  *
  */
 public void level2(){
-  time = 0;
-  obstacles = new ArrayList<Obstacle>();
   try {
   createLevel (new BufferedReader(new FileReader ("Levels/Level2-1.txt")));
   background = ImageIO.read(new File("Screens/game1.jpg"));
@@ -111,8 +108,6 @@ public void level2(){
  *
  */
  public void level3(){
-  time = 0;
-  obstacles = new ArrayList<Obstacle>();
     try {
   createLevel (new BufferedReader(new FileReader ("Levels/Level1.txt")));
   background = ImageIO.read(new File("Screens/game1.jpg"));
@@ -126,14 +121,17 @@ public void level2(){
 
  public void createLevel (BufferedReader br)
  {
+  time = 0;
+  obstacles = new ArrayList<Obstacle>();
    int lineCount = 0;
   try {
   String line = br.readLine();
   lineCount++;
   edgeX = (line.length()) * 30;
+  int i = 0;
   while (line != null)
   {
-   for (int i = 0; i <line.length(); i++)
+   for (i = 0; i <line.length(); i++)
    {
 
   switch(line.charAt(i)){
@@ -165,6 +163,10 @@ public void level2(){
    lineCount++;
   }
   edgeY = (lineCount) * 30;
+  map =  new Map(i, lineCount);
+  for(Obstacle j : obstacles)
+    map.add(j, j.getX()/30, j.getY()/30);
+
   canvas = new BufferedImage(edgeX, edgeY, BufferedImage.TYPE_INT_RGB);
   clear = new BufferedImage(edgeX, edgeY, BufferedImage.TYPE_INT_RGB);
   br.close();
@@ -192,9 +194,11 @@ public void level2(){
 
  public void gameEnd(Graphics g){
   if(level == 1){
+    level = 2;
     level2();
   timer.restart();
   }else if(level == 2){
+    level = 3;
     level3();
     timer.restart();
   }else{
@@ -232,7 +236,7 @@ public void level2(){
   }
 
 
-  player.update(g1, obstacles);
+  player.update(g1, map);
   if(player.getX()+canvasX<getWidth()*0.45){
    canvasX+=4;
   }

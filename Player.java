@@ -78,7 +78,7 @@ public class Player{
   return playerRect;
  }
 
- public void update(Graphics g, ArrayList<Obstacle> platforms){ //modified michael created method - changing of aniamtions of player when moving - may17 1.5 hour
+ public void update(Graphics g, Map platforms){ //modified michael created method - changing of aniamtions of player when moving - may17 1.5 hour
    //Added general layout Feng Xiong may 16 20 min
    ySpeed+=GRAVITY;
    checkPlatform(platforms, g);
@@ -145,7 +145,7 @@ public class Player{
 //     g.drawImage(jumpLeft, x, y, x+sizeX, y+sizeY, 0, 0, 16, 51, null);
 // }
  
- private void checkPlatform(ArrayList<Obstacle> platforms, Graphics g){//Added collision detection Feng Xiong may 15 - 3 hours
+ private void checkPlatform(Map platforms, Graphics g){//Added collision detection Feng Xiong may 15 - 3 hours
 
   boolean intersected = false;
   onGround = false;
@@ -153,14 +153,13 @@ public class Player{
   if(!(new Rectangle(0, 0, edgeX, edgeY)).contains(playerRect)){
    xSpeed = 0;
   }
-  for(Obstacle i: platforms){
+  for(Obstacle i : platforms.find(x+xSpeed, y+ySpeed, sizeX, sizeY)){
     if(i instanceof Door || i instanceof StateSwitchPlatform && !((StateSwitchPlatform)i).isOn() ||i instanceof Projectile)
       continue;
     if(i instanceof StateSwitchPlatform && !((StateSwitchPlatform)i).isOn())
       continue;
    Rectangle platformRect = new Rectangle(i.getX(), i.getY(), i.getXSize(), i.getYSize());
    playerRect = new Rectangle(x+xSpeed, y+ySpeed, sizeX, sizeY);
-   if(playerRect.intersects(platformRect)){
     intersected = true;
     if(ySpeed>0){
      for(int j = 0; j <= ySpeed;j++){
@@ -197,7 +196,6 @@ public class Player{
       }
      }
     }
-   }
   }
  }
   
