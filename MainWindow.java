@@ -51,8 +51,10 @@ public class MainWindow extends JFrame implements ExitListener{
         }else if(curScreen.equals("level")){//When the screen is on level
           if(x>252 && y> 235 && x < 559 && y < 346)
             newGame(1);
-          if(x>249 && y> 272 && x < 559 && y < 483)
+          if(x>249 && y> 372 && x < 559 && y < 483)
             newGame(2);
+          if(x>250 && y> 522 && x < 559 && y < 635)
+            newGame(3);
         }else if(curScreen.equals("highScore")){
           openHighScore();
         }else if(curScreen.equals("resume")){

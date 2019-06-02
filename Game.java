@@ -65,7 +65,7 @@ public class Game extends Canvas implements ActionListener{
    level1();
   }else if(level == 2){
    level2();
-  }else{
+  }else if(level == 3){
    level3();
   }
  }
@@ -77,6 +77,21 @@ public class Game extends Canvas implements ActionListener{
   try {
   createLevel (new BufferedReader(new FileReader ("Levels/Level1.txt")));
   background = ImageIO.read(new File("Screens/game1.jpg"));
+  }
+ catch (IOException e)
+ {
+ }
+  
+  setSpawn(300, edgeY - 180);
+ }
+
+  /** Sets up the second level
+ *
+ */
+public void level2(){
+  try {
+  createLevel (new BufferedReader(new FileReader ("Levels/Level2-1.txt")));
+  background = ImageIO.read(new File("Screens/game1.jpg"));
   platforms.add (new NPC (320, 300, 50, 100, ImageIO.read(new File("Player/idleLeft.png")), "WELCOME PLAYER \n like cats")); //added npc
   }
  catch (IOException e)
@@ -84,6 +99,21 @@ public class Game extends Canvas implements ActionListener{
  }
   
   setSpawn(90, edgeY - 180);
+ }
+
+ /** Sets up the third level
+ *
+ */
+ public void level3(){
+    try {
+  createLevel (new BufferedReader(new FileReader ("Levels/Level1.txt")));
+  background = ImageIO.read(new File("Screens/game1.jpg"));
+  }
+ catch (IOException e)
+ {
+ }
+  
+  setSpawn(300, edgeY - 180);
  }
 
  public void createLevel (BufferedReader br)
@@ -124,27 +154,6 @@ public class Game extends Canvas implements ActionListener{
    
  
  }
- 
- /** Sets up the second level
- *
- */
-public void level2(){
-  try {
-  createLevel (new BufferedReader(new FileReader ("Levels/Level2-1.txt")));
-  background = ImageIO.read(new File("Screens/game1.jpg"));
-  platforms.add (new NPC (320, 300, 50, 100, ImageIO.read(new File("Player/idleLeft.png")), "WELCOME PLAYER \n like cats")); //added npc
-  }
- catch (IOException e)
- {
- }
-  
-  setSpawn(90, edgeY - 180);
- }
-
- /** Sets up the third level
- *
- */
- public void level3(){}
 
  /** Sets up the player spawn location
  *
@@ -216,6 +225,9 @@ public void level2(){
        }
   }
   g.drawImage(clear, 0, 0, null);
+  g.dispose();
+  g1.dispose();
+  g2.dispose();
  }
 
  public void actionPerformed(ActionEvent e) {//Added an action listener for the Timer, Feng Xiong May 16 10min
@@ -252,7 +264,7 @@ public void level2(){
    }
    if(ch == KeyEvent.VK_R){
      if(level == 1){
-       setSpawn(90, edgeY - 180);
+       setSpawn(300, edgeY - 180);
      }else if(level == 2){
        setSpawn(90, edgeY - 180);
      }else{
