@@ -74,18 +74,24 @@ public class Game extends Canvas implements ActionListener{
  * May 25, 2019 - 2 mins - added NPC to the platforms, Michael
  */
  public void level1(){//Created a basic level set up Feng Xiong May 15 1 hour
-  //Cleared to prepare for actual map
- }
-
- /** Sets up the second level
- *
- */
- public void level2(){
- int lineCount = 0;
   try {
+  createLevel (new FileReader ("Levels/Level1.txt"));
   background = ImageIO.read(new File("Screens/game1.jpg"));
   platforms.add (new NPC (320, 300, 50, 100, ImageIO.read(new File("Player/idleLeft.png")), "WELCOME PLAYER \n like cats")); //added npc
-  BufferedReader br = new BufferedReader (new FileReader ("Levels/Level2-1.txt"));
+  }
+ catch (IOException e)
+ {
+ }
+  
+  setSpawn(90, edgeY - 180);
+ }
+
+ public void createLevel (FileReader level)
+ {
+   int lineCount = 0;
+  try {
+  
+  BufferedReader br = new BufferedReader (level);
   String line = br.readLine();
   lineCount++;
   edgeX = (line.length() + 1) * 30;
@@ -105,17 +111,6 @@ public class Game extends Canvas implements ActionListener{
    }else{
     //Add projectiles
    }
-    
-    //int streak = 0;
-   // if (line.charAt(i) == '@')
-  //  {
-  //    streak++;
-  //  }
- //   if (line.charAt(i) != '@' || i == line.length()-1)
- //   {
- //    platforms.add(new Platform (i *30, lineCount * 30, 30*streak));
- //    streak = 0;
-   // }
    }
    line = br.readLine();
    lineCount++;
@@ -128,7 +123,24 @@ public class Game extends Canvas implements ActionListener{
  catch (IOException e)
  {
  }
-   setSpawn(100, 200);
+   
+ 
+ }
+ 
+ /** Sets up the second level
+ *
+ */
+public void level2(){
+  try {
+  createLevel (new FileReader ("Levels/Level2-1.txt"));
+  background = ImageIO.read(new File("Screens/game1.jpg"));
+  platforms.add (new NPC (320, 300, 50, 100, ImageIO.read(new File("Player/idleLeft.png")), "WELCOME PLAYER \n like cats")); //added npc
+  }
+ catch (IOException e)
+ {
+ }
+  
+  setSpawn(90, edgeY - 180);
  }
 
  /** Sets up the third level
@@ -177,16 +189,16 @@ public class Game extends Canvas implements ActionListener{
   }
 
   player.update(g1, platforms);
-  if(player.getX()+canvasX<getWidth()*0.25){
+  if(player.getX()+canvasX<getWidth()*0.45){
    canvasX+=4;
   }
-  if(player.getX()+canvasX>getWidth()*0.75){
+  if(player.getX()+canvasX>getWidth()*0.55){
    canvasX-=4;
   }
-  if(player.getY()+canvasY<getHeight()*0.25){
+  if(player.getY()+canvasY<getHeight()*0.45){
    canvasY+=4;
   }
-  if(player.getY()+canvasY>getHeight()*0.75){
+  if(player.getY()+canvasY>getHeight()*0.55){
    canvasY-=4;
   }
   Graphics g2 = clear.getGraphics();//Triple buffer
@@ -229,9 +241,9 @@ public class Game extends Canvas implements ActionListener{
    if(ch == KeyEvent.VK_UP || ch == KeyEvent.VK_W){
     moveY = 15;
    }else if(ch == KeyEvent.VK_LEFT|| ch == KeyEvent.VK_A){
-    moveX = -3;
+    moveX = -4;
    }else if(ch == KeyEvent.VK_RIGHT || ch == KeyEvent.VK_D){
-    moveX = 3;
+    moveX = 4;
    }
    else if (ch == KeyEvent.VK_DOWN || ch == KeyEvent.VK_S)
    {
@@ -242,11 +254,11 @@ public class Game extends Canvas implements ActionListener{
    }
    if(ch == KeyEvent.VK_R){ //why u get rid of this
      if(level == 1){
-       setSpawn (100,200);
+       setSpawn(90, edgeY - 180);
      }else if(level == 2){
-       setSpawn (100,200);
+       setSpawn(90, edgeY - 180);
      }else{
-       level3();
+       setSpawn(90, edgeY - 180);
      }
    }
   
