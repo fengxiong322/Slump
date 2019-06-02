@@ -75,7 +75,7 @@ public class Game extends Canvas implements ActionListener{
  */
  public void level1(){//Created a basic level set up Feng Xiong May 15 1 hour
   try {
-  createLevel (new FileReader ("Levels/Level1.txt"));
+  createLevel (new BufferedReader(new FileReader ("Levels/Level1.txt")));
   background = ImageIO.read(new File("Screens/game1.jpg"));
   platforms.add (new NPC (320, 300, 50, 100, ImageIO.read(new File("Player/idleLeft.png")), "WELCOME PLAYER \n like cats")); //added npc
   }
@@ -86,12 +86,10 @@ public class Game extends Canvas implements ActionListener{
   setSpawn(90, edgeY - 180);
  }
 
- public void createLevel (FileReader level)
+ public void createLevel (BufferedReader br)
  {
    int lineCount = 0;
   try {
-  
-  BufferedReader br = new BufferedReader (level);
   String line = br.readLine();
   lineCount++;
   edgeX = (line.length() + 1) * 30;
@@ -132,7 +130,7 @@ public class Game extends Canvas implements ActionListener{
  */
 public void level2(){
   try {
-  createLevel (new FileReader ("Levels/Level2-1.txt"));
+  createLevel (new BufferedReader(new FileReader ("Levels/Level2-1.txt")));
   background = ImageIO.read(new File("Screens/game1.jpg"));
   platforms.add (new NPC (320, 300, 50, 100, ImageIO.read(new File("Player/idleLeft.png")), "WELCOME PLAYER \n like cats")); //added npc
   }
@@ -252,7 +250,7 @@ public void level2(){
    else if(ch == KeyEvent.VK_ESCAPE){
     el.exit();
    }
-   if(ch == KeyEvent.VK_R){ //why u get rid of this
+   if(ch == KeyEvent.VK_R){
      if(level == 1){
        setSpawn(90, edgeY - 180);
      }else if(level == 2){
@@ -270,14 +268,12 @@ public void level2(){
    if(ch == KeyEvent.VK_UP || ch == KeyEvent.VK_W){
     moveY = 0;
    }else if(ch == KeyEvent.VK_LEFT|| ch == KeyEvent.VK_A){
-    if(moveX != 3)
+    if(moveX<0)
      moveX = 0;
    }else if(ch == KeyEvent.VK_RIGHT || ch == KeyEvent.VK_D){
-    if(moveX!=-3)
+    if(moveX>0)
      moveX = 0;
-   }//else if (ch == KeyEvent.VK_DOWN || ch == KeyEvent.VK_S){
-   // checkNPC = false;
-   //}
+   }
   }
  }
 }

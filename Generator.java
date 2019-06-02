@@ -10,8 +10,13 @@ import java.io.*;
 import java.util.*;
 
 public class Generator extends Obstacle{
-  public Generator(){
-    super(1, 1, 1, 1);
-  }
-  public void update(Graphics g){}
+ public Generator(int x, int y, int length){
+  super(x, y, length, 30);
+  try{setImage(ImageIO.read(new File("Blocks/grey.png")));}catch(IOException e){e.printStackTrace();}
+ }
+
+ public void update(Graphics g){
+   for (int i = 0; i <= getXSize(); i+=30)
+  g.drawImage(getImage(), getX()+i, getY(), getX() + getXSize(), getY() + getYSize(), 0, 0, getImage().getWidth(), getImage().getHeight(), null);
+ }
 }
