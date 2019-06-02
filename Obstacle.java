@@ -62,4 +62,5 @@ public abstract class Obstacle{
  }
 
  public abstract void update(Graphics g);
+
 }

@@ -23,7 +23,7 @@ import java.util.*;
 * added converstations with NPCs when the player presses down arrow
 */
 public class Game extends Canvas implements ActionListener{
- private ArrayList<Obstacle> platforms;
+ private ArrayList<Obstacle> obstacles;
  private Timer timer;
  private boolean gameOver;
  private BufferedImage background;
@@ -40,6 +40,8 @@ public class Game extends Canvas implements ActionListener{
  private boolean checkNPC;
  private ExitListener el;
  private Door door;
+ private long time;
+ private int second;
 
  /** COnstructor sets basic values and initalizes arrays and images
  * @param level the specified level
@@ -52,7 +54,6 @@ public class Game extends Canvas implements ActionListener{
   level = l;
   canvasY = 0;
   addKeyListener(new PlayerListener());
-  platforms = new ArrayList<Obstacle>();
   gameOver = false;
   checkNPC = false;
   moveX = 0;
@@ -68,12 +69,15 @@ public class Game extends Canvas implements ActionListener{
   }else if(level == 3){
    level3();
   }
+  int second = 0;
  }
  /** Sets up the first level
  * Changelog
- * May 25, 2019 - 2 mins - added NPC to the platforms, Michael
+ * May 25, 2019 - 2 mins - added NPC to the obstacles, Michael
  */
  public void level1(){//Created a basic level set up Feng Xiong May 15 1 hour
+  time = 0;
+  obstacles = new ArrayList<Obstacle>();
   try {
   createLevel (new BufferedReader(new FileReader ("Levels/Level1.txt")));
   background = ImageIO.read(new File("Screens/game1.jpg"));
@@ -89,10 +93,12 @@ public class Game extends Canvas implements ActionListener{
  *
  */
 public void level2(){
+  time = 0;
+  obstacles = new ArrayList<Obstacle>();
   try {
   createLevel (new BufferedReader(new FileReader ("Levels/Level2-1.txt")));
   background = ImageIO.read(new File("Screens/game1.jpg"));
-  platforms.add (new NPC (320, 300, 50, 100, ImageIO.read(new File("Player/idleLeft.png")), "WELCOME PLAYER \n like cats")); //added npc
+  obstacles.add (new NPC (320, 300, 50, 100, ImageIO.read(new File("Player/idleLeft.png")), "WELCOME PLAYER \n like cats")); //added npc
   }
  catch (IOException e)
  {
@@ -105,6 +111,8 @@ public void level2(){
  *
  */
  public void level3(){
+  time = 0;
+  obstacles = new ArrayList<Obstacle>();
     try {
   createLevel (new BufferedReader(new FileReader ("Levels/Level1.txt")));
   background = ImageIO.read(new File("Screens/game1.jpg"));
@@ -122,28 +130,41 @@ public void level2(){
   try {
   String line = br.readLine();
   lineCount++;
-  edgeX = (line.length() + 1) * 30;
+  edgeX = (line.length()) * 30;
   while (line != null)
   {
-   //System.out.println(line);
    for (int i = 0; i <line.length(); i++)
    {
-  if (line.charAt(i) == '@')
-    {
-      platforms.add(new Platform (i *30, lineCount * 30, 30));
-   }else if(line.charAt(i) == '\''){
-    platforms.add(new InvisPlatform(i*30, lineCount * 30, 30));
-   }
-   else if(line.charAt(i) == 'd'){
-    platforms.add(new Door(i*30, lineCount * 30, 60, 90));
-   }else{
-    //Add projectiles
-   }
+
+  switch(line.charAt(i)){
+    case '@':
+    obstacles.add(new Platform (i *30, lineCount * 30, 30));
+    break;
+    case '\'':
+    obstacles.add(new InvisPlatform(i*30, lineCount * 30, 30));
+    break;
+    case 'd':
+      obstacles.add(new Door(i*30, lineCount * 30, 60, 90));
+      break;
+    case 'W'://A white block, meaning clear.
+      obstacles.add(new StateSwitchPlatform(i*30, lineCount * 30, 30, true));
+      break;
+    case 'B'://A black block, cannot exist with white blocks.
+      obstacles.add(new StateSwitchPlatform(i*30, lineCount * 30, 30, false));
+      break;
+    default:
+      if((int)line.charAt(i) >0 && (int)line.charAt(i) <10)//left
+        obstacles.add(new Projectile(i*30, lineCount *30, false, (int)line.charAt(i), 0));
+      if(line.charAt(i)-'0' >0 && line.charAt(i)-'0' <10){//right
+        obstacles.add(new Projectile(i*30, lineCount *30, true, (int)line.charAt(i), edgeX));
+        System.out.println((int)line.charAt(i));
+      }
+  }
    }
    line = br.readLine();
    lineCount++;
   }
-  edgeY = (lineCount + 1) * 30;
+  edgeY = (lineCount) * 30;
   canvas = new BufferedImage(edgeX, edgeY, BufferedImage.TYPE_INT_RGB);
   clear = new BufferedImage(edgeX, edgeY, BufferedImage.TYPE_INT_RGB);
   br.close();
@@ -160,22 +181,32 @@ public void level2(){
  */
  public void setSpawn(int x, int y){
   player = new Player(x, y, 30, 85, edgeX, edgeY);
+  System.out.println(x + " " +y);
+  canvasX = getWidth()/2-x;
+  canvasY = getHeight()/2-y;
  }
 
- public void paint(Graphics g){//runs the update loop, added the logic, Feng Xiogn May 15 10 min
+ public void paint(Graphics g){//runs the update loop, added the logic, Feng Xiong May 15 10 min
   update(g);
  }
 
  public void gameEnd(Graphics g){
+  if(level == 1){
+    level2();
+  timer.restart();
+  }else if(level == 2){
+    level3();
+    timer.restart();
+  }else{
+  //Add goodbye and display score
   el.exit();
+}
  }
 
 
  public void update(Graphics g){//The update loop, added the logic, Feng Xiogn May 15 2 hours
   Graphics g1 = canvas.getGraphics();//Draw the graphics on a separate picture so that we can add pictures without flickering
   //RedrawBackround
-  g1.setColor(new Color(0, 0, 0));
-  g1.fillRect(0, 0, edgeX, edgeY);
   g1.drawImage(background, 0, 0, edgeX, edgeY, null);
   //Update all items on screen
   player.move(moveX);
@@ -185,17 +216,23 @@ public void level2(){
   //  gameEnd(g1);
   //  return;
   //}
-  for(Obstacle i : platforms){
+  for(Obstacle i : obstacles){
     if(i instanceof Door && i.getBounds().intersects(player.getBounds())){
     timer.stop();
     gameEnd(g);
     return;
   }else if(i instanceof InvisPlatform)
       ((InvisPlatform)i).setPlayer(player.getBounds());
+  else if (i instanceof StateSwitchPlatform && time%3 ==0 && second ==0)
+    ((StateSwitchPlatform)i).flipOn();
+  else if(i instanceof Projectile && i.getBounds().intersects(player.getBounds())){
+    respawn();
+  }
    i.update(g1);//Updates to a new position
   }
 
-  player.update(g1, platforms);
+
+  player.update(g1, obstacles);
   if(player.getX()+canvasX<getWidth()*0.45){
    canvasX+=4;
   }
@@ -212,7 +249,7 @@ public void level2(){
   g2.setColor(new Color(0, 0, 0));
   g2.fillRect(0, 0, 1000, 1000);
   g2.drawImage(canvas, canvasX, canvasY, null);
-    for(Obstacle i: platforms){
+    for(Obstacle i: obstacles){
             //added checking for npc and talking May 22, 2019 - michael
     if(checkNPC && i instanceof NPC)
        {
@@ -224,6 +261,7 @@ public void level2(){
          }
        }
   }
+  g2.drawString("Your Score: " + time, 100, 100);
   g.drawImage(clear, 0, 0, null);
   g.dispose();
   g1.dispose();
@@ -232,12 +270,27 @@ public void level2(){
 
  public void actionPerformed(ActionEvent e) {//Added an action listener for the Timer, Feng Xiong May 16 10min
   //update new positions
+  second++;
+  if(second == 50){
+    time++;
+    second = 0;
+  }
   if(!gameOver)
    timer.restart();
   else{
    timer.stop();
   }
   repaint();
+ }
+
+ private void respawn(){
+  if(level == 1){
+       setSpawn(300, edgeY - 180);
+     }else if(level == 2){
+       setSpawn(90, edgeY - 180);
+     }else{
+       setSpawn(90, edgeY - 180);
+     }
  }
 
  class PlayerListener extends KeyAdapter{//Created a mouse listner class to read user input Feng Xiong May 16 1 hour
@@ -263,13 +316,7 @@ public void level2(){
     el.exit();
    }
    if(ch == KeyEvent.VK_R){
-     if(level == 1){
-       setSpawn(300, edgeY - 180);
-     }else if(level == 2){
-       setSpawn(90, edgeY - 180);
-     }else{
-       setSpawn(90, edgeY - 180);
-     }
+     respawn();
    }
   
   }
