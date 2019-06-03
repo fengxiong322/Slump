@@ -173,13 +173,18 @@ public class MainWindow extends JFrame implements ExitListener{
       } catch (IOException e) {
       }
     }else if(curScreen.equals("quit")){ //michael - added image and option  May 24, 2019 5 mins
+      try {
+        BufferedImage background = ImageIO.read(new File("Screens/Quit.jpg"));
+        g.drawImage(background, 0, 20, 811, 811, null);
+      } catch (IOException e) {
+      }
       int dialogButton = JOptionPane.YES_NO_OPTION;
       int dialogResult = JOptionPane.showConfirmDialog (null, "Are you sure you would like to quit?","Warning",dialogButton);
       if(dialogResult == JOptionPane.YES_OPTION)
       dispose();
     }else if(curScreen.equals("highScore")){ //michael - added image and option   May 24, 2019 5 mins
       try {
-        BufferedImage background = ImageIO.read(new File("Screens/blank.png"));
+        BufferedImage background = ImageIO.read(new File("Screens/Highscores.jpg"));
         g.drawImage(background, 0, 20, 811, 811, null);
       } catch (IOException e) {
       }
