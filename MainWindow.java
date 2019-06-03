@@ -18,6 +18,8 @@ import java.io.*;
 * add navigation to level, quit, instruction, and highscore screens
 * improved navigation between all screens
 * added instructions image
+* Modifications: May 30, 2019, Michael Zhou, Total time: 0.5 hours
+* added images for quit screen and highscore screen
 */
 public class MainWindow extends JFrame implements ExitListener{
   Game gameScreen;
