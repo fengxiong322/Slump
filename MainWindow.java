@@ -176,7 +176,7 @@ public class MainWindow extends JFrame implements ExitListener{
       }
     }else if(curScreen.equals("quit")){ //michael - added image and option  May 24, 2019 5 mins
       try {
-        BufferedImage background = ImageIO.read(new File("Screens/Quit.jpg"));
+        BufferedImage background = ImageIO.read(new File("Screens/Quit.jpg")); //May 30, 2019, Michael Zhou added image
         g.drawImage(background, 0, 20, 811, 811, null);
       } catch (IOException e) {
       }
@@ -186,7 +186,7 @@ public class MainWindow extends JFrame implements ExitListener{
       dispose();
     }else if(curScreen.equals("highScore")){ //michael - added image and option   May 24, 2019 5 mins
       try {
-        BufferedImage background = ImageIO.read(new File("Screens/Highscores.jpg"));
+        BufferedImage background = ImageIO.read(new File("Screens/Highscores.jpg")); //May 30, 2019, Michael Zhou added image
         g.drawImage(background, 0, 20, 811, 811, null);
       } catch (IOException e) {
       }
