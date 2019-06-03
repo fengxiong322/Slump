@@ -18,6 +18,8 @@ import java.io.*;
 * add navigation to level, quit, instruction, and highscore screens
 * improved navigation between all screens
 * added instructions image
+* Modifications: May 30, 2019, Michael Zhou, Total time: 0.5 hours
+* added images for quit screen and highscore screen
 */
 public class MainWindow extends JFrame implements ExitListener{
   Game gameScreen;
@@ -173,13 +175,18 @@ public class MainWindow extends JFrame implements ExitListener{
       } catch (IOException e) {
       }
     }else if(curScreen.equals("quit")){ //michael - added image and option  May 24, 2019 5 mins
+      try {
+        BufferedImage background = ImageIO.read(new File("Screens/Quit.jpg")); //May 30, 2019, Michael Zhou added image
+        g.drawImage(background, 0, 20, 811, 811, null);
+      } catch (IOException e) {
+      }
       int dialogButton = JOptionPane.YES_NO_OPTION;
       int dialogResult = JOptionPane.showConfirmDialog (null, "Are you sure you would like to quit?","Warning",dialogButton);
       if(dialogResult == JOptionPane.YES_OPTION)
       dispose();
     }else if(curScreen.equals("highScore")){ //michael - added image and option   May 24, 2019 5 mins
       try {
-        BufferedImage background = ImageIO.read(new File("Screens/blank.png"));
+        BufferedImage background = ImageIO.read(new File("Screens/Highscores.jpg")); //May 30, 2019, Michael Zhou added image
         g.drawImage(background, 0, 20, 811, 811, null);
       } catch (IOException e) {
       }

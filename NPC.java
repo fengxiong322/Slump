@@ -16,6 +16,9 @@ import java.io.*;
 * added basic class structure
 * impleneted all the needed methods from OBstacle
 *added constuctor
+ Modifications: May 29, 2019, Michael Zhou, Total time: 0.5 hours
+* modified the speak method so the the dialogue box will be properly formaed on the screen
+* made the text properly formated on the screen, if there is a \n the the text will start on a new line as inteneded
 */
 
 public class NPC extends Obstacle {
@@ -32,9 +35,13 @@ public class NPC extends Obstacle {
   }
   
   //May 24, Michael created basic method outiline 
+  //Modifications: May 29, 2019, Michael Zhou, Total time: 0.5 hours
+  //modified the speak method so the the dialogue box will be properly formaed on the screen
+  //made the text properly formated on the screen, if there is a \n the the text will start on a new line as inteneded
   public void speak (Graphics g) //added speak method for testing
   {//Should speak, and then close the speach bubble
-    g.drawImage(dialogueBox, 0, 600,800,800, 0,0,1520, 470, null);
+    g.drawImage(dialogueBox, 0, 600,800,800, 0,0,1520, 470, null); //modified the speak method so the the dialogue box will be properly formaed on the screen may 29 michael
+    //  made the text properly formated on the screen, if there is a \n the the text will start on a new line as inteneded, May 29 michael
     g.setFont(new Font("SansSerif", Font.PLAIN, 20)); 
     int y = 670 - g.getFontMetrics().getHeight();
     for (String line : dialogue.split("\n"))
