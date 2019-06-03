@@ -154,9 +154,7 @@ public class Player{
    xSpeed = 0;
   }
   for(Obstacle i : platforms.find(x+xSpeed, y+ySpeed, sizeX, sizeY)){
-    if(i instanceof Door || i instanceof StateSwitchPlatform && !((StateSwitchPlatform)i).isOn() ||i instanceof Projectile)
-      continue;
-    if(i instanceof StateSwitchPlatform && !((StateSwitchPlatform)i).isOn())
+    if(i instanceof Door || i instanceof StateSwitchPlatform && !((StateSwitchPlatform)i).isOn() ||i instanceof Projectile || i instanceof NPC)
       continue;
    Rectangle platformRect = new Rectangle(i.getX(), i.getY(), i.getXSize(), i.getYSize());
    playerRect = new Rectangle(x+xSpeed, y+ySpeed, sizeX, sizeY);
