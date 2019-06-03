@@ -21,6 +21,10 @@ import java.util.*;
 * added a NPC object into level 1 for testing purposes
 * modified platform array so it works will all Obstacle objects
 * added converstations with NPCs when the player presses down arrow
+* Modifications: May 31, 2019, Michael Zhou, Total time: 1 hours
+* added level generation based of text file method
+* added the text files
+* Made r reset the player to his spawn
 */
 public class Game extends Canvas implements ActionListener{
  private ArrayList<Obstacle> obstacles;
@@ -119,6 +123,8 @@ public void level2(){
   setSpawn(300, edgeY - 180);
  }
 
+ //May 31, 2019, Michael Zhou, Total time: 1 hours
+ //added method to create level based of reading text file
  public void createLevel (BufferedReader br)
  {
   time = 0;
@@ -287,7 +293,7 @@ public void level2(){
   repaint();
  }
 
- private void respawn(){
+ private void respawn(){ //editied May 31, Michael - now respawns the player in the bottom left corner of the scneen
   if(level == 1){
        setSpawn(300, edgeY - 180);
      }else if(level == 2){
