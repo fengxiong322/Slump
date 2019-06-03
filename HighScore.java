@@ -34,7 +34,7 @@ public class HighScore extends Canvas{
 		//Prompt Feng May 23 30 min
 		boolean completed = false;
 		path = "";
-		try{
+		try{//Updated file reading May 27 30 min
 			br = new BufferedReader(new FileReader(path));
 			completed = true;
 		}catch(IOException e){

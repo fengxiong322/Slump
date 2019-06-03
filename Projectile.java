@@ -39,11 +39,11 @@ public class Projectile extends Obstacle{
   g.setColor(new Color(0, 255, 0));
   g.fillRect(getX(), getY(), getXSize(), getYSize());
   if(right){
-   setX(getX()+1);
+   setX(getX()+speed);
    if(getX()>endDist)
     setX(startDist);
   }else{
-   setX(getX()-1);
+   setX(getX()-speed);
    if(getX() < endDist)
     setX(endDist);
   }
