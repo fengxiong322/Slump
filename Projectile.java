@@ -36,8 +36,7 @@ public class Projectile extends Obstacle{
 
  //Added May 17, 2019 - Feng
  public void update(Graphics g){
-  g.setColor(new Color(0, 255, 0));
-  g.fillRect(getX(), getY(), getXSize(), getYSize());
+  g.drawImage(getImage(), getX(), getY(), getX() + getXSize(), getY() + getYSize(), 0, 0, getImage().getWidth(), getImage().getHeight(), null);
   if(right){
    setX(getX()+speed);
    if(getX()>endDist)
