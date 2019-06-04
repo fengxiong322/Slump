@@ -113,7 +113,7 @@ public void level2(){
  */
  public void level3(){
     try {
-  createLevel (new BufferedReader(new FileReader ("Levels/Level1.txt")));
+  createLevel (new BufferedReader(new FileReader ("Levels/Level2-3.txt")));
   background = ImageIO.read(new File("Screens/game1.jpg"));
   }
  catch (IOException e)
