@@ -236,6 +236,7 @@ public void level2(){
   else if (i instanceof StateSwitchPlatform && time%3 ==0 && second ==0)
     ((StateSwitchPlatform)i).flipOn();
   else if(i instanceof Projectile && i.getBounds().intersects(player.getBounds())){
+    Thread.sleep (2000);
     respawn();
   }
    i.update(g1);//Updates to a new position
