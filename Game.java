@@ -160,7 +160,7 @@ public void level2(){
       if((int)line.charAt(i) >0 && (int)line.charAt(i) <10)//left
         obstacles.add(new Projectile(i*30, lineCount *30, false, (int)line.charAt(i), 0));
       if(line.charAt(i)-'0' >0 && line.charAt(i)-'0' <10){//right
-        obstacles.add(new Projectile(i*30, lineCount *30, true, (int)line.charAt(i), edgeX));
+        obstacles.add(new Projectile(i*30, lineCount *30, true, Integer.parseInt(line.charAt(i) + ""), edgeX));
         System.out.println((int)line.charAt(i));
       }
   }
