@@ -83,7 +83,7 @@ public class Game extends Canvas implements ActionListener{
  public void level1(){//Created a basic level set up Feng Xiong May 15 1 hour
   try {
   createLevel (new BufferedReader(new FileReader ("Levels/Level1.txt")));
-  background = ImageIO.read(new File("Screens/game1.jpg"));
+  background = ImageIO.read(new File("Screens/game2.jpg"));
   }
  catch (IOException e)
  {
@@ -98,7 +98,7 @@ public class Game extends Canvas implements ActionListener{
 public void level2(){
   try {
   createLevel (new BufferedReader(new FileReader ("Levels/Level2-1.txt")));
-  background = ImageIO.read(new File("Screens/game1.jpg"));
+  background = ImageIO.read(new File("Screens/game2.jpg"));
   obstacles.add (new NPC (320, 300, 50, 100, ImageIO.read(new File("Player/idleLeft.png")), "WELCOME PLAYER \n like cats")); //added npc
   }
  catch (IOException e)
