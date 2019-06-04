@@ -24,7 +24,7 @@ public class Projectile extends Obstacle{
  public Projectile(int x, int y, boolean isRight, int speed, int endDist){
   super(x, y, 10, 10);
   try{
-   setImage(ImageIO.read(new File("platform.png")));
+   setImage(ImageIO.read(new File("Blocks/projectile.png")));
   }catch(IOException e){
    e.printStackTrace();
   }
