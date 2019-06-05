@@ -81,8 +81,10 @@ public class Game extends Canvas implements ActionListener{
  * May 25, 2019 - 2 mins - added NPC to the obstacles, Michael
  */
  public void level1(){//Created a basic level set up Feng Xiong May 15 1 hour
+  ArrayList <String> dialogue = new ArrayList <String> ();
+  dialogue.add ("xd");
   try {
-  createLevel (new BufferedReader(new FileReader ("Levels/Level1.txt")));
+  createLevel (new BufferedReader(new FileReader ("Levels/Level1.txt")), dialogue);
   background = ImageIO.read(new File("Screens/game2.jpg"));
   }
  catch (IOException e)
@@ -96,8 +98,10 @@ public class Game extends Canvas implements ActionListener{
  *
  */
 public void level2(){
+ ArrayList <String> dialogue = new ArrayList <String> ();
+  dialogue.add ("Hahaha this works ez pz feng is wing aghaas");
   try {
-  createLevel (new BufferedReader(new FileReader ("Levels/Level2-1.txt")));
+  createLevel (new BufferedReader(new FileReader ("Levels/Level2-1.txt")), dialogue);
   background = ImageIO.read(new File("Screens/game2.jpg"));
   obstacles.add (new NPC (320, 300, 50, 100, ImageIO.read(new File("Player/idleLeft.png")), "WELCOME PLAYER \n like cats")); //added npc
   }
@@ -112,8 +116,9 @@ public void level2(){
  *
  */
  public void level3(){
+  ArrayList <String> dialogue = new ArrayList <String> ();
     try {
-  createLevel (new BufferedReader(new FileReader ("Levels/Level2-3.txt")));
+  createLevel (new BufferedReader(new FileReader ("Levels/Level2-3.txt")), dialogue);
   background = ImageIO.read(new File("Screens/game1.jpg"));
   }
  catch (IOException e)
@@ -125,9 +130,10 @@ public void level2(){
 
  //May 31, 2019, Michael Zhou, Total time: 1 hours
  //added method to create level based of reading text file
- public void createLevel (BufferedReader br)
+ public void createLevel (BufferedReader br, ArrayList dialogue)
  {
   time = 0;
+  int npcCount = 0;
   obstacles = new ArrayList<Obstacle>();
    int lineCount = 0;
   try {
@@ -156,6 +162,9 @@ public void level2(){
     case 'B'://A black block, cannot exist with white blocks.
       obstacles.add(new StateSwitchPlatform(i*30, lineCount * 30, 30, false));
       break;
+    case 'N':
+      obstacles.add (new NPC (i*30, lineCount * 30 + 5, 30, 85, ImageIO.read(new File("Player/idleLeft.png")), dialogue.get (npcCount)));
+      npcCount++;
     default:
       if((int)line.charAt(i) >0 && (int)line.charAt(i) <10)//left
         obstacles.add(new Projectile(i*30, lineCount *30, false, (int)line.charAt(i) - 64, 0));
@@ -163,6 +172,7 @@ public void level2(){
         obstacles.add(new Projectile(i*30, lineCount *30, true, Integer.parseInt(line.charAt(i) + ""), edgeX));
         System.out.println((int)line.charAt(i));
       }
+   
   }
    }
    line = br.readLine();
