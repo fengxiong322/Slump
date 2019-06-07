@@ -14,6 +14,7 @@ public class InvisPlatform extends Platform{
 
   public InvisPlatform(int x, int y, int length){
     super(x, y, length);
+    try{setImage(ImageIO.read(new File("Blocks/invis.jpg")));}catch(IOException e){e.printStackTrace();}
   }
   
   public void update(Graphics g){
