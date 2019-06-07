@@ -135,8 +135,6 @@ public class Game extends Canvas implements ActionListener{
     
     setSpawn(300, edgeY - 180);
   }
-  
-<<<<<<< HEAD
   /** Sets up the third level
     *
     */
@@ -151,136 +149,6 @@ public class Game extends Canvas implements ActionListener{
     }
     
     setSpawn(300, edgeY - 180);
-=======
-  setSpawn(300, edgeY - 180);
- }
-
- //May 31, 2019, Michael Zhou, Total time: 1 hours
- //added method to create level based of reading text file
- public void createLevel (BufferedReader br, ArrayList<String> dialogue)
- {
-  time = 0;
-  int npcCount = 0;
-  obstacles = new ArrayList<Obstacle>();
-   int lineCount = 0;
-  try {
-  String line = br.readLine();
-  lineCount++;
-  edgeX = (line.length()) * 30;
-  int i = 0;
-  while (line != null)
-  {
-   for (i = 0; i <line.length(); i++)
-   {
-
-  switch(line.charAt(i)){
-    case '@':
-    obstacles.add(new Platform (i *30, lineCount * 30, 30));
-    break;
-    case '\'':
-    obstacles.add(new InvisPlatform(i*30, lineCount * 30, 30));
-    break;
-    case 'd':
-      obstacles.add(new Door(i*30, lineCount * 30, 60, 90));
-      break;
-    case 'W'://A white block, meaning clear.
-      obstacles.add(new StateSwitchPlatform(i*30, lineCount * 30, 30, true));
-      break;
-    case 'B'://A black block, cannot exist with white blocks.
-      obstacles.add(new StateSwitchPlatform(i*30, lineCount * 30, 30, false));
-      break;
-    case 'N':
-      obstacles.add (new NPC (i*30, lineCount * 30 + 5, 30, 85, ImageIO.read(new File("Player/idleLeft.png")), dialogue.get (npcCount)));
-      npcCount++;
-    default:
-      if((int)line.charAt(i) >0 && (int)line.charAt(i) <10)//left
-	obstacles.add(new Projectile(i*30, lineCount *30, false, (int)line.charAt(i) - 64, 0));
-      if(line.charAt(i)-'0' >0 && line.charAt(i)-'0' <10){//right
-	obstacles.add(new Projectile(i*30, lineCount *30, true, Integer.parseInt(line.charAt(i) + ""), edgeX));
-	System.out.println((int)line.charAt(i));
-      }
-   
-  }
-   }
-   line = br.readLine();
-   lineCount++;
-  }
-  edgeY = (lineCount) * 30;
-  map =  new Map(i, lineCount);
-  for(Obstacle j : obstacles)
-    map.add(j, j.getX()/30, j.getY()/30);
-
-  canvas = new BufferedImage(edgeX, edgeY, BufferedImage.TYPE_INT_RGB);
-  clear = new BufferedImage(edgeX, edgeY, BufferedImage.TYPE_INT_RGB);
-  br.close();
- }
- catch (IOException e)
- {
- }
-   
- 
- }
-
- /** Sets up the player spawn location
- *
- */
- public void setSpawn(int x, int y){
-  player = new Player(x, y, 30, 85, edgeX, edgeY);
-  System.out.println(x + " " +y);
-  canvasX = getWidth()/2-x;
-  canvasY = getHeight()/2-y;
- }
-
- public void paint(Graphics g){//runs the update loop, added the logic, Feng Xiong May 15 10 min
-  update(g);
- }
-
- public void gameEnd(Graphics g){
-  if(level == 1){
-    level = 2;
-    level2();
-  timer.restart();
-  }else if(level == 2){
-    level = 3;
-    level3();
-    timer.restart();
-  }else{
-  //Add goodbye and display score
-  el.exit();
-}
- }
-
-
- public void update(Graphics g){//The update loop, added the logic, Feng Xiogn May 15 2 hours
-  Graphics g1 = canvas.getGraphics();//Draw the graphics on a separate picture so that we can add pictures without flickering
-  //RedrawBackround
-  g1.drawImage(background, 0, 0, edgeX, edgeY, null);
-  //Update all items on screen
-  player.move(moveX);
-  player.jump(moveY);
-  //door.update(g1);
-  //if(door.intersects(player.getBounds())){
-  //  gameEnd(g1);
-  //  return;
-  //}
-  for(Obstacle i : obstacles){
-    if(i instanceof Door && i.getBounds().intersects(player.getBounds())){
-    timer.stop();
-    gameEnd(g);
-    return;
-  }else if(i instanceof InvisPlatform)
-      ((InvisPlatform)i).setPlayer(player.getBounds());
-  else if (i instanceof StateSwitchPlatform && time%1 ==0 && second ==0)
-    i.setOn(!i.getOn());
-  else if(i instanceof Projectile && i.getBounds().intersects(player.getBounds())){
-   try{
-    Thread.sleep (2000);
-   }
-   catch (Exception e)
-   {
-   }
-    respawn();
->>>>>>> e8aedb06ba71d4b2f3d8c5363efe29f5d64ad1da
   }
   
   /** Sets up the third level
@@ -334,11 +202,11 @@ public class Game extends Canvas implements ActionListener{
 	      obstacles.add(new StateSwitchPlatform(i*30, lineCount * 30, 30, false));
 	      break;
 	    case 'N':
-	      obstacles.add (new NPC (i*30, lineCount * 30 + 5, 30, 85, ImageIO.read(new File("Player/idleLeft.png")), dialogue.get (npcCount),false));
+	      obstacles.add (new NPC (i*30, lineCount * 30 + 5, 30, 85, ImageIO.read(new File("Player/idleLeft.png")), dialogue.get (npcCount)));
 	      npcCount++;
 	      break;
 	    case 'n':
-	      obstacles.add (new NPC (i*30, lineCount * 30 + 5, 30, 85, ImageIO.read(new File("Player/idleLeft.png")), dialogue.get (npcCount), true));
+	      obstacles.add (new NPC (i*30, lineCount * 30 + 5, 30, 85, ImageIO.read(new File("Player/idleLeft.png")), dialogue.get (npcCount)));
 	      npcCount++;
 	      break;
 	    default:
@@ -423,7 +291,7 @@ public class Game extends Canvas implements ActionListener{
       }else if(i instanceof InvisPlatform)
 	((InvisPlatform)i).setPlayer(player.getBounds());
       else if (i instanceof StateSwitchPlatform && time%3 ==0 && second ==0)
-	((StateSwitchPlatform)i).flipOn();
+	i.setOn(!i.getOn());
       else if(i instanceof Projectile && i.getBounds().intersects(player.getBounds())){
 	try{
 	  Thread.sleep (1000);
