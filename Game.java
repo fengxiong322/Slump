@@ -91,7 +91,7 @@ public class Game extends Canvas implements ActionListener{
  {
  }
   
-  setSpawn(300, edgeY - 180);
+  setSpawn(60, 60);
  }
 
   /** Sets up the second level

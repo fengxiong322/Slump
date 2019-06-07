@@ -21,11 +21,12 @@ import java.io.*;
 * Modifications: May 30, 2019, Michael Zhou, Total time: 0.5 hours
 * added images for quit screen and highscore screen
 */
-public class MainWindow extends JFrame implements ExitListener{
+public class MainWindow extends JFrame implements ExitListener {
   Game gameScreen;
   HighScore highScore;
   String curScreen;
   int size;
+  int hover;
 
   //May 10, Created the constructor with its general structure, Feng
   public MainWindow(){
@@ -34,6 +35,43 @@ public class MainWindow extends JFrame implements ExitListener{
     //size = Math.min((int)Toolkit.getDefaultToolkit().getScreenSize().getHeight(), (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth())-10;//finds the largest size it can be
     setSize(811, 821);//Sets the size //May 24, modified to set a defualt screen size so cordinates do not change, Michael Zhou
     setResizable(false);
+	addMouseMotionListener(new MouseMotionListener(){
+	public void mouseDragged (MouseEvent e)
+{}
+	public void mouseMoved (MouseEvent e)
+	{
+	 int x = e.getX ();
+	 int y = e.getY ();
+	boolean overButton = false;
+if(curScreen.equals("menu")){
+	 if(x>252 && y> 235 && x < 559 && y < 346)
+{
+            hover = 1;
+overButton = true;
+}
+          if(x>111 && y> 372 && x < 673 && y < 481)
+{
+            hover = 2;
+overButton = true;
+}
+          if(x>150 && y> 508 && x < 661 && y < 621)
+{ 
+           hover = 3;
+overButton = true;
+}
+          if(x>288 && y> 685 && x < 509 && y < 784)
+{ 
+           hover = 4;
+overButton = true;
+}
+	if (!overButton)
+		hover = 0;
+		}
+if(curScreen.equals("level")){
+}
+	repaint();	
+	}
+});
     addMouseListener(new MouseAdapter() {//Allows for mouse interaction
       public void mousePressed(MouseEvent me){
         int x = me.getX();
@@ -51,12 +89,18 @@ public class MainWindow extends JFrame implements ExitListener{
           if(x>288 && y> 685 && x < 509 && y < 784)
             openQuit ();
         }else if(curScreen.equals("level")){//When the screen is on level
-          if(x>252 && y> 235 && x < 559 && y < 346)
-            newGame(1);
-          if(x>249 && y> 372 && x < 559 && y < 483)
-            newGame(2);
-          if(x>250 && y> 522 && x < 559 && y < 635)
-            newGame(3);
+            if(x>49 && y> 243 && x < 371 && y < 360)
+             newGame(1);
+if(x>426 && y> 242 && x < 747 && y < 362)
+             newGame(2);
+if(x>50 && y> 390 && x < 373 && y < 510)
+             newGame(3);
+if(x>424 && y> 388 && x < 733 && y < 501)
+             newGame(4);
+            if(x>237 && y> 541 && x < 549 && y < 647)
+             openMenu();
+           if(x>288 && y> 685 && x < 512 && y < 783)
+             newGame(3);
         }else if(curScreen.equals("highScore")){
           openHighScore();
         }else if(curScreen.equals("resume")){
@@ -154,30 +198,40 @@ public class MainWindow extends JFrame implements ExitListener{
   * Michael - added the if statements to change between all the screens as well as imported the images 10 mins, May 24, 2019
   */
   public void paint(Graphics g){//Implemented paint, Feng May 10 30 min
-    //g.setColor(new Color(0, 0, 0));
-    //g.fillRect(0, 0, getWidth(), getHeight());
+    BufferedImage background = null;
     if(curScreen.equals("menu")){ //michael - added image and option May 17, 2019 5mins
       try {
-        BufferedImage background = ImageIO.read(new File("Screens/Menu.png"));
-        g.drawImage(background, 0, 10, 811, 811, null);
+	 BufferedImage cave = ImageIO.read(new File("Screens/cave.png"));
+if (hover == 0)
+        background = ImageIO.read(new File("Screens/Menu.png"));
+if (hover == 1)
+         background = ImageIO.read(new File("Screens/menu1.png"));
+if (hover == 2)
+         background = ImageIO.read(new File("Screens/menu2.png"));
+if (hover == 3)
+         background = ImageIO.read(new File("Screens/menu3.png"));
+if (hover == 4)
+         background = ImageIO.read(new File("Screens/menu4.png"));
+	g.drawImage(cave, 0, 20, 811, 821, 0,0,cave.getWidth(), cave.getHeight(), null);
+        g.drawImage(background, 0, 20, 811, 821,0,0,background.getWidth(), background.getHeight(), null);
       } catch (IOException e) {
       }
     }else if(curScreen.equals("level")){ //michael - added image and option   May 24, 2019 5 mins
       try {
-        BufferedImage background = ImageIO.read(new File("Screens/Levels.png"));
-        g.drawImage(background, 0, 10, 811, 811, null);
+        background = ImageIO.read(new File("Screens/Levels.png"));
+        g.drawImage(background, 0, 20,811, 821, 0,0,background.getWidth(), background.getHeight(), null);
       } catch (IOException e) {
       }
     }else if(curScreen.equals("instructions")){ //michael - added image and option  May 24, 2019 5 mins
       try {
-        BufferedImage background = ImageIO.read(new File("Screens/Instructions.png"));
-        g.drawImage(background, 0, 20, 811, 811, null);
+        background = ImageIO.read(new File("Screens/Instructions.png"));
+        g.drawImage(background, 0, 20, 811, 821,0,0,background.getWidth(), background.getHeight(), null);
       } catch (IOException e) {
       }
     }else if(curScreen.equals("quit")){ //michael - added image and option  May 24, 2019 5 mins
       try {
-        BufferedImage background = ImageIO.read(new File("Screens/Quit.jpg")); //May 30, 2019, Michael Zhou added image
-        g.drawImage(background, 0, 20, 811, 811, null);
+         background = ImageIO.read(new File("Screens/Quit.jpg")); //May 30, 2019, Michael Zhou added image
+        g.drawImage(background, 0, 20, 811, 821,0,0,background.getWidth(), background.getHeight(), null);
       } catch (IOException e) {
       }
       int dialogButton = JOptionPane.YES_NO_OPTION;
@@ -186,8 +240,8 @@ public class MainWindow extends JFrame implements ExitListener{
       dispose();
     }else if(curScreen.equals("highScore")){ //michael - added image and option   May 24, 2019 5 mins
       try {
-        BufferedImage background = ImageIO.read(new File("Screens/Highscores.jpg")); //May 30, 2019, Michael Zhou added image
-        g.drawImage(background, 0, 20, 811, 811, null);
+        background = ImageIO.read(new File("Screens/Highscores.jpg")); //May 30, 2019, Michael Zhou added image
+        g.drawImage(background, 0, 20, 811, 821, 0,0,background.getWidth(), background.getHeight(), null);
       } catch (IOException e) {
       }
     }
