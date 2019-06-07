@@ -20,8 +20,14 @@ public class Platform extends Obstacle{
 
  public Platform(int x, int y, int length){
   super(x, y, length, 30);
+  int r = (int) (Math.random () * 3) + 1;
+  if (r == 1)
+  try{setImage(ImageIO.read(new File("Blocks/darkstone.jpg")));}catch(IOException e){e.printStackTrace();}
+  else if (r ==2)
+    try{setImage(ImageIO.read(new File("Blocks/stone.jpg")));}catch(IOException e){e.printStackTrace();}
+  else
+    try{setImage(ImageIO.read(new File("Blocks/grey.png")));}catch(IOException e){e.printStackTrace();} 
   setOn(true);
-  try{setImage(ImageIO.read(new File("Blocks/grey.png")));}catch(IOException e){e.printStackTrace();}
  }
 
  public void update(Graphics g){
