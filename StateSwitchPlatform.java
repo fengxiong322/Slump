@@ -15,9 +15,9 @@ public class StateSwitchPlatform extends Obstacle{//Added June 2 by feng, 0.5 ho
  public StateSwitchPlatform(int x, int y, int length, boolean type){
   super(x, y, length, 30);
   if(type)
-  	try{setImage(ImageIO.read(new File("Blocks/grey.png")));}catch(IOException e){e.printStackTrace();}
+  	try{setImage(ImageIO.read(new File("Blocks/black.png")));}catch(IOException e){e.printStackTrace();}
   else
-  	try{setImage(ImageIO.read(new File("Blocks/grey.png")));}catch(IOException e){e.printStackTrace();}
+  	try{setImage(ImageIO.read(new File("Blocks/white.png")));}catch(IOException e){e.printStackTrace();}
   this.type = type;
   setOn(type);
  }
