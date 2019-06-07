@@ -21,6 +21,9 @@ public class Projectile extends Obstacle{
  private boolean right;//if going right, true
 
  //Added May 17, 2019 - Feng
+ /** Constructor
+ * @param
+ */
  public Projectile(int x, int y, boolean isRight, int speed, int endDist){
   super(x, y, 30, 30);
   setOn(false);
