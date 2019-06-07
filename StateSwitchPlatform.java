@@ -11,7 +11,6 @@ import java.util.*;
 
 public class StateSwitchPlatform extends Obstacle{//Added June 2 by feng, 0.5 hour
 	boolean type;
-	boolean isOn;
 
  public StateSwitchPlatform(int x, int y, int length, boolean type){
   super(x, y, length, 30);
@@ -20,19 +19,11 @@ public class StateSwitchPlatform extends Obstacle{//Added June 2 by feng, 0.5 ho
   else
   	try{setImage(ImageIO.read(new File("Blocks/grey.png")));}catch(IOException e){e.printStackTrace();}
   this.type = type;
-  isOn = type;
- }
-
- public boolean isOn(){
- 	return isOn;
- }
-
- public void flipOn(){
- 	isOn = !isOn;
+  setOn(type);
  }
 
  public void update(Graphics g){
- 	if(isOn)
+ 	if(getOn())
    for (int i = 0; i <= getXSize(); i+=30)
   g.drawImage(getImage(), getX()+i, getY(), getX() + getXSize(), getY() + getYSize(), 0, 0, getImage().getWidth(), getImage().getHeight(), null);
  }

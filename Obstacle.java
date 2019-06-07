@@ -27,12 +27,21 @@ public abstract class Obstacle{
  private int xSize;
  private int ySize;
  private BufferedImage image;
+ private boolean isOn;
 
  public Obstacle(int x, int y, int xSize, int ySize){
   this.x = x;
   this.y = y;
   this.xSize = xSize;
   this.ySize = ySize;
+ }
+
+ public boolean getOn(){
+ 	return isOn;
+ }
+
+ public void setOn(boolean isOn){
+ 	this.isOn = isOn;
  }
 
  public int getX(){return x;}

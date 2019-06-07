@@ -130,7 +130,7 @@ public void level2(){
 
  //May 31, 2019, Michael Zhou, Total time: 1 hours
  //added method to create level based of reading text file
- public void createLevel (BufferedReader br, ArrayList dialogue)
+ public void createLevel (BufferedReader br, ArrayList<String> dialogue)
  {
   time = 0;
   int npcCount = 0;
@@ -243,8 +243,8 @@ public void level2(){
     return;
   }else if(i instanceof InvisPlatform)
       ((InvisPlatform)i).setPlayer(player.getBounds());
-  else if (i instanceof StateSwitchPlatform && time%3 ==0 && second ==0)
-    ((StateSwitchPlatform)i).flipOn();
+  else if (i instanceof StateSwitchPlatform && time%1 ==0 && second ==0)
+    i.setOn(!i.getOn());
   else if(i instanceof Projectile && i.getBounds().intersects(player.getBounds())){
    try{
     Thread.sleep (2000);

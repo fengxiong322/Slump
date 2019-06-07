@@ -20,6 +20,7 @@ public class Platform extends Obstacle{
 
  public Platform(int x, int y, int length){
   super(x, y, length, 30);
+  setOn(true);
   try{setImage(ImageIO.read(new File("Blocks/grey.png")));}catch(IOException e){e.printStackTrace();}
  }
 

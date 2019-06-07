@@ -23,6 +23,7 @@ public class Projectile extends Obstacle{
  //Added May 17, 2019 - Feng
  public Projectile(int x, int y, boolean isRight, int speed, int endDist){
   super(x, y, 30, 30);
+  setOn(false);
   try{
    setImage(ImageIO.read(new File("Blocks/projectile.png")));
   }catch(IOException e){
