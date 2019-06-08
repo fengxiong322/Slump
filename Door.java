@@ -23,6 +23,7 @@ public class Door extends Obstacle{
   public Door (int x, int y, int xSize, int ySize)
   {
     super (x, y, xSize, ySize);
+    setOn(false);
     try{setImage(ImageIO.read(new File("Blocks/door.png")));}catch(IOException e){}
   }
   

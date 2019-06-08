@@ -58,8 +58,6 @@ public class Player{
     left[1] = ImageIO.read(new File("Player/left2.png"));
     right[0] = ImageIO.read(new File("Player/right1.png"));
     right[1] = ImageIO.read(new File("Player/right2.png"));
-   // left = {left1,left1,left1,left1,left1,left2,left2,left2,left2,left2};
-   // right = {right1,right1,right1,right1,right1,right2,right2,right2,right2,right2};
   }
   catch(IOException e)
   {
@@ -154,7 +152,10 @@ public class Player{
    xSpeed = 0;
   }
   for(Obstacle i : platforms.find(x+xSpeed, y+ySpeed, sizeX, sizeY)){
-    if(i instanceof Door || i instanceof StateSwitchPlatform && !i.getOn() ||i instanceof Projectile || i instanceof NPC)
+    if(i instanceof StateSwitchPlatform){
+      continue;
+    }
+    if(!i.getOn())
       continue;
    Rectangle platformRect = new Rectangle(i.getX(), i.getY(), i.getXSize(), i.getYSize());
    playerRect = new Rectangle(x+xSpeed, y+ySpeed, sizeX, sizeY);

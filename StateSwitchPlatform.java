@@ -22,6 +22,14 @@ public class StateSwitchPlatform extends Obstacle{//Added June 2 by feng, 0.5 ho
   setOn(type);
  }
 
+ public boolean getType(){
+  return type;
+ }
+
+ public void flipType(){
+  type = !type;
+ }
+
  public void update(Graphics g){
  	if(getOn())
    for (int i = 0; i <= getXSize(); i+=30)

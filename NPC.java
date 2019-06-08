@@ -29,6 +29,7 @@ public class NPC extends Obstacle {
   public NPC (int x, int y, int xSize, int ySize, BufferedImage image, String text) //added constuctor
   {
     super (x, y, xSize, ySize);
+    setOn(true);
     setImage(image);
     try{dialogueBox = ImageIO.read(new File("Dialogue/dialogue.png"));}catch(IOException e){}
     dialogue = text + "\n\nPress any key to close...";

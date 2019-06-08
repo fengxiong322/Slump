@@ -32,8 +32,7 @@ public class MainWindow extends JFrame implements ExitListener {
   public MainWindow(){
     super("The Slump");
     curScreen = "menu";
-    //size = Math.min((int)Toolkit.getDefaultToolkit().getScreenSize().getHeight(), (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth())-10;//finds the largest size it can be
-    setSize(811, 821);//Sets the size //May 24, modified to set a defualt screen size so cordinates do not change, Michael Zhou
+    setSize(811, 821);//Sets the size May 24, modified to set a defualt screen size so cordinates do not change, Michael Zhou
     setResizable(false);
     addMouseMotionListener(new MouseMotionListener(){
       public void mouseDragged (MouseEvent e)
@@ -66,9 +65,8 @@ public class MainWindow extends JFrame implements ExitListener {
           }
           if (!overButton)
             hover = 0;
-          //repaint();
         }
-        if(curScreen.equals("level")){
+        if(curScreen.equals("level") || curScreen.equals("resume")){
           if(x>49 && y> 243 && x < 371 && y < 360)
           { 
             hover = 1;
@@ -101,9 +99,7 @@ public class MainWindow extends JFrame implements ExitListener {
           }
           if (!overButton)
             hover = 0;
-          //repaint();
         }
-        //System.out.println(hover);
          repaint();
       }
       
@@ -139,12 +135,23 @@ public class MainWindow extends JFrame implements ExitListener {
             hover = 0;
             openMenu();
           }
+        }else if(curScreen.equals("resume")){//When the screen is on level
+          if(x>49 && y> 243 && x < 371 && y < 360)
+            resumeGame(1);
+          if(x>426 && y> 242 && x < 747 && y < 362)
+            resumeGame(2);
+          if(x>50 && y> 390 && x < 373 && y < 510)
+            resumeGame(3);
+          if(x>424 && y> 388 && x < 733 && y < 501)
+            resumeGame(4);
+          if(x>237 && y> 541 && x < 549 && y < 647)
+            resumeGame(5);
+          if(x>288 && y> 685 && x < 512 && y < 783) {
+            hover = 0;
+            openMenu();
+          }
         }else if(curScreen.equals("highScore")){
           openHighScore();
-        }else if(curScreen.equals("resume")){
-          resumeGame();
-        }else if(curScreen.equals("newGame")){
-          //newGame();
         }else if (curScreen.equals ("instructions"));
         if(x>361 && y> 709 && x < 487 && y < 786)
           openMenu ();
@@ -203,8 +210,22 @@ public class MainWindow extends JFrame implements ExitListener {
   /**
    * Set screen to resumed game
    */
-  public void resumeGame(){//Implemented resumeGame, Feng May 10 1 min
+  public void resumeGame(int level){//Implemented resumeGame, Feng May 10 1 min
+    curScreen = "resume";
+    if(level == 1){
+      gameScreen.level1();
+    }else if(level == 2){
+      gameScreen.level2();
+    }else if(level == 3){
+      gameScreen.level3();
+    }else if(level == 4){
+      gameScreen.level4();
+    }else if(level == 5){
+      gameScreen.level5();
+    }
     add(gameScreen);
+    gameScreen.requestFocusInWindow();
+    repaint();
   }
   
   /**
@@ -222,12 +243,16 @@ public class MainWindow extends JFrame implements ExitListener {
    * Set screen to menu when exiting
    */
   public void exit(){//Implemented runs exit from the Exit Listener, Feng May 10 1 min
-    if(curScreen.equals( "game"))
+    if(curScreen.equals( "game") || curScreen.equals("resume")){
       remove(gameScreen);
-    else if(curScreen.equals("highscore"))
+      curScreen = "resume";
+    }
+    else if(curScreen.equals("highscore")){
       remove(highScore);
+      curScreen = "menu";
+    }
     setSize(811, 821);
-    curScreen = "menu";
+    repaint();
   }
   
   /**
@@ -241,8 +266,6 @@ public class MainWindow extends JFrame implements ExitListener {
     try {
       BufferedImage cave = ImageIO.read(new File("Screens/cave.png"));
       if(curScreen.equals("menu")){ //michael - added image and option May 17, 2019 5mins
-        
-        
         if (hover == 0)
           background = ImageIO.read(new File("Screens/Menu.png"));
         if (hover == 1)
@@ -257,7 +280,7 @@ public class MainWindow extends JFrame implements ExitListener {
         g.drawImage(cave, 0, 20, 811, 821, 0,0,cave.getWidth(), cave.getHeight(), null);
         g.drawImage(background, 0, 20, 811, 821,0,0,background.getWidth(), background.getHeight(), null);
         
-      }else if(curScreen.equals("level")){ //michael - added image and option   May 24, 2019 5 mins
+      }else if(curScreen.equals("level") || curScreen.equals("resume")){ //michael - added image and option   May 24, 2019 5 mins
         if (hover == 0)
           background = ImageIO.read(new File("Screens/Levels.png"));
         if (hover == 1)
@@ -284,12 +307,18 @@ public class MainWindow extends JFrame implements ExitListener {
       }else if(curScreen.equals("quit")){ //michael - added image and option  May 24, 2019 5 mins
         
         background = ImageIO.read(new File("Screens/Quit.jpg")); //May 30, 2019, Michael Zhou added image
-        g.drawImage(background, 0, 20, 811, 821,0,0,background.getWidth(), background.getHeight(), null);
         
         int dialogButton = JOptionPane.YES_NO_OPTION;
         int dialogResult = JOptionPane.showConfirmDialog (null, "Are you sure you would like to quit?","Warning",dialogButton);
-        if(dialogResult == JOptionPane.YES_OPTION)
+        if(dialogResult == JOptionPane.YES_OPTION){
+          g.drawImage(background, 0, 20, 811, 821,0,0,background.getWidth(), background.getHeight(), null);
+          try{
+            Thread.sleep(1000);
+          }catch(Exception e){}
           dispose();
+        }else{
+          curScreen = "menu";
+        }
       }else if(curScreen.equals("highScore")){ //michael - added image and option   May 24, 2019 5 mins
         
         background = ImageIO.read(new File("Screens/Highscores.jpg")); //May 30, 2019, Michael Zhou added image

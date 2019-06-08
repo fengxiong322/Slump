@@ -9,7 +9,6 @@ import java.awt.*;
 import javax.imageio.ImageIO;
 import java.io.*;
 import java.util.*;
-//test yooo
 /**
  * @author Feng, Michael
  * @version 2.0
@@ -37,7 +36,7 @@ public class Game extends Canvas implements ActionListener{
   private Player player;
   private int canvasX;
   private int canvasY;
-  private int moveX;
+  private int moveX;//player movement
   private int moveY;
   private int edgeX;
   private int edgeY;
@@ -55,18 +54,8 @@ public class Game extends Canvas implements ActionListener{
   public Game(int l, ExitListener el){//Created the constructor Feng Xiong 2 hours May 13
     super();
     setSize(800, 800);
-    canvasX = 0;
     level = l;
-    canvasY = 0;
-    addKeyListener(new PlayerListener());
-    gameOver = false;
-    checkNPC = false;
-    moveX = 0;
-    moveY = 0;
     this.el = el;
-    timer = new Timer(20, this);
-    timer.setInitialDelay(30);
-    timer.start();
     if(level == 1){
       level1();
     }else if(level == 2){
@@ -87,6 +76,7 @@ public class Game extends Canvas implements ActionListener{
     * May 25, 2019 - 2 mins - added NPC to the obstacles, Michael
     */
   public void level1(){//Created a basic level set up Feng Xiong May 15 1 hour
+    level =1;
     ArrayList <String> dialogue = new ArrayList <String> ();
     dialogue.add ("xd");
     try {
@@ -104,6 +94,7 @@ public class Game extends Canvas implements ActionListener{
     *
     */
   public void level2(){
+    level =2;
     ArrayList <String> dialogue = new ArrayList <String> ();
     dialogue.add ("Hahaha this works ez pz feng is wing aghaas");
     dialogue.add ("Hahaha this works ez pz feng is wing aghaas");
@@ -124,6 +115,7 @@ public class Game extends Canvas implements ActionListener{
     *
     */
   public void level3(){
+    level =3;
     ArrayList <String> dialogue = new ArrayList <String> ();
     try {
       createLevel (new BufferedReader(new FileReader ("Levels/Level2-2.txt")), dialogue);
@@ -139,6 +131,7 @@ public class Game extends Canvas implements ActionListener{
     *
     */
   public void level4(){
+    level =4;
     ArrayList <String> dialogue = new ArrayList <String> ();
     try {
       createLevel (new BufferedReader(new FileReader ("Levels/Level2-3.txt")), dialogue);
@@ -155,6 +148,7 @@ public class Game extends Canvas implements ActionListener{
     *
     */
   public void level5(){
+    level =5;
     ArrayList <String> dialogue = new ArrayList <String> ();
     try {
       createLevel (new BufferedReader(new FileReader ("Levels/Level3.txt")), dialogue);
@@ -171,6 +165,15 @@ public class Game extends Canvas implements ActionListener{
   //added method to create level based of reading text file
   public void createLevel (BufferedReader br, ArrayList<String> dialogue)
   {
+    canvasX = 0;
+    canvasY = 0;
+    addKeyListener(new PlayerListener());
+    gameOver = false;
+    checkNPC = false;
+    moveX = 0;
+    moveY = 0;
+
+
     time = 0;
     int npcCount = 0;
     obstacles = new ArrayList<Obstacle>();
@@ -214,7 +217,6 @@ public class Game extends Canvas implements ActionListener{
 	      obstacles.add(new Projectile(i*30, lineCount *30, false, (int)line.charAt(i) - 64, 0));
 	      if(line.charAt(i)-'0' >0 && line.charAt(i)-'0' <10){//right
 		obstacles.add(new Projectile(i*30, lineCount *30, true, Integer.parseInt(line.charAt(i) + ""), edgeX));
-		System.out.println((int)line.charAt(i));
 	      }
 	      
 	  }
@@ -225,7 +227,7 @@ public class Game extends Canvas implements ActionListener{
       edgeY = (lineCount) * 30;
       map =  new Map(i, lineCount);
       for(Obstacle j : obstacles)
-	map.add(j, j.getX()/30, j.getY()/30);
+	    map.add(j, j.getX()/30, j.getY()/30);
       
       canvas = new BufferedImage(edgeX, edgeY, BufferedImage.TYPE_INT_RGB);
       clear = new BufferedImage(edgeX, edgeY, BufferedImage.TYPE_INT_RGB);
@@ -234,7 +236,9 @@ public class Game extends Canvas implements ActionListener{
     catch (IOException e)
     {
     }
-    
+    timer = new Timer(20, this);
+    timer.setInitialDelay(30);
+    timer.start();
     
   }
   
@@ -243,7 +247,6 @@ public class Game extends Canvas implements ActionListener{
     */
   public void setSpawn(int x, int y){
     player = new Player(x, y, 30, 85, edgeX, edgeY);
-    System.out.println(x + " " +y);
     canvasX = getWidth()/2-x;
     canvasY = getHeight()/2-y;
   }
@@ -290,9 +293,9 @@ public class Game extends Canvas implements ActionListener{
 	return;
       }else if(i instanceof InvisPlatform)
 	((InvisPlatform)i).setPlayer(player.getBounds());
-      else if (i instanceof StateSwitchPlatform && time%3 ==0 && second ==0)
-	i.setOn(!i.getOn());
-      else if(i instanceof Projectile && i.getBounds().intersects(player.getBounds())){
+      else if (i instanceof StateSwitchPlatform && time%3 ==0 && second ==0){
+        ((StateSwitchPlatform)i).flipType();
+      }else if(i instanceof Projectile && i.getBounds().intersects(player.getBounds())){
 	try{
 	  Thread.sleep (1000);
 	}
@@ -329,7 +332,7 @@ public class Game extends Canvas implements ActionListener{
 	if (Math.abs (player.getX() - i.getX()) <= 33 && Math.abs (player.getY() - i.getY()) <= 102)
 	{
 	  ((NPC) i).speak (g2);
-	  
+	  i.setOn(false);
 	  
 	}
       }
@@ -344,6 +347,7 @@ public class Game extends Canvas implements ActionListener{
   public void actionPerformed(ActionEvent e) {//Added an action listener for the Timer, Feng Xiong May 16 10min
     //update new positions
     second++;
+    System.out.println(second);
     if(second == 50){
       time++;
       second = 0;
@@ -386,7 +390,8 @@ public class Game extends Canvas implements ActionListener{
 	checkNPC = true;
       }
       else if(ch == KeyEvent.VK_ESCAPE){
-	el.exit();
+        timer.stop();
+	     el.exit();
       }
       if(ch == KeyEvent.VK_R){
 	respawn();
