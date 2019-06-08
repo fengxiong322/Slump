@@ -27,10 +27,16 @@ public class HighScore extends Canvas{
 		setSize(811, 821);
 		this.el = el;
 		try{
-			background = ImageIO.read(new File("Highscores.jpg"));//Change this picture
+			background = ImageIO.read(new File("Screens/Highscores.jpg"));//Change this picture
 		}catch(IOException e){
 			e.printStackTrace();
 		}
+		//Create directory
+		File information = new File(System.getProperty("user.home") + "/slump/highscores.txt");
+		//if(information.createNewFile())
+			System.out.println("new file created");
+
+
 	}
 
 

@@ -119,8 +119,10 @@ public class MainWindow extends JFrame implements ExitListener {
         if(curScreen.equals("menu")){//When the screen is on menu
           if(x>201 && y> 224 && x < 598 && y < 320)
           {
+            if(gameScreen != null){
              curScreen = "resume";
              repaint();
+            }
           }
           if(x>238 && y> 340 && x < 548 && y < 437)
             openLevel();           

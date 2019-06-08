@@ -78,7 +78,6 @@ public class Game extends Canvas implements ActionListener{
   public void level1(){//Created a basic level set up Feng Xiong May 15 1 hour
     level =1;
     ArrayList <String> dialogue = new ArrayList <String> ();
-    dialogue.add ("xd");
     try {
       createLevel (new BufferedReader(new FileReader ("Levels/Level1.txt")), dialogue);
       background = ImageIO.read(new File("Screens/surface.jpg"));
@@ -295,6 +294,12 @@ public class Game extends Canvas implements ActionListener{
 	((InvisPlatform)i).setPlayer(player.getBounds());
       else if (i instanceof StateSwitchPlatform && time%3 ==0 && second ==0){
         ((StateSwitchPlatform)i).flipType();
+        Rectangle tempRect = i.getBounds();
+        tempRect.translate(0, -1);
+        if(tempRect.intersects(player.getBounds()))
+          i.setOn(true);
+        else
+          i.setOn(((StateSwitchPlatform)i).getType());
       }else if(i instanceof Projectile && i.getBounds().intersects(player.getBounds())){
 	try{
 	  Thread.sleep (1000);
@@ -347,7 +352,6 @@ public class Game extends Canvas implements ActionListener{
   public void actionPerformed(ActionEvent e) {//Added an action listener for the Timer, Feng Xiong May 16 10min
     //update new positions
     second++;
-    System.out.println(second);
     if(second == 50){
       time++;
       second = 0;

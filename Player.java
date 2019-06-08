@@ -79,7 +79,7 @@ public class Player{
  public void update(Graphics g, Map platforms){ //modified michael created method - changing of aniamtions of player when moving - may17 1.5 hour
    //Added general layout Feng Xiong may 16 20 min
    ySpeed+=GRAVITY;
-   checkPlatform(platforms, g);
+   checkPlatform(platforms);
    x+=xSpeed;
    y+=ySpeed;
    if (xSpeed == 0 && onGround && !lastDirection)//This runs when the character is completely stationary
@@ -119,31 +119,7 @@ public class Player{
    }
  }
  
- //first trail version of updage created my Michael, May 17, 2019 used the other method above instead (30 mins)
-// public void update2(Graphics g, ArrayList<Platform> platforms){
-//   ySpeed+=GRAVITY;
-//   checkPlatform(platforms);
-//   x+=xSpeed;
-//   y+=ySpeed;
-//   //g.setColor(Color.RED);
-//   //g.fillRect(x, y, sizeX, sizeY);
-//   if (xSpeed == 0)
-//     g.drawImage(idleLeft, x, y, x+sizeX, y+sizeY, 0, 0, 16, 51, null);
-//   if (xSpeed > 0 && ySpeed == 0)
-//   {
-//     g.drawImage(right1, x, y, x+sizeX, y+sizeY, 0, 0, 16, 51, null);
-//   }
-//   if (xSpeed < 0 && ySpeed == 0)
-//   {
-//     g.drawImage(left1, x, y, x+sizeX, y+sizeY, 0, 0, 16, 51, null);
-//   }
-//   if (xSpeed > 0 && ySpeed > 0)
-//     g.drawImage(jumpRight, x, y, x+sizeX, y+sizeY, 0, 0, 16, 51, null);
-//   if (xSpeed < 0 && ySpeed > 0)
-//     g.drawImage(jumpLeft, x, y, x+sizeX, y+sizeY, 0, 0, 16, 51, null);
-// }
- 
- private void checkPlatform(Map platforms, Graphics g){//Added collision detection Feng Xiong may 15 - 3 hours
+ private void checkPlatform(Map platforms){//Added collision detection Feng Xiong may 15 - 3 hours
 
   boolean intersected = false;
   onGround = false;
@@ -152,12 +128,10 @@ public class Player{
    xSpeed = 0;
   }
   for(Obstacle i : platforms.find(x+xSpeed, y+ySpeed, sizeX, sizeY)){
-    if(i instanceof StateSwitchPlatform){
-      continue;
-    }
+    Rectangle platformRect = new Rectangle(i.getX(), i.getY(), i.getXSize(), i.getYSize());
     if(!i.getOn())
       continue;
-   Rectangle platformRect = new Rectangle(i.getX(), i.getY(), i.getXSize(), i.getYSize());
+   
    playerRect = new Rectangle(x+xSpeed, y+ySpeed, sizeX, sizeY);
     intersected = true;
     if(ySpeed>0){
