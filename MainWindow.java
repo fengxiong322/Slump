@@ -43,24 +43,29 @@ public class MainWindow extends JFrame implements ExitListener {
         int y = e.getY ();
         boolean overButton = false;
         if(curScreen.equals("menu")){
-          if(x>252 && y> 235 && x < 559 && y < 346)
+          if(x>201 && y> 224 && x < 598 && y < 320)
           {
             hover = 1;
             overButton = true;
           }
-          if(x>111 && y> 372 && x < 673 && y < 481)
+          if(x>238 && y> 340 && x < 548 && y < 437)
           {
             hover = 2;
             overButton = true;
-          }
-          if(x>150 && y> 508 && x < 661 && y < 621)
-          { 
+          }        
+          if(x>126 && y> 458 && x < 685 && y < 551)
+          {
             hover = 3;
             overButton = true;
-          }
-          if(x>288 && y> 685 && x < 509 && y < 784)
-          { 
+          }         
+          if(x>151 && y> 575 && x < 660 && y < 671)
+          {
             hover = 4;
+            overButton = true;
+          } 
+          if(x>660 && y> 671 && x < 273 && y < 713)
+          {
+            hover = 5;
             overButton = true;
           }
           if (!overButton)
@@ -100,7 +105,7 @@ public class MainWindow extends JFrame implements ExitListener {
           if (!overButton)
             hover = 0;
         }
-         repaint();
+        repaint();
       }
       
     });
@@ -109,16 +114,21 @@ public class MainWindow extends JFrame implements ExitListener {
         int x = me.getX();
         int y = me.getY();
         //added coord detection for testing
-        System.out.println(x + " " + y + " " + hover);
+        System.out.println(x + " " + y);
         //added nagviagion between screens - Michael Zhou, May 24, 2019 5mins
         if(curScreen.equals("menu")){//When the screen is on menu
-          if(x>252 && y> 235 && x < 559 && y < 346)
-            openLevel();
-          if(x>111 && y> 372 && x < 673 && y < 481)
-            openIns ();
-          if(x>150 && y> 508 && x < 661 && y < 621)
-            openHighScore ();
-          if(x>288 && y> 685 && x < 509 && y < 784)
+          if(x>201 && y> 224 && x < 598 && y < 320)
+          {
+             curScreen = "resume";
+             repaint();
+          }
+          if(x>238 && y> 340 && x < 548 && y < 437)
+            openLevel();           
+          if(x>126 && y> 458 && x < 685 && y < 551)
+            openIns ();           
+          if(x>151 && y> 575 && x < 660 && y < 671)
+            openHighScore ();       
+          if(x>660 && y> 671 && x < 273 && y < 713)
             openQuit ();
         }else if(curScreen.equals("level")){//When the screen is on level
           if(x>49 && y> 243 && x < 371 && y < 360)
@@ -155,7 +165,7 @@ public class MainWindow extends JFrame implements ExitListener {
         }else if (curScreen.equals ("instructions"));
         if(x>361 && y> 709 && x < 487 && y < 786)
           openMenu ();
-        System.out.println (curScreen);
+        //System.out.println (curScreen);
       }
       
     });
@@ -223,6 +233,11 @@ public class MainWindow extends JFrame implements ExitListener {
     }else if(level == 5){
       gameScreen.level5();
     }
+    else 
+    {
+      JOptionPane.showMessageDialog(null, "alert", "No game has been started", JOptionPane.ERROR_MESSAGE);
+      curScreen = "menu";
+    }
     add(gameScreen);
     gameScreen.requestFocusInWindow();
     repaint();
@@ -276,6 +291,8 @@ public class MainWindow extends JFrame implements ExitListener {
           background = ImageIO.read(new File("Screens/menu3.png"));
         if (hover == 4)
           background = ImageIO.read(new File("Screens/menu4.png"));
+        if (hover == 5)
+          background = ImageIO.read(new File("Screens/menu5.png"));
         
         g.drawImage(cave, 0, 20, 811, 821, 0,0,cave.getWidth(), cave.getHeight(), null);
         g.drawImage(background, 0, 20, 811, 821,0,0,background.getWidth(), background.getHeight(), null);
@@ -291,9 +308,9 @@ public class MainWindow extends JFrame implements ExitListener {
           background = ImageIO.read(new File("Screens/levels3.png"));
         if (hover == 4)
           background = ImageIO.read(new File("Screens/levels4.png"));
-         if (hover == 5)
+        if (hover == 5)
           background = ImageIO.read(new File("Screens/levels5.png"));
-          if (hover == 6)
+        if (hover == 6)
           background = ImageIO.read(new File("Screens/levels6.png"));
         
         g.drawImage(cave, 0, 20, 811, 821, 0,0,cave.getWidth(), cave.getHeight(), null);
