@@ -63,7 +63,7 @@ public class MainWindow extends JFrame implements ExitListener {
             hover = 4;
             overButton = true;
           } 
-          if(x>660 && y> 671 && x < 273 && y < 713)
+          if(x>274 && y> 714 && x < 496 && y < 799)
           {
             hover = 5;
             overButton = true;
@@ -128,7 +128,7 @@ public class MainWindow extends JFrame implements ExitListener {
             openIns ();           
           if(x>151 && y> 575 && x < 660 && y < 671)
             openHighScore ();       
-          if(x>660 && y> 671 && x < 273 && y < 713)
+          if(x>274 && y> 714 && x < 496 && y < 799)
             openQuit ();
         }else if(curScreen.equals("level")){//When the screen is on level
           if(x>49 && y> 243 && x < 371 && y < 360)
@@ -330,7 +330,7 @@ public class MainWindow extends JFrame implements ExitListener {
         if(dialogResult == JOptionPane.YES_OPTION){
           g.drawImage(background, 0, 20, 811, 821,0,0,background.getWidth(), background.getHeight(), null);
           try{
-            Thread.sleep(1000);
+            Thread.sleep(10000);
           }catch(Exception e){}
           dispose();
         }else{

@@ -44,10 +44,29 @@ public class NPC extends Obstacle {
     g.drawImage(dialogueBox, 0, 600,800,800, 0,0,1520, 470, null); //modified the speak method so the the dialogue box will be properly formaed on the screen may 29 michael
     //  made the text properly formated on the screen, if there is a \n the the text will start on a new line as inteneded, May 29 michael
     g.setFont(new Font("SansSerif", Font.PLAIN, 20)); 
+    if (dialogue.indexOf ("/q") < 0)
+    {
     int y = 670 - g.getFontMetrics().getHeight();
     for (String line : dialogue.split("\n"))
     {
         g.drawString(line, 50, y += g.getFontMetrics().getHeight());
+    }
+    }
+    else 
+    {
+      int y = 670 - g.getFontMetrics().getHeight();
+      String [] temp = new String [5];
+      temp = dialogue.split ("/q");
+      String text = temp [0];
+      String [] options = new String [4];
+      options [0] = temp [1];
+      options [1] = temp [2];
+      options [2] = temp [3];
+      options [3] = temp [4];
+    for (String line : text.split("\n"))
+    {
+        g.drawString(line, 50, y += g.getFontMetrics().getHeight());
+    }
     }
   }
   
