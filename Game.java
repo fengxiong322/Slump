@@ -48,6 +48,8 @@ public class Game extends Canvas implements ActionListener{
   private boolean inNPC;
   boolean rightAnswer;
   private long[] finished;
+  private int spawnX;
+  private int spawnY;
   
   /** COnstructor sets basic values and initalizes arrays and images
     * @param level the specified level
@@ -81,6 +83,25 @@ public class Game extends Canvas implements ActionListener{
   public void level1(){//Created a basic level set up Feng Xiong May 15 1 hour
     level =1;
     ArrayList <String> dialogue = new ArrayList <String> ();
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
     try {
       createLevel (new BufferedReader(new FileReader ("Levels/Level1.txt")), dialogue);
       background = ImageIO.read(new File("Screens/surface.jpg"));
@@ -89,7 +110,7 @@ public class Game extends Canvas implements ActionListener{
     {
     }
     
-    setSpawn(60, 60);
+    setSpawn(spawnX, spawnY);
   }
   
   /** Sets up the second level
@@ -111,9 +132,6 @@ public class Game extends Canvas implements ActionListener{
     dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
     dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
     dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
     try {
       createLevel (new BufferedReader(new FileReader ("Levels/Level2-1.txt")), dialogue);
       background = ImageIO.read(new File("Screens/game2.jpg"));
@@ -122,7 +140,7 @@ public class Game extends Canvas implements ActionListener{
     {
     }
     
-    setSpawn(90, edgeY - 180);
+    setSpawn(spawnX, spawnY);
   }
   
   /** Sets up the third level
@@ -131,6 +149,23 @@ public class Game extends Canvas implements ActionListener{
   public void level3(){
     level =3;
     ArrayList <String> dialogue = new ArrayList <String> ();
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
     try {
       createLevel (new BufferedReader(new FileReader ("Levels/Level2-2.txt")), dialogue);
       background = ImageIO.read(new File("Screens/game1.jpg"));
@@ -139,7 +174,7 @@ public class Game extends Canvas implements ActionListener{
     {
     }
     
-    setSpawn(300, edgeY - 180);
+    setSpawn(spawnX, spawnY);
   }
   /** Sets up the third level
     *
@@ -147,6 +182,20 @@ public class Game extends Canvas implements ActionListener{
   public void level4(){
     level =4;
     ArrayList <String> dialogue = new ArrayList <String> ();
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
     try {
       createLevel (new BufferedReader(new FileReader ("Levels/Level2-3.txt")), dialogue);
       background = ImageIO.read(new File("Screens/game1.jpg"));
@@ -155,7 +204,7 @@ public class Game extends Canvas implements ActionListener{
     {
     }
     
-    setSpawn(300, edgeY - 180);
+    setSpawn(spawnX, spawnY);
   }
   
   /** Sets up the third level
@@ -164,6 +213,23 @@ public class Game extends Canvas implements ActionListener{
   public void level5(){
     level =5;
     ArrayList <String> dialogue = new ArrayList <String> ();
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
     try {
       createLevel (new BufferedReader(new FileReader ("Levels/Level3.txt")), dialogue);
       background = ImageIO.read(new File("Screens/game1.jpg"));
@@ -172,7 +238,7 @@ public class Game extends Canvas implements ActionListener{
     {
     }
     
-    setSpawn(300, edgeY - 180);
+    setSpawn(spawnX, spawnY);
   }
   
   //May 31, 2019, Michael Zhou, Total time: 1 hours
@@ -226,6 +292,9 @@ public class Game extends Canvas implements ActionListener{
               obstacles.add (new NPC (i*30, lineCount * 30 + 5, 30, 85, ImageIO.read(new File("Player/idleLeft.png")), dialogue.get (npcCount)));
               npcCount++;
               break;
+            case 's':
+              spawnX = i*30;
+              spawnY = lineCount * 30;
             default:
               if((int)line.charAt(i) >0 && (int)line.charAt(i) <10){//left
               obstacles.add(new Projectile(i*30, lineCount *30, false, (int)line.charAt(i) - 64, 0));
@@ -408,11 +477,21 @@ public class Game extends Canvas implements ActionListener{
     g2.drawImage(canvas, canvasX, canvasY, null);
     boolean detectedNPC = false;
     for(Obstacle i: obstacles){
-      //added checking for npc and talking May 22, 2019 - michael
-      if(checkNPC && i instanceof NPC)
+    //added checking for npc and talking May 22, 2019 - michael
+      if (i instanceof NPC && Math.abs (player.getX() - i.getX()) <= 33 && Math.abs (player.getY() - i.getY()) <= 102)
       {
-        if (Math.abs (player.getX() - i.getX()) <= 33 && Math.abs (player.getY() - i.getY()) <= 102)
+      try{
+          BufferedImage arrow = ImageIO.read(new File("NPC/down.png"));
+          g.drawImage (arrow, ((NPC) i).getX (), ((NPC) i).getY () - 30, 30, 30, 0, 0, arrow.getWidth(), arrow.getHeight(), null);
+        }
+         catch (IOException e)
         {
+        }
+      }
+      if(checkNPC && i instanceof NPC)
+      {         
+        if (Math.abs (player.getX() - i.getX()) <= 33 && Math.abs (player.getY() - i.getY()) <= 102)
+        {                 
           detectedNPC = true;
           ((NPC) i).speak (g2);
           if(inNPC)
@@ -484,11 +563,11 @@ public class Game extends Canvas implements ActionListener{
   private void respawn(){ //editied May 31, Michael - now respawns the player in the bottom left corner of the scneen
     finished[level-1]-=10;
     if(level == 1){
-      setSpawn(300, edgeY - 180);
+      setSpawn(spawnX, spawnY);
     }else if(level == 2){
-      setSpawn(90, edgeY - 180);
+      setSpawn(spawnX, spawnY);
     }else{
-      setSpawn(90, edgeY - 180);
+      setSpawn(spawnX, spawnY);
     }
   }
   
