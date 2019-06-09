@@ -44,10 +44,9 @@ public class Game extends Canvas implements ActionListener{
   private boolean checkNPC;
   private ExitListener el;
   private Door door;
-  private long time;
   private int second;
   boolean rightAnswer;
-  private boolean[] finished;
+  private long[] finished;
   
   /** COnstructor sets basic values and initalizes arrays and images
     * @param level the specified level
@@ -58,8 +57,7 @@ public class Game extends Canvas implements ActionListener{
     setSize(800, 800);
     level = l;
     this.el = el;
-    finished = new boolean[5];
-    time = 0;
+    finished = new long[5];
     if(level == 1){
       level1();
     }else if(level == 2){
@@ -168,6 +166,7 @@ public class Game extends Canvas implements ActionListener{
   //added method to create level based of reading text file
   public void createLevel (BufferedReader br, ArrayList<String> dialogue)
   {
+    finished[level-1] = 0;
     canvasX = 0;
     canvasY = 0;
     addKeyListener(new PlayerListener());
@@ -262,33 +261,25 @@ public class Game extends Canvas implements ActionListener{
   public void gameEnd(Graphics g){
     if(level == 1){
       level = 2;
-      finished[0] = true;
       level2();
       timer.restart();
     }else if(level == 2){
       level = 3;
-      finished[1] = true;
       level3();
       timer.restart();
     }else if(level == 3){
       level = 4;
-      finished[2] = true;
       level4();
       timer.restart();
     }else if(level == 4){
       level = 5;
-      finished[3] = true;
       level5();
       timer.restart();
     }else{
-      for(int i = 0; i < 4; i++){
-        if(!finished[i])
-          return;
-      }
       gameOver = true;
       try{
         g.drawImage(ImageIO.read(new File("Screens/Highscores.jpg")), 0, 0, 800, 800, null);
-        g.drawString(time+"", 100, 100);
+        g.drawString(finished[level-1]+"", 100, 100);
         String name = JOptionPane.showInputDialog(this, "Your Name:");
         if(name == null){
           name = "You";
@@ -363,7 +354,7 @@ public class Game extends Canvas implements ActionListener{
         return;
       }else if(i instanceof InvisPlatform)
         ((InvisPlatform)i).setPlayer(player.getBounds());
-      else if (i instanceof StateSwitchPlatform && time%3 ==0 && second ==0){
+      else if (i instanceof StateSwitchPlatform && finished[level-1]%3 ==0 && second ==0){
         ((StateSwitchPlatform)i).flipType();
         Rectangle tempRect = i.getBounds();
         tempRect.translate(0, -1);
@@ -408,12 +399,26 @@ public class Game extends Canvas implements ActionListener{
         if (Math.abs (player.getX() - i.getX()) <= 33 && Math.abs (player.getY() - i.getY()) <= 102)
         {
           ((NPC) i).speak (g2);
-          i.setOn(false);
+          addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyPressed(KeyEvent event){
+              //MIKEL ADD THE STUFF HERE
+              //g2 is stationary
+              //g1 is the camera
+              //Do not directly draw to g
+              
+              //If the answer is correct, these 4 lines should be run to continue
+              checkNPC = false;//Tells the program to resume the game
+              i.setOn(false);//Tells the player to ignore this obstacle
+              finished[level-1]+=10;//Gives a reward
+              Game.this.removeKeyListener(this);
+            }
+          });
           
         }
       }
     }
-    g2.drawString("Your Score: " + time, 100, 100);
+    g2.drawString("Your Score: " + finished[level-1], 100, 100);
     g.drawImage(clear, 0, 0, null);
     g.dispose();
     g1.dispose();
@@ -428,7 +433,7 @@ public class Game extends Canvas implements ActionListener{
     //update new positions
     second++;
     if(second == 50){
-      time++;
+      finished[level-1]--;
       second = 0;
     }
     if(!gameOver)
@@ -440,6 +445,7 @@ public class Game extends Canvas implements ActionListener{
   }
   
   private void respawn(){ //editied May 31, Michael - now respawns the player in the bottom left corner of the scneen
+    finished[level-1]-=10;
     if(level == 1){
       setSpawn(300, edgeY - 180);
     }else if(level == 2){
@@ -454,10 +460,8 @@ public class Game extends Canvas implements ActionListener{
     @Override
     public void keyPressed(KeyEvent event){
       int ch = event.getKeyCode();//Keep track of key presses
-      if (checkNPC = true) {
-        if(ch == KeyEvent.VK_UP)
-        checkNPC = false;
-      }
+      if(checkNPC == true)
+        return;
       if(ch == KeyEvent.VK_UP || ch == KeyEvent.VK_W){
         moveY = 15;
       }else if(ch == KeyEvent.VK_LEFT|| ch == KeyEvent.VK_A){
