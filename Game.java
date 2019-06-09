@@ -87,10 +87,10 @@ public class Game extends Canvas implements ActionListener{
     dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
     dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
     dialogue.add ("Welcome player! Use the arrow keys or WASD keys to move around. You can talk "
-                  +"/n to others like you talked to me by using the down or S key. If u ever "
-                  +"/nwant to leave, you can press escape, you can also press the r key to restart "
-                  +"/nthe level. Your goal in each level is to reach the brown door. The one in this"
-                  +"/nlevel is over to the right");
+      +"/n to others like you talked to me by using the down or S key. If u ever "
+      +"/nwant to leave, you can press escape, you can also press the r key to restart "
+      +"/nthe level. Your goal in each level is to reach the brown door. The one in this"
+      +"/nlevel is over to the right");
     dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
     dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
     dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
@@ -271,75 +271,75 @@ public class Game extends Canvas implements ActionListener{
       {
         for (i = 0; i <line.length(); i++)
         {
-          
+
           switch(line.charAt(i)){
             case '@':
-              obstacles.add(new Platform (i *30, lineCount * 30, 30));
-              break;
+            obstacles.add(new Platform (i *30, lineCount * 30, 30));
+            break;
             case '\'':
-              obstacles.add(new InvisPlatform(i*30, lineCount * 30, 30));
-              break;
+            obstacles.add(new InvisPlatform(i*30, lineCount * 30, 30));
+            break;
             case 'd':
-              obstacles.add(new Door(i*30, lineCount * 30, 60, 90));
-              break;
+            obstacles.add(new Door(i*30, lineCount * 30, 60, 90));
+            break;
             case 'W'://A white block, meaning clear.
-              obstacles.add(new StateSwitchPlatform(i*30, lineCount * 30, 30, true));
-              break;
+            obstacles.add(new StateSwitchPlatform(i*30, lineCount * 30, 30, true));
+            break;
             case 'B'://A black block, cannot exist with white blocks.
-              obstacles.add(new StateSwitchPlatform(i*30, lineCount * 30, 30, false));
-              break;
+            obstacles.add(new StateSwitchPlatform(i*30, lineCount * 30, 30, false));
+            break;
             case 'N':
-              obstacles.add (new NPC (i*30, lineCount * 30 + 5, 30, 85, ImageIO.read(new File("Player/idleLeft.png")), dialogue.get (npcCount)));
-              npcCount++;
-              break;
+            obstacles.add (new NPC (i*30, lineCount * 30 + 5, 30, 85, ImageIO.read(new File("Player/idleLeft.png")), dialogue.get (npcCount)));
+            npcCount++;
+            break;
             case 'n':
-              obstacles.add (new NPC (i*30, lineCount * 30 + 5, 30, 85, ImageIO.read(new File("Player/idleLeft.png")), dialogue.get (npcCount)));
-              npcCount++;
-              break;
+            obstacles.add (new NPC (i*30, lineCount * 30 + 5, 30, 85, ImageIO.read(new File("Player/idleLeft.png")), dialogue.get (npcCount)));
+            npcCount++;
+            break;
             case 's':
-              spawnX = i*30;
-              spawnY = lineCount * 30;
+            spawnX = i*30;
+            spawnY = lineCount * 30;
             default:
               if((int)line.charAt(i) >0 && (int)line.charAt(i) <10){//left
-              obstacles.add(new Projectile(i*30, lineCount *30, false, (int)line.charAt(i) - 64, 0));
-              obstacles.add(new Generator(i*30, lineCount *30, 30));
-            }
+                obstacles.add(new Projectile(i*30, lineCount *30, false, (int)line.charAt(i) - 64, 0));
+                obstacles.add(new Generator(i*30, lineCount *30, 30));
+              }
               if(line.charAt(i)-'0' >0 && line.charAt(i)-'0' <10){//right
                 obstacles.add(new Projectile(i*30, lineCount *30, true, Integer.parseInt(line.charAt(i) + ""), edgeX));
                 obstacles.add(new Generator(i*30, lineCount *30, 30));
               }
               
+            }
           }
+          line = br.readLine();
+          lineCount++;
         }
-        line = br.readLine();
-        lineCount++;
-      }
-      edgeY = (lineCount) * 30;
-      map =  new Map(i, lineCount);
-      for(Obstacle j : obstacles)
-        map.add(j, j.getX()/30, j.getY()/30);
-      
-      canvas = new BufferedImage(edgeX, edgeY, BufferedImage.TYPE_INT_RGB);
-      clear = new BufferedImage(edgeX, edgeY, BufferedImage.TYPE_INT_RGB);
-      br.close();
-    }
-    catch (IOException e)
-    {
-    }
-    timer = new Timer(20, this);
-    timer.setInitialDelay(30);
-    timer.start();
-    
-  }
+        edgeY = (lineCount) * 30;
+        map =  new Map(i, lineCount);
+        for(Obstacle j : obstacles)
+          map.add(j, j.getX()/30, j.getY()/30);
 
-  public long getTotalScore(){
-    long score = 0;
-    for(int i = 0; i < 5; i ++){
-      score += finished[i];
+        canvas = new BufferedImage(edgeX, edgeY, BufferedImage.TYPE_INT_RGB);
+        clear = new BufferedImage(edgeX, edgeY, BufferedImage.TYPE_INT_RGB);
+        br.close();
+      }
+      catch (IOException e)
+      {
+      }
+      timer = new Timer(20, this);
+      timer.setInitialDelay(30);
+      timer.start();
+
     }
-    return score;
-  }
-  
+
+    public long getTotalScore(){
+      long score = 0;
+      for(int i = 0; i < 5; i ++){
+        score += finished[i];
+      }
+      return score;
+    }
+
   /** Sets up the player spawn location
     *
     */
@@ -397,42 +397,42 @@ public class Game extends Canvas implements ActionListener{
   }
 
   private void addScore(String name, long score){
-        File directory = new File(System.getProperty("user.home") + "/slump");
+    File directory = new File(System.getProperty("user.home") + "/slump");
     File information = new File(System.getProperty("user.home") + "/slump/highscores.txt");
     try{
       directory.mkdirs();
       if(information.createNewFile())
         JOptionPane.showMessageDialog(null, "A new file has been created for you at " + directory.getAbsolutePath());
       BufferedReader br = new BufferedReader(new FileReader(information));
-            String[] fileLines = new String [20];
+      String[] fileLines = new String [20];
       for (int i = 0 ; i < 20 ; i++)
-      fileLines [i] = br.readLine ();
+        fileLines [i] = br.readLine ();
       br.close ();
       PrintWriter pw = new PrintWriter (new FileWriter ("scores.lexd"));
       for (int i = 0 ; i < 20 ; i += 2)
       {
-    if (fileLines [i] == null)
-    {
-        pw.println (name);
-        pw.println (score);
-        break;
+        if (fileLines [i] == null)
+        {
+          pw.println (name);
+          pw.println (score);
+          break;
+        }
+        if (Integer.parseInt (fileLines [i + 1]) < score)
+        {
+          pw.println (fileLines [i]);
+          pw.println (fileLines [i + 1]);
+        }
+        else
+        {
+          pw.println (name);
+          pw.println (score);
+          pw.println (fileLines [i]);
+          pw.println (fileLines [i + 1]);
+          break;
+        }
+      }
+    }catch(IOException e){
     }
-    if (Integer.parseInt (fileLines [i + 1]) < score)
-    {
-        pw.println (fileLines [i]);
-        pw.println (fileLines [i + 1]);
-    }
-    else
-    {
-        pw.println (name);
-        pw.println (score);
-        pw.println (fileLines [i]);
-        pw.println (fileLines [i + 1]);
-        break;
-    }
-  }
-  }catch(IOException e){
-  }
   }
   
   
@@ -449,7 +449,7 @@ public class Game extends Canvas implements ActionListener{
         gameEnd(g);
         return;
       }else if(i instanceof InvisPlatform)
-        ((InvisPlatform)i).setPlayer(player.getBounds());
+      ((InvisPlatform)i).setPlayer(player.getBounds());
       else if (i instanceof StateSwitchPlatform && finished[level-1]%3 ==0 && second ==0){
         ((StateSwitchPlatform)i).flipType();
         Rectangle tempRect = i.getBounds();
@@ -466,6 +466,16 @@ public class Game extends Canvas implements ActionListener{
         {
         }
         respawn();
+      }
+      if (i instanceof NPC && Math.abs (player.getX() - i.getX()) <= 33 && Math.abs (player.getY() - i.getY()) <= 102)
+      {
+        try{
+          BufferedImage arrow = ImageIO.read(new File("NPC/down.png"));
+          g1.drawImage (arrow, ((NPC) i).getX (), ((NPC) i).getY () - 30, 30, 30, null);
+        }
+        catch (IOException e)
+        {
+        }
       }
       i.update(g1);//Updates to a new position
     }
@@ -491,16 +501,7 @@ public class Game extends Canvas implements ActionListener{
     boolean detectedNPC = false;
     for(Obstacle i: obstacles){
     //added checking for npc and talking May 22, 2019 - michael
-      if (i instanceof NPC && Math.abs (player.getX() - i.getX()) <= 33 && Math.abs (player.getY() - i.getY()) <= 102)
-      {
-      try{
-          BufferedImage arrow = ImageIO.read(new File("NPC/down.png"));
-          g.drawImage (arrow, ((NPC) i).getX (), ((NPC) i).getY () - 30, 30, 30, 0, 0, arrow.getWidth(), arrow.getHeight(), null);
-        }
-         catch (IOException e)
-        {
-        }
-      }
+
       if(checkNPC && i instanceof NPC)
       {         
         if (Math.abs (player.getX() - i.getX()) <= 33 && Math.abs (player.getY() - i.getY()) <= 102)
@@ -513,6 +514,13 @@ public class Game extends Canvas implements ActionListener{
           addKeyListener(new KeyAdapter(){
             private boolean down;
             public void keyPressed(KeyEvent event){
+              if(!((NPC)i).isQuestion()){
+                checkNPC = false;//Tells the program to resume the game
+                inNPC = false;
+                i.setOn(false);//Tells the player to ignore this obstacle
+                finished[level-1]+=10;//Gives a reward
+                Game.this.removeKeyListener(this);
+              }
               int ch = event.getKeyCode();
               int key = 0;
               if (ch == KeyEvent.VK_1)
@@ -533,20 +541,22 @@ public class Game extends Canvas implements ActionListener{
               i.setOn(false);//Tells the player to ignore this obstacle
               finished[level-1]+=10;//Gives a reward
               Game.this.removeKeyListener(this);
-              }
-              else
-              {                
-                JOptionPane.showMessageDialog(null, "That wasn't the best answer... try again!");
-              }
             }
-          });
+            else
+            {                
+              JOptionPane.showMessageDialog(null, "That wasn't the best answer... try again!");
+            }
+          }
+        });
           
         }
       }
       
     }
     if(!detectedNPC)
-        checkNPC = false;
+      checkNPC = false;
+    g2.setFont(new Font("SansSerif", Font.PLAIN, 20));
+    g2.setColor(new Color(255, 255, 255));
     g2.drawString("Your Score: " + finished[level-1], 100, 100);
     g.drawImage(clear, 0, 0, null);
     g.dispose();
@@ -585,7 +595,7 @@ public class Game extends Canvas implements ActionListener{
   }
   
   class PlayerListener extends KeyAdapter{//Created a mouse listner class to read user input Feng Xiong May 16 1 hour
-    
+
     @Override
     public void keyPressed(KeyEvent event){
       int ch = event.getKeyCode();//Keep track of key presses
