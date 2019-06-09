@@ -127,14 +127,14 @@ public class MainWindow extends JFrame implements ExitListener {
           if(x>201 && y> 224 && x < 598 && y < 320)
           {
             if(gameScreen != null){
-             curScreen = "resume";
-             repaint();
+              curScreen = "resume";
+              repaint();
             }
           }
           if(x>238 && y> 340 && x < 548 && y < 437)
             openLevel();           
           if(x>126 && y> 458 && x < 685 && y < 551)
-            openIns ();           
+            openIns1 ();           
           if(x>151 && y> 575 && x < 660 && y < 671)
             openHighScore ();       
           if(x>274 && y> 714 && x < 496 && y < 799)
@@ -169,19 +169,31 @@ public class MainWindow extends JFrame implements ExitListener {
             hover = 0;
             openMenu();
           }
-        }else if(curScreen.equals("highScore")){
+        }
+        else if(curScreen.equals("highScore")){
           openHighScore();
-        }else if (curScreen.equals ("instructions"))
-        if(x>361 && y> 709 && x < 487 && y < 786)
-          openMenu ();
+        }
+        else if (curScreen.equals ("instructions1")) {
+          if(x>66 && y> 721 && x < 180 && y < 794)
+            openMenu ();
+          if (x> 635 && y> 722 && x < 779 && y < 789)
+            openIns2 ();
+        }
+        else if (curScreen.equals ("instructions2")) 
+        {
+          if(x>51 && y> 718 && x < 167 && y < 783)
+            openIns1 ();
+          if (x> 639 && y> 704 && x < 772 && y < 780)
+            openMenu ();
+        }
       }
-      
     });
     setLocationRelativeTo(null);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);
     repaint();
   }
+  
   
   
   public void intro ()
@@ -206,8 +218,13 @@ public class MainWindow extends JFrame implements ExitListener {
   /**
    * Set screen to instructions
    */
-  public void openIns () {//Implemented open instructions, Feng May 10 1 min
-    curScreen = "instructions";
+  public void openIns1 () {//Implemented open instructions, Feng May 10 1 min
+    curScreen = "instructions1";
+    repaint();
+  }
+  
+  public void openIns2 () {//Implemented open instructions, Feng May 10 1 min
+    curScreen = "instructions2";
     repaint();
   }
   
@@ -335,9 +352,15 @@ public class MainWindow extends JFrame implements ExitListener {
         g2.drawImage(cave, 0, 20, 811, 821, 0,0,cave.getWidth(), cave.getHeight(), null);
         g2.drawImage(background, 0, 20,811, 821, 0,0,background.getWidth(), background.getHeight(), null);
         
-      }else if(curScreen.equals("instructions")){ //michael - added image and option  May 24, 2019 5 mins
+      }else if(curScreen.equals("instructions1")){ //michael - added image and option  May 24, 2019 5 mins
         
-        background = ImageIO.read(new File("Screens/Instructions.png"));
+        background = ImageIO.read(new File("Screens/Instructions1.png"));
+        g2.drawImage(background, 0, 20, 811, 821,0,0,background.getWidth(), background.getHeight(), null);
+        
+        
+      }else if(curScreen.equals("instructions2")){ //michael - added image and option  May 24, 2019 5 mins
+        
+        background = ImageIO.read(new File("Screens/Instructions2.png"));
         g2.drawImage(background, 0, 20, 811, 821,0,0,background.getWidth(), background.getHeight(), null);
         
       }else if(curScreen.equals("quit")){ //michael - added image and option  May 24, 2019 5 mins
