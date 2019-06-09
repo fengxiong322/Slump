@@ -45,6 +45,7 @@ public class Game extends Canvas implements ActionListener{
   private ExitListener el;
   private Door door;
   private int second;
+  private boolean inNPC;
   boolean rightAnswer;
   private long[] finished;
   
@@ -179,9 +180,10 @@ public class Game extends Canvas implements ActionListener{
   public void createLevel (BufferedReader br, ArrayList<String> dialogue)
   {
     finished[level-1] = 0;
+    inNPC = false;
     canvasX = 0;
     canvasY = 0;
-    addKeyListener(new PlayerListener());
+    super.addKeyListener(new PlayerListener());
     gameOver = false;
     checkNPC = false;
     moveX = 0;
@@ -290,7 +292,7 @@ public class Game extends Canvas implements ActionListener{
     }else{
       gameOver = true;
       try{
-        g.drawImage(ImageIO.read(new File("Screens/Highscores.jpg")), 0, 0, 800, 800, null);
+        g.drawImage(ImageIO.read(new File("Screens/endScreen.png")), 0, 0, 800, 800, null);
         g.drawString(finished[level-1]+"", 100, 100);
         String name = JOptionPane.showInputDialog(this, "Your Name:");
         if(name == null){
@@ -404,22 +406,23 @@ public class Game extends Canvas implements ActionListener{
     g2.setColor(new Color(0, 0, 0));
     g2.fillRect(0, 0, 1000, 1000);
     g2.drawImage(canvas, canvasX, canvasY, null);
+    boolean detectedNPC = false;
     for(Obstacle i: obstacles){
       //added checking for npc and talking May 22, 2019 - michael
       if(checkNPC && i instanceof NPC)
       {
         if (Math.abs (player.getX() - i.getX()) <= 33 && Math.abs (player.getY() - i.getY()) <= 102)
         {
+          detectedNPC = true;
           ((NPC) i).speak (g2);
+          if(inNPC)
+            break;
+          inNPC = true;
           addKeyListener(new KeyAdapter(){
-            @Override
+            private boolean down;
             public void keyPressed(KeyEvent event){
               int ch = event.getKeyCode();
               int key = 0;
-              //MIKEL ADD THE STUFF HERE
-              //g2 is stationary
-              //g1 is the camera
-              //Do not directly draw to g
               if (ch == KeyEvent.VK_1)
                 key = 1;
               else if (ch == KeyEvent.VK_2)
@@ -434,6 +437,7 @@ public class Game extends Canvas implements ActionListener{
               {
               //If the answer is correct, these 4 lines should be run to continue
               checkNPC = false;//Tells the program to resume the game
+              inNPC = false;
               i.setOn(false);//Tells the player to ignore this obstacle
               finished[level-1]+=10;//Gives a reward
               Game.this.removeKeyListener(this);
@@ -441,15 +445,16 @@ public class Game extends Canvas implements ActionListener{
               else
               {                
                 JOptionPane.showMessageDialog(null, "That wasn't the best answer... try again!");
-                finished[level-1]-=2;
-                return;
               }
             }
           });
           
         }
       }
+      
     }
+    if(!detectedNPC)
+        checkNPC = false;
     g2.drawString("Your Score: " + finished[level-1], 100, 100);
     g.drawImage(clear, 0, 0, null);
     g.dispose();
