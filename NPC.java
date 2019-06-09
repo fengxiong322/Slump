@@ -33,7 +33,7 @@ public class NPC extends Obstacle {
     setOn(true);
     setImage(image);
     try{dialogueBox = ImageIO.read(new File("Dialogue/dialogue.png"));}catch(IOException e){}
-    dialogue = text + "\n\nPress any key to close...";
+    dialogue = text; 
   }
   
   //May 24, Michael created basic method outiline 
@@ -47,6 +47,7 @@ public class NPC extends Obstacle {
     g.setFont(new Font("SansSerif", Font.PLAIN, 20)); 
     if (dialogue.indexOf ("/q") < 0)
     {
+      dialogue += + "\n\nPress any key to close...";
       g.drawImage(dialogueBox, 0, 600,800,800, 0,0,1520, 470, null); 
     int y = 670 - g.getFontMetrics().getHeight();
     for (String line : dialogue.split("\n"))
@@ -60,17 +61,18 @@ public class NPC extends Obstacle {
       String [] temp = new String [5];
       temp = dialogue.split ("/q");
       String text = temp [0];
-      String [] options = new String [3];
+      String [] options = new String [4];
       options [0] = temp [1];
       options [1] = temp [2];
       options [2] = temp [3];
-      answer = " ";
+      answer = "";
       for (int i = 0; i <= 2; i ++)
       {
         if (options [i].indexOf ("/a") >= 0)
         {
           String [] t =  options[i].split ("/a");
           answer = t [1];
+          options [i+1] = answer;
           options[i] = t [0];
         }
       }
