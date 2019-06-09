@@ -25,6 +25,7 @@ public class NPC extends Obstacle {
   private String dialogue;
   BufferedImage dialogueBox;
   String answer;
+  String [] options;
   
   //May 24, Michael created constructor for class
   public NPC (int x, int y, int xSize, int ySize, BufferedImage image, String text) //added constuctor
@@ -61,7 +62,7 @@ public class NPC extends Obstacle {
       String [] temp = new String [5];
       temp = dialogue.split ("/q");
       String text = temp [0];
-      String [] options = new String [4];
+      options = new String [4];
       options [0] = temp [1];
       options [1] = temp [2];
       options [2] = temp [3];
@@ -93,6 +94,11 @@ public class NPC extends Obstacle {
   public String getAnswer ()
   {
     return answer;
+  }
+  
+  public String getOption (int optionNumber)
+  {
+    return options [optionNumber-1];
   }
   
   //May 24, Michael implemented method

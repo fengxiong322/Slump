@@ -101,6 +101,18 @@ public class Game extends Canvas implements ActionListener{
     dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
     dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
     dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
     try {
       createLevel (new BufferedReader(new FileReader ("Levels/Level2-1.txt")), dialogue);
       background = ImageIO.read(new File("Screens/game2.jpg"));
@@ -402,16 +414,36 @@ public class Game extends Canvas implements ActionListener{
           addKeyListener(new KeyAdapter(){
             @Override
             public void keyPressed(KeyEvent event){
+              int ch = event.getKeyCode();
+              int key = 0;
               //MIKEL ADD THE STUFF HERE
               //g2 is stationary
               //g1 is the camera
               //Do not directly draw to g
-              
+              if (ch == KeyEvent.VK_1)
+                key = 1;
+              else if (ch == KeyEvent.VK_2)
+                key = 2;
+              else if (ch == KeyEvent.VK_3)
+                key = 3;
+              else if (ch == KeyEvent.VK_4)
+                key = 4;
+              else
+                return;
+              if (((NPC) i).getOption(key).equals (((NPC) i).getAnswer()))              
+              {
               //If the answer is correct, these 4 lines should be run to continue
               checkNPC = false;//Tells the program to resume the game
               i.setOn(false);//Tells the player to ignore this obstacle
               finished[level-1]+=10;//Gives a reward
               Game.this.removeKeyListener(this);
+              }
+              else
+              {                
+                JOptionPane.showMessageDialog(null, "That wasn't the best answer... try again!");
+                finished[level-1]-=2;
+                return;
+              }
             }
           });
           
