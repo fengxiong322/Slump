@@ -26,6 +26,7 @@ public class NPC extends Obstacle {
   BufferedImage dialogueBox;
   String answer;
   String [] options;
+  boolean question;
   
   //May 24, Michael created constructor for class
   public NPC (int x, int y, int xSize, int ySize, BufferedImage image, String text) //added constuctor
@@ -48,17 +49,19 @@ public class NPC extends Obstacle {
     g.setFont(new Font("SansSerif", Font.PLAIN, 20)); 
     if (dialogue.indexOf ("/q") < 0)
     {
+      question = false;
       dialogue += "\n\nPress any key to close...";
       g.drawImage(dialogueBox, 0, 600,800,800, 0,0,1520, 470, null); 
-    int y = 670 - g.getFontMetrics().getHeight();
-    for (String line : dialogue.split("\n"))
+    int y = 650 - g.getFontMetrics().getHeight();
+    for (String line : dialogue.split("/n"))
     {
         g.drawString(line, 50, y += g.getFontMetrics().getHeight());
     }
     }
     else 
     {
-      int y = 600 - g.getFontMetrics().getHeight();
+      question = true;
+      int y = 650 - g.getFontMetrics().getHeight();
       String [] temp = new String [5];
       temp = dialogue.split ("/q");
       String text = temp [0];
@@ -96,6 +99,10 @@ public class NPC extends Obstacle {
     return answer;
   }
   
+  public boolean isQuestion ()
+  {
+    return question;
+  }
   public String getOption (int optionNumber)
   {
     return options [optionNumber-1];
