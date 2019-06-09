@@ -24,6 +24,7 @@ import java.io.*;
 public class NPC extends Obstacle {
   private String dialogue;
   BufferedImage dialogueBox;
+  String answer;
   
   //May 24, Michael created constructor for class
   public NPC (int x, int y, int xSize, int ySize, BufferedImage image, String text) //added constuctor
@@ -41,11 +42,12 @@ public class NPC extends Obstacle {
   //made the text properly formated on the screen, if there is a \n the the text will start on a new line as inteneded
   public void speak (Graphics g) //added speak method for testing
   {//Should speak, and then close the speach bubble
-    g.drawImage(dialogueBox, 0, 600,800,800, 0,0,1520, 470, null); //modified the speak method so the the dialogue box will be properly formaed on the screen may 29 michael
+    //modified the speak method so the the dialogue box will be properly formaed on the screen may 29 michael
     //  made the text properly formated on the screen, if there is a \n the the text will start on a new line as inteneded, May 29 michael
     g.setFont(new Font("SansSerif", Font.PLAIN, 20)); 
     if (dialogue.indexOf ("/q") < 0)
     {
+      g.drawImage(dialogueBox, 0, 600,800,800, 0,0,1520, 470, null); 
     int y = 670 - g.getFontMetrics().getHeight();
     for (String line : dialogue.split("\n"))
     {
@@ -54,20 +56,41 @@ public class NPC extends Obstacle {
     }
     else 
     {
-      int y = 670 - g.getFontMetrics().getHeight();
+      int y = 600 - g.getFontMetrics().getHeight();
       String [] temp = new String [5];
       temp = dialogue.split ("/q");
       String text = temp [0];
-      String [] options = new String [4];
+      String [] options = new String [3];
       options [0] = temp [1];
       options [1] = temp [2];
       options [2] = temp [3];
-      options [3] = temp [4];
-    for (String line : text.split("\n"))
+      answer = " ";
+      for (int i = 0; i <= 2; i ++)
+      {
+        if (options [i].indexOf ("/a") >= 0)
+        {
+          String [] t =  options[i].split ("/a");
+          answer = t [1];
+          options[i] = t [0];
+        }
+      }
+      
+      g.drawImage(dialogueBox, 0, 530,800,800, 0,0,1520, 470, null); 
+    for (String line : text.split("/n"))
     {
         g.drawString(line, 50, y += g.getFontMetrics().getHeight());
     }
+    g.drawString("Press the number that coorasponds with your answer:", 50, y += g.getFontMetrics().getHeight());
+    g.drawString("1. " + options [0], 50, y += g.getFontMetrics().getHeight());
+    g.drawString("2. " + options [1], 50, y += g.getFontMetrics().getHeight());
+    g.drawString("3. " + options [2], 50, y += g.getFontMetrics().getHeight());
+    g.drawString("4. " + options [3], 50, y += g.getFontMetrics().getHeight());
     }
+  }
+  
+  public String getAnswer ()
+  {
+    return answer;
   }
   
   //May 24, Michael implemented method

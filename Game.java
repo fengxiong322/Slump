@@ -46,6 +46,7 @@ public class Game extends Canvas implements ActionListener{
   private Door door;
   private long time;
   private int second;
+  boolean rightAnswer;
   
   /** COnstructor sets basic values and initalizes arrays and images
     * @param level the specified level
@@ -62,7 +63,7 @@ public class Game extends Canvas implements ActionListener{
       level2();
     }else if(level == 3){
       level3();
-    
+      
     }else if(level == 4){
       level4();
     }
@@ -95,10 +96,10 @@ public class Game extends Canvas implements ActionListener{
   public void level2(){
     level =2;
     ArrayList <String> dialogue = new ArrayList <String> ();
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
     try {
       createLevel (new BufferedReader(new FileReader ("Levels/Level2-1.txt")), dialogue);
       background = ImageIO.read(new File("Screens/game2.jpg"));
@@ -171,8 +172,8 @@ public class Game extends Canvas implements ActionListener{
     checkNPC = false;
     moveX = 0;
     moveY = 0;
-
-
+    
+    
     time = 0;
     int npcCount = 0;
     obstacles = new ArrayList<Obstacle>();
@@ -184,49 +185,49 @@ public class Game extends Canvas implements ActionListener{
       int i = 0;
       while (line != null)
       {
-	for (i = 0; i <line.length(); i++)
-	{
-	  
-	  switch(line.charAt(i)){
-	    case '@':
-	      obstacles.add(new Platform (i *30, lineCount * 30, 30));
-	      break;
-	    case '\'':
-	      obstacles.add(new InvisPlatform(i*30, lineCount * 30, 30));
-	      break;
-	    case 'd':
-	      obstacles.add(new Door(i*30, lineCount * 30, 60, 90));
-	      break;
-	    case 'W'://A white block, meaning clear.
-	      obstacles.add(new StateSwitchPlatform(i*30, lineCount * 30, 30, true));
-	      break;
-	    case 'B'://A black block, cannot exist with white blocks.
-	      obstacles.add(new StateSwitchPlatform(i*30, lineCount * 30, 30, false));
-	      break;
-	    case 'N':
-	      obstacles.add (new NPC (i*30, lineCount * 30 + 5, 30, 85, ImageIO.read(new File("Player/idleLeft.png")), dialogue.get (npcCount)));
-	      npcCount++;
-	      break;
-	    case 'n':
-	      obstacles.add (new NPC (i*30, lineCount * 30 + 5, 30, 85, ImageIO.read(new File("Player/idleLeft.png")), dialogue.get (npcCount)));
-	      npcCount++;
-	      break;
-	    default:
-	      if((int)line.charAt(i) >0 && (int)line.charAt(i) <10)//left
-	      obstacles.add(new Projectile(i*30, lineCount *30, false, (int)line.charAt(i) - 64, 0));
-	      if(line.charAt(i)-'0' >0 && line.charAt(i)-'0' <10){//right
-		obstacles.add(new Projectile(i*30, lineCount *30, true, Integer.parseInt(line.charAt(i) + ""), edgeX));
-	      }
-	      
-	  }
-	}
-	line = br.readLine();
-	lineCount++;
+        for (i = 0; i <line.length(); i++)
+        {
+          
+          switch(line.charAt(i)){
+            case '@':
+              obstacles.add(new Platform (i *30, lineCount * 30, 30));
+              break;
+            case '\'':
+              obstacles.add(new InvisPlatform(i*30, lineCount * 30, 30));
+              break;
+            case 'd':
+              obstacles.add(new Door(i*30, lineCount * 30, 60, 90));
+              break;
+            case 'W'://A white block, meaning clear.
+              obstacles.add(new StateSwitchPlatform(i*30, lineCount * 30, 30, true));
+              break;
+            case 'B'://A black block, cannot exist with white blocks.
+              obstacles.add(new StateSwitchPlatform(i*30, lineCount * 30, 30, false));
+              break;
+            case 'N':
+              obstacles.add (new NPC (i*30, lineCount * 30 + 5, 30, 85, ImageIO.read(new File("Player/idleLeft.png")), dialogue.get (npcCount)));
+              npcCount++;
+              break;
+            case 'n':
+              obstacles.add (new NPC (i*30, lineCount * 30 + 5, 30, 85, ImageIO.read(new File("Player/idleLeft.png")), dialogue.get (npcCount)));
+              npcCount++;
+              break;
+            default:
+              if((int)line.charAt(i) >0 && (int)line.charAt(i) <10)//left
+              obstacles.add(new Projectile(i*30, lineCount *30, false, (int)line.charAt(i) - 64, 0));
+              if(line.charAt(i)-'0' >0 && line.charAt(i)-'0' <10){//right
+                obstacles.add(new Projectile(i*30, lineCount *30, true, Integer.parseInt(line.charAt(i) + ""), edgeX));
+              }
+              
+          }
+        }
+        line = br.readLine();
+        lineCount++;
       }
       edgeY = (lineCount) * 30;
       map =  new Map(i, lineCount);
       for(Obstacle j : obstacles)
-	    map.add(j, j.getX()/30, j.getY()/30);
+        map.add(j, j.getX()/30, j.getY()/30);
       
       canvas = new BufferedImage(edgeX, edgeY, BufferedImage.TYPE_INT_RGB);
       clear = new BufferedImage(edgeX, edgeY, BufferedImage.TYPE_INT_RGB);
@@ -287,11 +288,11 @@ public class Game extends Canvas implements ActionListener{
     player.jump(moveY);
     for(Obstacle i : obstacles){
       if(i instanceof Door && i.getBounds().intersects(player.getBounds())){
-	timer.stop();
-	gameEnd(g);
-	return;
+        timer.stop();
+        gameEnd(g);
+        return;
       }else if(i instanceof InvisPlatform)
-	((InvisPlatform)i).setPlayer(player.getBounds());
+        ((InvisPlatform)i).setPlayer(player.getBounds());
       else if (i instanceof StateSwitchPlatform && time%3 ==0 && second ==0){
         ((StateSwitchPlatform)i).flipType();
         Rectangle tempRect = i.getBounds();
@@ -301,13 +302,13 @@ public class Game extends Canvas implements ActionListener{
         else
           i.setOn(((StateSwitchPlatform)i).getType());
       }else if(i instanceof Projectile && i.getBounds().intersects(player.getBounds())){
-	try{
-	  Thread.sleep (1000);
-	}
-	catch (Exception e)
-	{
-	}
-	respawn();
+        try{
+          Thread.sleep (1000);
+        }
+        catch (Exception e)
+        {
+        }
+        respawn();
       }
       i.update(g1);//Updates to a new position
     }
@@ -334,12 +335,12 @@ public class Game extends Canvas implements ActionListener{
       //added checking for npc and talking May 22, 2019 - michael
       if(checkNPC && i instanceof NPC)
       {
-	if (Math.abs (player.getX() - i.getX()) <= 33 && Math.abs (player.getY() - i.getY()) <= 102)
-	{
-	  ((NPC) i).speak (g2);
-	  i.setOn(false);
-	  
-	}
+        if (Math.abs (player.getX() - i.getX()) <= 33 && Math.abs (player.getY() - i.getY()) <= 102)
+        {
+          ((NPC) i).speak (g2);
+          i.setOn(false);
+          
+        }
       }
     }
     g2.drawString("Your Score: " + time, 100, 100);
@@ -380,25 +381,26 @@ public class Game extends Canvas implements ActionListener{
     public void keyPressed(KeyEvent event){
       int ch = event.getKeyCode();//Keep track of key presses
       if (checkNPC = true) {
-	checkNPC = false;
+        if(ch == KeyEvent.VK_UP)
+        checkNPC = false;
       }
       if(ch == KeyEvent.VK_UP || ch == KeyEvent.VK_W){
-	moveY = 15;
+        moveY = 15;
       }else if(ch == KeyEvent.VK_LEFT|| ch == KeyEvent.VK_A){
-	moveX = -4;
+        moveX = -4;
       }else if(ch == KeyEvent.VK_RIGHT || ch == KeyEvent.VK_D){
-	moveX = 4;
+        moveX = 4;
       }
       else if (ch == KeyEvent.VK_DOWN || ch == KeyEvent.VK_S)
       {
-	checkNPC = true;
+        checkNPC = true;
       }
       else if(ch == KeyEvent.VK_ESCAPE){
         timer.stop();
-	     el.exit();
+        el.exit();
       }
       if(ch == KeyEvent.VK_R){
-	respawn();
+        respawn();
       }
       
     }
@@ -407,13 +409,13 @@ public class Game extends Canvas implements ActionListener{
     public void keyReleased(KeyEvent event){
       int ch = event.getKeyCode();//Keep track of key presses
       if(ch == KeyEvent.VK_UP || ch == KeyEvent.VK_W){
-	moveY = 0;
+        moveY = 0;
       }else if(ch == KeyEvent.VK_LEFT|| ch == KeyEvent.VK_A){
-	if(moveX<0)
-	  moveX = 0;
+        if(moveX<0)
+          moveX = 0;
       }else if(ch == KeyEvent.VK_RIGHT || ch == KeyEvent.VK_D){
-	if(moveX>0)
-	  moveX = 0;
+        if(moveX>0)
+          moveX = 0;
       }
     }
   }
