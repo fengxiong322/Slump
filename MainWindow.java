@@ -21,13 +21,16 @@ import java.io.*;
  * Modifications: May 30, 2019, Michael Zhou, Total time: 0.5 hours
  * added images for quit screen and highscore screen
  */
-public class MainWindow extends JFrame implements ExitListener {
-  Game gameScreen;
-  HighScore highScore;
-  String curScreen;
-  int size;
-  int hover;
-  BufferedImage canvas;
+public class MainWindow extends JFrame implements ExitListener, ActionListener {
+  private Game gameScreen;
+  private HighScore highScore;
+  private String curScreen;
+  private int size;
+  private int hover;
+  private BufferedImage canvas;
+  private boolean settingUp;
+  private float alpha;
+  private Timer timer;
   
   //May 10, Created the constructor with its general structure, Feng
   public MainWindow(){
@@ -37,9 +40,13 @@ public class MainWindow extends JFrame implements ExitListener {
 //    add(t);
 //    pack();
 //    remove (t);
-    curScreen = "menu";
+    settingUp = true;
+    timer = new Timer(20, this);
+    timer.setInitialDelay(30);
+    timer.start();
+    curScreen = "";
     canvas = new BufferedImage(811, 821, BufferedImage.TYPE_INT_RGB);
-    setSize(811, 821);//Sets the size May 24, modified to set a defualt screen size so cordinates do not change, Michael Zhou
+    setSize(811, 821);//Sets the size May 24, modified to set a default screen size so cordinates do not change, Michael Zhou
     setResizable(false);
     addMouseMotionListener(new MouseMotionListener(){
       public void mouseDragged (MouseEvent e)
@@ -272,11 +279,47 @@ public class MainWindow extends JFrame implements ExitListener {
     gameScreen.requestFocusInWindow();
     repaint();
   }
+
+  public void setup(Graphics g){
+    try{
+      BufferedImage image = ImageIO.read(new File("Screens/companylogo.png"));
+      BufferedImage screen = new BufferedImage(800, 800, BufferedImage.TYPE_INT_RGB);
+    Graphics g1 = screen.getGraphics();
+      Graphics2D g2d = (Graphics2D) g.create();
+      g2d.setComposite(AlphaComposite.SrcOver.derive(alpha));
+    g1.setColor(new Color(255, 255, 255));
+    g1.fillRect(0, 0, 800, 800);
+    g1.drawImage(image, 0, 0, 800, 800, null);
+    g2d.drawImage(screen, 0, 0, null);
+  }catch(IOException e){}
+  }
+
+  public void actionPerformed(ActionEvent evt) {
+    alpha = alpha + 0.01f;
+    if(alpha > 1f){
+      timer.stop();
+      timer = null;
+      settingUp = false;
+      curScreen = "menu";
+      repaint();
+    }else{
+      timer.restart();
+      repaint();
+    }
+  }
   
   /**
    * Set screen to a level
    */
   public void newGame(int level){//Implemented new level, Feng May 10 1 min
+    if (gameScreen != null){
+      System.out.println(gameScreen ==null);
+      int dialogButton = JOptionPane.YES_NO_OPTION;
+      int dialogResult = JOptionPane.showConfirmDialog (null, "Are you sure you would like to start a new game? Your previous game data will be lost!","Warning",dialogButton);
+      if(dialogResult != JOptionPane.YES_OPTION){
+        return;
+    }
+  }
     curScreen = "game";
     gameScreen = new Game(level, this);
     add(gameScreen);
@@ -312,6 +355,10 @@ public class MainWindow extends JFrame implements ExitListener {
    * Michael - added the if statements to change between all the screens as well as imported the images 10 mins, May 24, 2019
    */
   public void paint(Graphics g){//Implemented paint, Feng May 10 30 min
+    if(settingUp){
+      setup(g);
+      return;
+    }
     Graphics g2 = canvas.getGraphics();
     BufferedImage background = null;
     try {
@@ -351,6 +398,11 @@ public class MainWindow extends JFrame implements ExitListener {
         
         g2.drawImage(cave, 0, 20, 811, 821, 0,0,cave.getWidth(), cave.getHeight(), null);
         g2.drawImage(background, 0, 20,811, 821, 0,0,background.getWidth(), background.getHeight(), null);
+        if(gameScreen != null){
+          g2.setFont(new Font("SansSerif", Font.PLAIN, 20));
+          String temp ="Your Current Score: " + gameScreen.getTotalScore();
+          g2.drawString(temp, 550, 700);
+        }
         
       }else if(curScreen.equals("instructions1")){ //michael - added image and option  May 24, 2019 5 mins
         

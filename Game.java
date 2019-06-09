@@ -327,6 +327,14 @@ public class Game extends Canvas implements ActionListener{
     timer.start();
     
   }
+
+  public long getTotalScore(){
+    long score = 0;
+    for(int i = 0; i < 5; i ++){
+      score += finished[i];
+    }
+    return score;
+  }
   
   /** Sets up the player spawn location
     *
@@ -362,7 +370,7 @@ public class Game extends Canvas implements ActionListener{
       gameOver = true;
       try{
         g.drawImage(ImageIO.read(new File("Screens/endScreen.png")), 0, 0, 800, 800, null);
-        g.drawString(finished[level-1]+"", 100, 100);
+        g.drawString(getTotalScore()+"", 100, 100);
         String name = JOptionPane.showInputDialog(this, "Your Name:");
         if(name == null){
           name = "You";
@@ -370,6 +378,7 @@ public class Game extends Canvas implements ActionListener{
         if(name.length() >= 13)
           name = name.substring(0, 13);
         g.drawString(name, 100, 200);
+        addScore(name, getTotalScore());
       }catch(IOException e){}
       addMouseListener(new MouseAdapter(){
         public void mousePressed(MouseEvent me){
