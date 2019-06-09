@@ -262,7 +262,11 @@ public class MainWindow extends JFrame implements ExitListener {
   public void exit(){//Implemented runs exit from the Exit Listener, Feng May 10 1 min
     if(curScreen.equals( "game") || curScreen.equals("resume")){
       remove(gameScreen);
-      curScreen = "resume";
+      if(gameScreen.getEnd()){
+        curScreen = "game";
+        gameScreen = null;
+      }else
+        curScreen = "resume";
     }
     else if(curScreen.equals("highscore")){
       remove(highScore);

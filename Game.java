@@ -57,6 +57,7 @@ public class Game extends Canvas implements ActionListener{
     setSize(800, 800);
     level = l;
     this.el = el;
+    time = 0;
     if(level == 1){
       level1();
     }else if(level == 2){
@@ -70,7 +71,7 @@ public class Game extends Canvas implements ActionListener{
     else if(level == 5){
       level5();
     }
-    int second = 0;
+    second = 0;
   }
   /** Sets up the first level
     * Changelog
@@ -173,8 +174,6 @@ public class Game extends Canvas implements ActionListener{
     moveX = 0;
     moveY = 0;
     
-    
-    time = 0;
     int npcCount = 0;
     obstacles = new ArrayList<Obstacle>();
     int lineCount = 0;
@@ -273,8 +272,27 @@ public class Game extends Canvas implements ActionListener{
       level3();
       timer.restart();
     }else{
-      //Add goodbye and display score
-      el.exit();
+      gameOver = true;
+      try{
+        g.drawImage(ImageIO.read(new File("Screens/Highscores.jpg")), 0, 0, 800, 800, null);
+        g.drawString(time+"", 100, 100);
+        String name = JOptionPane.showInputDialog(this, "Your Name:");
+        if(name == null){
+          name = "You";
+        }
+        if(name.length() >= 13)
+          name = name.substring(0, 13);
+        g.drawString(name, 100, 200);
+      }catch(IOException e){}
+      addMouseListener(new MouseAdapter(){
+        public void mousePressed(MouseEvent me){
+          int mouseX = me.getX();
+          int mouseY = me.getY();
+          if(mouseX>238 && mouseY> 340 && mouseX < 548 && mouseY < 437){
+            el.exit();
+          }
+        }
+      });
     }
   }
   
@@ -349,6 +367,10 @@ public class Game extends Canvas implements ActionListener{
     g1.dispose();
     g2.dispose();
   }
+
+  public boolean getEnd(){
+    return gameOver;
+  }
   
   public void actionPerformed(ActionEvent e) {//Added an action listener for the Timer, Feng Xiong May 16 10min
     //update new positions
@@ -402,7 +424,6 @@ public class Game extends Canvas implements ActionListener{
       if(ch == KeyEvent.VK_R){
         respawn();
       }
-      
     }
     
     @Override

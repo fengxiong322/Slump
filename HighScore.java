@@ -63,7 +63,10 @@ public class HighScore extends Canvas{
 		try{
 			BufferedReader br = new BufferedReader(new FileReader(information));
 			for(int i = 100; i < 800; i+=100){
-				g.drawString(br.readLine(), 20, i);
+				String temp = br.readLine();
+				if(temp == null)
+					break;
+				g.drawString(temp, 20, i);
 				g.drawString(br.readLine(), 400, i);
 			}
 		}catch(IOException e){}
