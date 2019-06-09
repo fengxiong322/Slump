@@ -31,10 +31,8 @@ public class HighScore extends Canvas{
       public void mousePressed(MouseEvent me){
         int x = me.getX();
         int y = me.getY();
-        //added coord detection for testing
-        System.out.println(x + " " + y);
         //added navigation between screens - Michael Zhou, May 24, 2019 5mins
-          if(x>344 && y> 691 && x < 598 && y < 320)
+          if(x>344 && y> 691 && x < 477 && y < 810)
           {
           	el.exit();
           }
@@ -51,9 +49,7 @@ public class HighScore extends Canvas{
 		try{
 			directory.mkdirs();
 			if(information.createNewFile())
-				System.out.println("file create");
-			else
-				System.out.println("File already exists");
+				JOptionPane.showMessageDialog(null, "A new file has been created for you at " + directory.getAbsolutePath());
 	}catch(IOException e){
 	}
 	}

@@ -308,6 +308,45 @@ public class Game extends Canvas implements ActionListener{
       });
     }
   }
+
+  private void addScore(String name, long score){
+        File directory = new File(System.getProperty("user.home") + "/slump");
+    File information = new File(System.getProperty("user.home") + "/slump/highscores.txt");
+    try{
+      directory.mkdirs();
+      if(information.createNewFile())
+        JOptionPane.showMessageDialog(null, "A new file has been created for you at " + directory.getAbsolutePath());
+      BufferedReader br = new BufferedReader(new FileReader(information));
+            String[] fileLines = new String [20];
+      for (int i = 0 ; i < 20 ; i++)
+      fileLines [i] = br.readLine ();
+      br.close ();
+      PrintWriter pw = new PrintWriter (new FileWriter ("scores.lexd"));
+      for (int i = 0 ; i < 20 ; i += 2)
+      {
+    if (fileLines [i] == null)
+    {
+        pw.println (name);
+        pw.println (score);
+        break;
+    }
+    if (Integer.parseInt (fileLines [i + 1]) < score)
+    {
+        pw.println (fileLines [i]);
+        pw.println (fileLines [i + 1]);
+    }
+    else
+    {
+        pw.println (name);
+        pw.println (score);
+        pw.println (fileLines [i]);
+        pw.println (fileLines [i + 1]);
+        break;
+    }
+  }
+  }catch(IOException e){
+  }
+  }
   
   
   public void update(Graphics g){//The update loop, added the logic, Feng Xiogn May 15 2 hours

@@ -27,6 +27,7 @@ public class MainWindow extends JFrame implements ExitListener {
   String curScreen;
   int size;
   int hover;
+  BufferedImage canvas;
   
   //May 10, Created the constructor with its general structure, Feng
   public MainWindow(){
@@ -37,7 +38,7 @@ public class MainWindow extends JFrame implements ExitListener {
 //    pack();
 //    remove (t);
     curScreen = "menu";
-    
+    canvas = new BufferedImage(811, 821, BufferedImage.TYPE_INT_RGB);
     setSize(811, 821);//Sets the size May 24, modified to set a defualt screen size so cordinates do not change, Michael Zhou
     setResizable(false);
     addMouseMotionListener(new MouseMotionListener(){
@@ -170,10 +171,9 @@ public class MainWindow extends JFrame implements ExitListener {
           }
         }else if(curScreen.equals("highScore")){
           openHighScore();
-        }else if (curScreen.equals ("instructions"));
+        }else if (curScreen.equals ("instructions"))
         if(x>361 && y> 709 && x < 487 && y < 786)
           openMenu ();
-        //System.out.println (curScreen);
       }
       
     });
@@ -279,8 +279,9 @@ public class MainWindow extends JFrame implements ExitListener {
       }else
         curScreen = "resume";
     }
-    else if(curScreen.equals("highscore")){
+    else if(curScreen.equals("highScore")){
       remove(highScore);
+      highScore = null;
       curScreen = "menu";
     }
     setSize(811, 821);
@@ -294,6 +295,7 @@ public class MainWindow extends JFrame implements ExitListener {
    * Michael - added the if statements to change between all the screens as well as imported the images 10 mins, May 24, 2019
    */
   public void paint(Graphics g){//Implemented paint, Feng May 10 30 min
+    Graphics g2 = canvas.getGraphics();
     BufferedImage background = null;
     try {
       BufferedImage cave = ImageIO.read(new File("Screens/cave.png"));
@@ -311,8 +313,8 @@ public class MainWindow extends JFrame implements ExitListener {
         if (hover == 5)
           background = ImageIO.read(new File("Screens/menu5.png"));
         
-        g.drawImage(cave, 0, 20, 811, 821, 0,0,cave.getWidth(), cave.getHeight(), null);
-        g.drawImage(background, 0, 20, 811, 821,0,0,background.getWidth(), background.getHeight(), null);
+        g2.drawImage(cave, 0, 20, 811, 821, 0,0,cave.getWidth(), cave.getHeight(), null);
+        g2.drawImage(background, 0, 20, 811, 821,0,0,background.getWidth(), background.getHeight(), null);
         
       }else if(curScreen.equals("level") || curScreen.equals("resume")){ //michael - added image and option   May 24, 2019 5 mins
         if (hover == 0)
@@ -330,13 +332,13 @@ public class MainWindow extends JFrame implements ExitListener {
         if (hover == 6)
           background = ImageIO.read(new File("Screens/levels6.png"));
         
-        g.drawImage(cave, 0, 20, 811, 821, 0,0,cave.getWidth(), cave.getHeight(), null);
-        g.drawImage(background, 0, 20,811, 821, 0,0,background.getWidth(), background.getHeight(), null);
+        g2.drawImage(cave, 0, 20, 811, 821, 0,0,cave.getWidth(), cave.getHeight(), null);
+        g2.drawImage(background, 0, 20,811, 821, 0,0,background.getWidth(), background.getHeight(), null);
         
       }else if(curScreen.equals("instructions")){ //michael - added image and option  May 24, 2019 5 mins
         
         background = ImageIO.read(new File("Screens/Instructions.png"));
-        g.drawImage(background, 0, 20, 811, 821,0,0,background.getWidth(), background.getHeight(), null);
+        g2.drawImage(background, 0, 20, 811, 821,0,0,background.getWidth(), background.getHeight(), null);
         
       }else if(curScreen.equals("quit")){ //michael - added image and option  May 24, 2019 5 mins
         
@@ -345,7 +347,7 @@ public class MainWindow extends JFrame implements ExitListener {
         int dialogButton = JOptionPane.YES_NO_OPTION;
         int dialogResult = JOptionPane.showConfirmDialog (null, "Are you sure you would like to quit?","Warning",dialogButton);
         if(dialogResult == JOptionPane.YES_OPTION){
-          g.drawImage(background, 0, 20, 811, 821,0,0,background.getWidth(), background.getHeight(), null);
+          g2.drawImage(background, 0, 20, 811, 821,0,0,background.getWidth(), background.getHeight(), null);
           try{
             Thread.sleep(10000);
           }catch(Exception e){}
@@ -356,11 +358,13 @@ public class MainWindow extends JFrame implements ExitListener {
       }else if(curScreen.equals("highScore")){ //michael - added image and option   May 24, 2019 5 mins
         
         background = ImageIO.read(new File("Screens/Highscores.jpg")); //May 30, 2019, Michael Zhou added image
-        g.drawImage(background, 0, 20, 811, 821, 0,0,background.getWidth(), background.getHeight(), null);
+        g2.drawImage(background, 0, 20, 811, 821, 0,0,background.getWidth(), background.getHeight(), null);
         
       }
     } catch (IOException e) {
     }
+    g.drawImage(canvas, 0, 0, 811, 821, null);
+    g.dispose();
   }
   
 //      public static class TestPane extends JPanel {
