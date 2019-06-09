@@ -86,7 +86,11 @@ public class Game extends Canvas implements ActionListener{
     dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
     dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
     dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Welcome player! Use the arrow keys or WASD keys to move around. You can talk "
+                  +"/n to others like you talked to me by using the down or S key. If u ever "
+                  +"/nwant to leave, you can press escape, you can also press the r key to restart "
+                  +"/nthe level. Your goal in each level is to reach the brown door. The one in this"
+                  +"/nlevel is over to the right");
     dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
     dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
     dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
