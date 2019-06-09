@@ -47,7 +47,7 @@ public class NPC extends Obstacle {
     g.setFont(new Font("SansSerif", Font.PLAIN, 20)); 
     if (dialogue.indexOf ("/q") < 0)
     {
-      dialogue += + "\n\nPress any key to close...";
+      dialogue += "\n\nPress any key to close...";
       g.drawImage(dialogueBox, 0, 600,800,800, 0,0,1520, 470, null); 
     int y = 670 - g.getFontMetrics().getHeight();
     for (String line : dialogue.split("\n"))

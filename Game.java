@@ -47,6 +47,7 @@ public class Game extends Canvas implements ActionListener{
   private long time;
   private int second;
   boolean rightAnswer;
+  private boolean[] finished;
   
   /** COnstructor sets basic values and initalizes arrays and images
     * @param level the specified level
@@ -57,6 +58,7 @@ public class Game extends Canvas implements ActionListener{
     setSize(800, 800);
     level = l;
     this.el = el;
+    finished = new boolean[5];
     time = 0;
     if(level == 1){
       level1();
@@ -212,10 +214,13 @@ public class Game extends Canvas implements ActionListener{
               npcCount++;
               break;
             default:
-              if((int)line.charAt(i) >0 && (int)line.charAt(i) <10)//left
+              if((int)line.charAt(i) >0 && (int)line.charAt(i) <10){//left
               obstacles.add(new Projectile(i*30, lineCount *30, false, (int)line.charAt(i) - 64, 0));
+              obstacles.add(new Generator(i*30, lineCount *30, 30));
+            }
               if(line.charAt(i)-'0' >0 && line.charAt(i)-'0' <10){//right
                 obstacles.add(new Projectile(i*30, lineCount *30, true, Integer.parseInt(line.charAt(i) + ""), edgeX));
+                obstacles.add(new Generator(i*30, lineCount *30, 30));
               }
               
           }
@@ -257,21 +262,29 @@ public class Game extends Canvas implements ActionListener{
   public void gameEnd(Graphics g){
     if(level == 1){
       level = 2;
+      finished[0] = true;
       level2();
       timer.restart();
     }else if(level == 2){
       level = 3;
+      finished[1] = true;
       level3();
       timer.restart();
     }else if(level == 3){
-      level = 3;
-      level3();
+      level = 4;
+      finished[2] = true;
+      level4();
       timer.restart();
     }else if(level == 4){
-      level = 3;
-      level3();
+      level = 5;
+      finished[3] = true;
+      level5();
       timer.restart();
     }else{
+      for(int i = 0; i < 4; i++){
+        if(!finished[i])
+          return;
+      }
       gameOver = true;
       try{
         g.drawImage(ImageIO.read(new File("Screens/Highscores.jpg")), 0, 0, 800, 800, null);
@@ -419,6 +432,8 @@ public class Game extends Canvas implements ActionListener{
       }
       else if(ch == KeyEvent.VK_ESCAPE){
         timer.stop();
+        map = null;
+        obstacles = null;
         el.exit();
       }
       if(ch == KeyEvent.VK_R){

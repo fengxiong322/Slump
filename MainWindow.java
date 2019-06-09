@@ -216,6 +216,7 @@ public class MainWindow extends JFrame implements ExitListener {
    */
   public void openLevel(){//Implemented open level selection, Feng May 10 1 min
     curScreen = "level";
+    gameScreen = null;
     repaint();
   }
   /**
