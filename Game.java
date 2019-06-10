@@ -86,7 +86,7 @@ public class Game extends Canvas implements ActionListener{
     dialogue.add ("But sometimes, you might encounter failure in your journey whether its "
                    +"/nbecause you failed a test, an assignment, or lost a soccer game, it okay "
                    +"/nbecause everyone has been through times like this. Sometimes we just get" 
-                   +"/nstuck, in a slump?");
+                   +"/nstuck, in a slump…");
     dialogue.add ("In the journey of life you will encounter all sorts of ups and downs..."
                    +"/nWe all have our successes which we hold dear, and we all make mistakes "
                    +"/nthat we can learn from.");
@@ -97,7 +97,7 @@ public class Game extends Canvas implements ActionListener{
                +"/nthe level. Your goal in each level is to reach the brown door. The one in "
                +"/nthis level is over to the right");
     dialogue.add ("Use your up arrow and overome the obstacle ahead.");
-    dialogue.add ("Hey, I have just failed my science test, what should I ask myself?/qWhy did I fail, is it because I?m a failure? /a What?s one thing I can learn from this? What is my next plan of action?/qShould I go home, play video games, and just forget about this?/qHmm? What science test?");             
+    dialogue.add ("Hey, I have just failed my science test, what should I ask myself?/qWhy did I fail, is it because I’m a failure? /a What’s one thing I can learn from this? What is my next plan of action?/qShould I go home, play video games, and just forget about this?/qHmm? What science test?");             
     dialogue.add ("I missed the last shot in my soccer game and my team lost. What should I do?/q Go home and eat junk food to get rid of your worries /q Leave the soccer team/q Blame the rest of the team /aTalk to my friends and family");
     dialogue.add ("I tried my best to study for the test but I was distracted by video game. /n I failed the test, what do I take from this situation? /a I should learn from my mistakes and spend time more wisely /q I am a failure and I should quit school /q I should skip all future tests /q Blame your parents");
      dialogue.add ("Good job, you completed the first level! I hope you talked to most of the/ncharacters in the level for some sweet score points.");
@@ -111,8 +111,8 @@ public class Game extends Canvas implements ActionListener{
     dialogue.add ("The first step to overcoming this is accepting what happened and how you feel"
                    +"/nabout it. Denial will only leave you stuck around here longer.");
     dialogue.add ("You make can a mistake, have setback or you simply fail. I know its not be "
-                   +"/nmost fun situation. You can?t avoid it unless you avoid doing anything at all.");
-    dialogue.add ("It's not easy, leaving a slump, you will face all sorts of challenges? but "
+                   +"/nmost fun situation. You can’t avoid it unless you avoid doing anything at all.");
+    dialogue.add ("It\'s not easy, leaving a slump, you will face all sorts of challenges… but "
                    +"/nthere will always be people out there to help you. Talk to as many characters"
                    +"/nas you can and you will not only learn many things, but get some sweet score "
                   +"/npoints doing so. ");
@@ -137,19 +137,24 @@ public class Game extends Canvas implements ActionListener{
   public void level2(){
     level =2;
     ArrayList <String> dialogue = new ArrayList <String> ();
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("You forgot to bring your math assignment to school since you were watching TV /nWhat do you say to your teacer /qIt\'s my mothers fault for not reminding me /qIt\'s all your fault for not reminding me /aI am sorry, I will bring it tomorrow /qIt\'s my brothers fault for distracting me");
+    dialogue.add ("Which of the following is not an exmaple of a blame /q You\'re the one making it hard on me /aI made a mistake, but I can set things right /q This is all your fault /qEverything is my fault, I\'m a failure");
+    dialogue.add ("You didn\'t practice for the last basketball game and as a result, you didnt /n perform too well. What do you say to your teamates? /qIt\'s my teams fault for not passing enough /aIt\'s my fault, I didn\'t practice enough, I will practice for the next game/qIt\'s the coaches fault, he didn\'t teach us right /qI will quit the team");
+    dialogue.add ("Your mom asked you to do the dishes but you forgot because you were watching /n Youtube. What do you tell her? /aSorry, I forgot, I will do them right now /qWhat dishes? /qI had a lot of homework to do.../qI forgot because, my bro was listening to loud music");
+    dialogue.add ("I failed the english quiz, what do I say to my parents? /qThe teacher ran out of pens, the quizes arn\'t marked /qIt\'s the teacher\'s fault for not teaching us properly /qIt\'s your fault for not making me study /aI was playing video games, I will study harder for the next one");
+    dialogue.add ("I lost my assignment, what do I tell my history teacher? /qThe dog ate my homework /qMy brother distracted me too much yesterday /qYou didn\'t teach me properly so I couldn\'t do it /aI lost my assingment, I will hand another in tomorrow");    
+    dialogue.add ("Dont give up! You can do this! I believe in you!");
+    dialogue.add ("You will soon meet people with questions about certain situations, talk to"
+                   +"/nas many of them as you can and help them correctly to gain more score");
+    dialogue.add ("Welcome to the first level of your journey and climb to get out of this slump "
+                   +"/nOne of the challenges you will face when trying to leave a slump are blaming" 
+                   +"/nand excuses. When you begins to blame, you hold other people responsible for" 
+                   +"/nyour own emotional pain. You may also make excuses, to help you shift the " 
+                   +"/nblame onto others.");
+    dialogue.add ("In this level, you will encounter projectiles which represent blame and "
+                   +"/nexcuses. Be very careful and patient because if you get hit by these, "
+                   +"/nyou will have to start all over again.");
+    dialogue.add ("Dont give up! You can do this!");
     try {
       createLevel (new BufferedReader(new FileReader ("Levels/Level2-1.txt")), dialogue);
       background = ImageIO.read(new File("Screens/game2.jpg"));
@@ -167,23 +172,30 @@ public class Game extends Canvas implements ActionListener{
   public void level3(){
     level =3;
     ArrayList <String> dialogue = new ArrayList <String> ();
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("Which of the following are ways to overcome low-self esteem: /qActs of kindess /qOpen mindedness /qSetting goals/aAll of the above");
+    dialogue.add ("You feel down and you feel like your actions are pointless. What ist this /nA sign of? /aLow self-esteem /qThe flu /qA sunburn /qsore throat");
+    dialogue.add ("You just failed a test and you are scared you will not do well on the next one /n What should you do? /qSkip school on the day of the test /qCall in sick /qKeep it out of your mind /aBe well prepared, study more");   
+    dialogue.add ("You did not proform well in the last drama play. You are scared that you will not /ndo well on the next performance. What do you do? /qBeg your parents to let you stay home /qCall in sick on the day of /aAsk your teacher for extra lessons and practice /qLeave the drama team");
+    dialogue.add ("You have to bake a cake for your parents, but you are scared that they will not /n enjoy it. What can you do? /a Practice baking and be prepared /qPretend to have a tummy ache /qAvoid thinking about it /qWorry about it");
+    dialogue.add ("Another way to overcome low self esteem is to help out those that are"
+                   +"/naround you. An act of kindness can go a long way for those around you"
+                   +"/nand for yourself as well. You will make someome\'s day and feel better"
+                   +"/na sense of confidence and accomplishment.");
+    dialogue.add ("Another way to overcome this mentality is to set goals for your self."
+                   +"/nThese goals should be realistic. Overcoming each goal will provide you with"
+                   +"/nan sense of accomplishment and confidence. Seting and achieving at least one"
+                   +"/ngoal each day will help you gain much more confidence");
+    dialogue.add ("You can do it, have faith in yourself! You cannot run away from your problems");
+    dialogue.add ("One of the ways to overcome this low-self esteem is to have a less"
+                   +"/njudgemental mentality. Don\'t rate and judge everything, but rather"
+                   +"/nkeep an open mind and accept things as they present themselves.");
+    dialogue.add ("Another challenge you will face is your self doubt. After failing and getting"
+                   +"/nin a slump, you will be more likely to doubt yourself and not believe in your "
+                   +"/nopnions. Your overall self esteem might be lower as well.");
+    dialogue.add ("In this level you will encounter invisible platforms that represent your "
+                   +"/ndoubt. However, they will show themselves when you get near them. Stay "
+                   +"/nconfident and believe in yourself and you will be able to complete this level "
+                   +"/nand move on upwards! Also be prepared!");
     try {
       createLevel (new BufferedReader(new FileReader ("Levels/Level2-2.txt")), dialogue);
       background = ImageIO.read(new File("Screens/game1.jpg"));
@@ -200,20 +212,31 @@ public class Game extends Canvas implements ActionListener{
   public void level4(){
     level =4;
     ArrayList <String> dialogue = new ArrayList <String> ();
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("You fail a test in your Math course, what do you take from the situation? /qYou will never be able to pass the course /qYou are a failure /qYou did not score perfecet /qIt was just one mark out of many dozens");
+    dialogue.add ("You miss one shote in a soccer game but score two goal, what do you take /n from the situation? /qYou missed a shot /qYou did not perform well become you missed a shot/aYou scored two goals and won the match/qThe enemy team wasn\'t trying/qYou did not score 100 percent of your shots");
+    dialogue.add ("You look at a situation. What should you see/set a goal for? /qThe absolute worst outcome /qThe perfect outcome /aThe better end of the possible out comes /qWhat situation?");
+    dialogue.add ("You hit a home run in a base ball game but struck out twice, what do you/ntake from the situation? /qYou did not do well because you struck out twice /aYou did well and hit a homerun /qYou didn\'t every homerun /qThe enemy team was going easy on us");
+    dialogue.add ("Another way to overcome this is by challanging your negative thoughts. Ask"
+                   +"/nyour self is this really a realistic outcome, is this a realisitic image"
+                   +"/nof the situation. This will allow you the see situations in a more realistic"
+                   +"/nperspective.");
+    dialogue.add ("Another way to overcome this mentality is to add a grading scale for outcomes"
+                   +"/nFor example, if you missed a shot in a basketball game, you still landed,"
+                   +"/neighty percent of the other shots, so you only missed 20 percent. This will"
+                   +"/nhelp you stop viewing situations in two extreme paths");
+    dialogue.add ("You just missed a few jumps, it is no big deal!");
+    dialogue.add ("The best way to overcome polarized thinking is to understand that there is a"
+                   +"/nmiddle ground in every situation. There is always grey between the black and"
+                   +"/nwhite. For getting about this middle ground is what leads to extremes");
+    dialogue.add ("In this level you will encounter black and white platforms that will "
+                   +"/nconstantly be switching. These represent the best and worst possible outcome."
+                   +"/nFinding a balance of both will lead you to your goal.");
+    dialogue.add ("Another challenge you will face in a slump is an extreme mentality every "
+                   +"/nsituation (called polarized thinking). In any situation, you might only see"
+                   +"/nthe absolutes, such as the best possible outcome and the worst filtering out "
+                   +"/nall of the outcomes in between. Keeping a balance and seeing all the different"
+                   +"/npossible outcomes.");
+    dialogue.add ("Don\'t worry, you can do this! Climp up out of this slump!");
     try {
       createLevel (new BufferedReader(new FileReader ("Levels/Level2-3.txt")), dialogue);
       background = ImageIO.read(new File("Screens/game1.jpg"));
@@ -231,18 +254,20 @@ public class Game extends Canvas implements ActionListener{
   public void level5(){
     level =5;
     ArrayList <String> dialogue = new ArrayList <String> ();
-    dialogue.add ("aasd /q /q /q");
-    dialogue.add ("aasd /q /q /q");
-    dialogue.add ("aasd /q /q /q");
+    dialogue.add ("You fail your math test because you were studying mostly for your science /ntest, what do you take from the situation? /qYou will never be able to pass math /aYou need to manage your time more wisely, it is just one mark /q What math test?! /qYou failed a test so you are a failure");
+    dialogue.add ("When faced with a situation, what should you focus on? /qThe worst possible outcome /qThe perfect outcome /aThe possibilies in between /qIgnore the situation");
+    dialogue.add ("Did you enjoy this game? /qNo it was terrible /aYes, but it can be improved /qNooo? /qNO");
     dialogue.add ("Finaly we have the last obstacle, polarized thinking!");
-    dialogue.add ("aasd /q /q /q");
-    dialogue.add ("aasd /q /q /q");
-    dialogue.add ("aasd /q /q /q");
+    dialogue.add ("You lost with your artwork in a competition, now you have to present it to the/nclass but you are scared, what do you do?/qAvoid the class /aPrepare, check if you can make your art better /qTell your friend to pretend to be you/qBeg your parents to let you stay home.");
+    dialogue.add ("Which of the following are ways to overcome low-self esteem: /qMaking excuses /qClosed mindedness /aSetting goals/qEat plenty of junk food");
+    dialogue.add ("You did not proform well in the last dance. You are scared that you will not /ndo well on the next performance. What do you do? /qBeg your parents to let you leave the dance team /qBeg your teacher to let you not present /aAsk your teacher for extra lessons and practice /qWhine to your friends and worry");
     dialogue.add ("Now is time for the obstacle of low self esteem");
-    dialogue.add ("aasd /q /q /q");
-    dialogue.add ("aasd /q /q /q");
-    dialogue.add ("aasd /q /q /q");
-    dialogue.add ("In this level, you will encounter all the obstacles that you have encountered before, use everything you have learned to complete this final level and escape the slmup that you are in!");
+    dialogue.add ("I failed the history quiz, what do I say to my parents? /qThe teacher ran out of pencils, the quizes arn\'t marked /qIt\'s the teacher\'s fault for not teaching us properly /qIt\'s the teacher\'s fault for not making me study /aI was watching TV, I will study harder for the next one");
+    dialogue.add ("You failed the english assignment because you had to spend your time on other/nhomework. Who is to blame? /qYour teacher, she didn;t teach you correctly /qYour parents, beacuse they made you do the dishes /aPartly yourself, because you need to manage time better/qYour sister because she was playing music");
+    dialogue.add ("When you are faced with a problem outside  your comfort zone, what do you/ndo? /qRun away /qMake Excuses /qBlame others /aFace the problem and take action");
+    dialogue.add ("In this level, you will encounter all the obstacles that you have encountered"
+                    +"/nbefore, use everything you have learned to complete this final level and"
+                    +"/nescape the slmup that you are in!");
     dialogue.add ("First, comes the challange of blame and excuses...");
     try {
       createLevel (new BufferedReader(new FileReader ("Levels/Level3.txt")), dialogue);
