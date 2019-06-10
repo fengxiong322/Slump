@@ -9,20 +9,36 @@ import javax.imageio.ImageIO;
 import java.io.*;
 import java.util.*;
 
-/**
+/** This class represents the highscores screen in the game
 * @author Feng Xiong, Michael Zhou
 * @version 2.0
 * Total time spent Feng: 1 hour
 * Modifications: Added file management 1 hour May 26
+* Total time spent Michael: 1 hour
+* Modifications: Added file management 1 hour May 31
 */
 public class HighScore extends Canvas{
-	BufferedImage background;
+	/** Background Image
+	*/
+	BufferedImage background; 
+	/** Background Image
+	*/
 	String[] lines;
+	/** Background Image
+	*/
 	String path;
+	/** Background Image
+	*/
 	BufferedReader br;
+	/** Background Image
+	*/
 	ExitListener el;
+	/** Background Image
+	*/
 	File information;
 
+	/** Constructor
+	*/
 	public HighScore(ExitListener el){//Added constructor Feng May 22 1 hour
 		//Reading files Feng May 22 30 min
 		setSize(811, 821);
