@@ -21,7 +21,6 @@ import java.io.*;
  * modified the speak method so the the dialogue box will be properly formaed on the screen
  * made the text properly formated on the screen, if there is a \n the the text will start on a new line as inteneded
  */
-
 public class NPC extends Obstacle {
   private String dialogue;
   private BufferedImage dialogueBox;
@@ -31,6 +30,15 @@ public class NPC extends Obstacle {
   private boolean talked;
   
   //May 24, Michael created constructor for class
+  /**
+   * 
+   * @param x left x coord
+   * @param y top y coord
+   * @param xSize width
+   * @param ySize length
+   * @param image character image
+   * @param text dialog text
+   */
   public NPC (int x, int y, int xSize, int ySize, BufferedImage image, String text) //added constuctor
   {
     super (x, y, xSize, ySize);
@@ -45,6 +53,11 @@ public class NPC extends Obstacle {
   //Modifications: May 29, 2019, Michael Zhou, Total time: 0.5 hours
   //modified the speak method so the the dialogue box will be properly formaed on the screen
   //made the text properly formated on the screen, if there is a \n the the text will start on a new line as inteneded
+  /**
+   * Dialogue pop up
+   *
+   * @param g graphics
+   */
   public void speak (Graphics g) //added speak method for testing
   {//Should speak, and then close the speach bubble
     //modified the speak method so the the dialogue box will be properly formaed on the screen may 29 michael
@@ -98,6 +111,10 @@ public class NPC extends Obstacle {
     }
   }
   
+  /**
+   * Gets the correct answer
+   * 
+   */
   public String getAnswer ()
   {
     return answer;

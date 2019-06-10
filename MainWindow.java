@@ -32,14 +32,12 @@ public class MainWindow extends JFrame implements ExitListener, ActionListener {
   private float alpha;
   private Timer timer;
   
-  //May 10, Created the constructor with its general structure, Feng
-  public MainWindow(){
+  
+  /**
+   * Constructor: creates a new JFrame. This game is built on this.
+   */
+  public MainWindow(){//May 10, Created the constructor with its general structure, Feng
     super("The Slump");
-//    curScreen = "intro";
-//    TestPane t = new TestPane();
-//    add(t);
-//    pack();
-//    remove (t);
     settingUp = true;
     timer = new Timer(20, this);
     timer.setInitialDelay(50);
@@ -48,6 +46,7 @@ public class MainWindow extends JFrame implements ExitListener, ActionListener {
     canvas = new BufferedImage(811, 821, BufferedImage.TYPE_INT_RGB);
     setSize(811, 821);//Sets the size May 24, modified to set a default screen size so cordinates do not change, Michael Zhou
     setResizable(false);
+    //Adds a mouse motion listener for the menu screen
     addMouseMotionListener(new MouseMotionListener(){
       public void mouseDragged (MouseEvent e)
       {}
@@ -201,11 +200,6 @@ public class MainWindow extends JFrame implements ExitListener, ActionListener {
     repaint();
   }
   
-  
-  
-  public void intro ()
-  {
-  }
   /**
    * Set screen to menu
    */
@@ -280,6 +274,10 @@ public class MainWindow extends JFrame implements ExitListener, ActionListener {
     repaint();
   }
 
+
+  /**
+   * This is the intro screen. Only runs at the startup of the game.
+   */
   public void setup(Graphics g){
     try{
       BufferedImage image;
@@ -299,6 +297,9 @@ public class MainWindow extends JFrame implements ExitListener, ActionListener {
   }catch(IOException e){}
   }
 
+  /**
+   * {@inheritDoc}
+   */
   public void actionPerformed(ActionEvent evt) {
     alpha = alpha + 0.01f;
     if(alpha > 2f){
@@ -448,10 +449,9 @@ public class MainWindow extends JFrame implements ExitListener, ActionListener {
   }
  
   /**
-   * Run the game
+   * Runs the game
    */
   public static void main(String[]args){
-    //new FadeImage ();
     new MainWindow();
   }
   
