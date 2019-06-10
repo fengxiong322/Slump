@@ -231,23 +231,21 @@ public class Game extends Canvas implements ActionListener{
   public void level5(){
     level =5;
     ArrayList <String> dialogue = new ArrayList <String> ();
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("aasd /q /q /q");
+    dialogue.add ("aasd /q /q /q");
+    dialogue.add ("aasd /q /q /q");
+    dialogue.add ("Finaly we have the last obstacle, polarized thinking!");
+    dialogue.add ("aasd /q /q /q");
+    dialogue.add ("aasd /q /q /q");
+    dialogue.add ("aasd /q /q /q");
+    dialogue.add ("Now is time for the obstacle of low self esteem");
+    dialogue.add ("aasd /q /q /q");
+    dialogue.add ("aasd /q /q /q");
+    dialogue.add ("aasd /q /q /q");
+    dialogue.add ("In this level, you will encounter all the obstacles that you have encountered
+                   before, use everything you have learned to complete this final level and
+                   escape the slmup that you are in!");
+    dialogue.add ("First, comes the challange of blame and excuses...");
     try {
       createLevel (new BufferedReader(new FileReader ("Levels/Level3.txt")), dialogue);
       background = ImageIO.read(new File("Screens/game1.jpg"));
