@@ -9,7 +9,8 @@ import javax.imageio.ImageIO;
 import java.io.*;
 
 /**
- * @author Michael
+ * This is the NPC class. It is an interactable object that the player can talk to. This part ties the game to the adversity
+ * @author Michael Zhou, Feng Xiong
  * @version 2.0
  * Total time spend Michael: 0.5 hours
  * Modifications: May 24, 2019, Michael Zhou, Total time: 0.5 hours
@@ -27,12 +28,13 @@ public class NPC extends Obstacle {
   private String answer;
   private String [] options;
   private boolean question;
-  private boolean talked = false;
+  private boolean talked;
   
   //May 24, Michael created constructor for class
   public NPC (int x, int y, int xSize, int ySize, BufferedImage image, String text) //added constuctor
   {
     super (x, y, xSize, ySize);
+    talked = false;
     setOn(true);
     setImage(image);
     try{dialogueBox = ImageIO.read(new File("Dialogue/dialogue.png"));}catch(IOException e){}

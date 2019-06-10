@@ -12,6 +12,8 @@ import java.util.*;
 
 /**
  * This is the generator class. It is a platform that represents a "cannon". In the game, it is used to block the projectile spawn point.
+ * @author Michael Zhou, Feng Xiong
+ * @version 4.0
  */
 public class Generator extends Obstacle{
 

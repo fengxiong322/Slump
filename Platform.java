@@ -11,8 +11,8 @@ import java.util.*;
 
 /**
  * This is the standard platform, on which the player can stand on.
- * @author Feng, Michael
- * @version 2.0
+ * @author Feng Xiong, Michael Zhou
+ * @version 4.0
  * Total time spent Feng: 0.75 hours
  * Total time spend Michael: 0.5 hours
  */

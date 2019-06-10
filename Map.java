@@ -12,7 +12,7 @@ import java.util.*;
 
 /**
 * @author Feng Xiong, Michael Zhou
-* @version 2.0
+* @version 4.0
 * Total time spent Feng: 1 hour
 * Modifications: Added class for collision optimization Feng 1 hour
 */
@@ -45,10 +45,11 @@ public class Map{//Added optimization for collisions.
    */
 	public ArrayList<Obstacle> find(int cordX, int cordY, int sizeX, int sizeY){//Implemented the search.
 		//Calculates the range of values to search.
-		int left = cordX/30;
-		int right = (cordX+sizeX)/30;
-		int top = cordY/30;
-		int bottom = (cordY+sizeY)/30;
+		int left = cordX/30;//Finds the left grid coordinate of the player
+		int right = (cordX+sizeX)/30; //Finds the right grid coordinate of the player
+		int top = cordY/30;//Finds the top grid coordinate of the player
+		int bottom = (cordY+sizeY)/30;//Finds the bottom grid coordinate of the player
+		//Discovers obstacles that intersect wirh the player.
 		ArrayList<Obstacle> overlaps = new ArrayList<Obstacle>();
 		for(int i = top;i<=bottom; i++)
 			for(int j = left;j<=right;j++){

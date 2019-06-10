@@ -10,8 +10,8 @@ import javax.imageio.ImageIO;
 import java.io.*;
 import java.util.*;
 /**
- * @author Feng, Michael
- * @version 2.0
+ * @author Feng Xiong, Michael Zhou
+ * @version 4.0
  * Total time spent Feng: 3 hours
  * Total time spend Michael: 1.5 hours
  *Modifications: May 18, 2019, Feng, Total time: 3 hours
@@ -86,7 +86,7 @@ public class Game extends Canvas implements ActionListener{
     dialogue.add ("But sometimes, you might encounter failure in your journey whether its "
                    +"/nbecause you failed a test, an assignment, or lost a soccer game, it okay "
                    +"/nbecause everyone has been through times like this. Sometimes we just get" 
-                   +"/nstuck, in a slump…");
+                   +"/nstuck, in a slump?");
     dialogue.add ("In the journey of life you will encounter all sorts of ups and downs..."
                    +"/nWe all have our successes which we hold dear, and we all make mistakes "
                    +"/nthat we can learn from.");
@@ -97,7 +97,7 @@ public class Game extends Canvas implements ActionListener{
                +"/nthe level. Your goal in each level is to reach the brown door. The one in "
                +"/nthis level is over to the right");
     dialogue.add ("Use your up arrow and overome the obstacle ahead.");
-    dialogue.add ("Hey, I have just failed my science test, what should I ask myself?/qWhy did I fail, is it because I’m a failure? /a What’s one thing I can learn from this? What is my next plan of action?/qShould I go home, play video games, and just forget about this?/qHmm? What science test?");             
+    dialogue.add ("Hey, I have just failed my science test, what should I ask myself?/qWhy did I fail, is it because I?m a failure? /a What?s one thing I can learn from this? What is my next plan of action?/qShould I go home, play video games, and just forget about this?/qHmm? What science test?");             
     dialogue.add ("I missed the last shot in my soccer game and my team lost. What should I do?/q Go home and eat junk food to get rid of your worries /q Leave the soccer team/q Blame the rest of the team /aTalk to my friends and family");
     dialogue.add ("I tried my best to study for the test but I was distracted by video game. /n I failed the test, what do I take from this situation? /a I should learn from my mistakes and spend time more wisely /q I am a failure and I should quit school /q I should skip all future tests /q Blame your parents");
      dialogue.add ("Good job, you completed the first level! I hope you talked to most of the/ncharacters in the level for some sweet score points.");
@@ -111,8 +111,8 @@ public class Game extends Canvas implements ActionListener{
     dialogue.add ("The first step to overcoming this is accepting what happened and how you feel"
                    +"/nabout it. Denial will only leave you stuck around here longer.");
     dialogue.add ("You make can a mistake, have setback or you simply fail. I know its not be "
-                   +"/nmost fun situation. You can’t avoid it unless you avoid doing anything at all.");
-    dialogue.add ("It's not easy, leaving a slump, you will face all sorts of challenges… but "
+                   +"/nmost fun situation. You can?t avoid it unless you avoid doing anything at all.");
+    dialogue.add ("It's not easy, leaving a slump, you will face all sorts of challenges? but "
                    +"/nthere will always be people out there to help you. Talk to as many characters"
                    +"/nas you can and you will not only learn many things, but get some sweet score "
                   +"/npoints doing so. ");
@@ -242,9 +242,7 @@ public class Game extends Canvas implements ActionListener{
     dialogue.add ("aasd /q /q /q");
     dialogue.add ("aasd /q /q /q");
     dialogue.add ("aasd /q /q /q");
-    dialogue.add ("In this level, you will encounter all the obstacles that you have encountered
-                   before, use everything you have learned to complete this final level and
-                   escape the slmup that you are in!");
+    dialogue.add ("In this level, you will encounter all the obstacles that you have encountered before, use everything you have learned to complete this final level and escape the slmup that you are in!");
     dialogue.add ("First, comes the challange of blame and excuses...");
     try {
       createLevel (new BufferedReader(new FileReader ("Levels/Level3.txt")), dialogue);
@@ -386,21 +384,29 @@ public class Game extends Canvas implements ActionListener{
       gameOver = true;
       try{
         g.drawImage(ImageIO.read(new File("Screens/endScreen.png")), 0, 0, 800, 800, null);
-        g.drawString(getTotalScore()+"", 100, 100);
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("SansSerif", Font.PLAIN, 20));
+        g.drawString(getTotalScore()+"", 270, 620);
         String name = JOptionPane.showInputDialog(this, "Your Name:");
         if(name == null){
           name = "You";
         }
         if(name.length() >= 13)
           name = name.substring(0, 13);
-        g.drawString(name, 100, 200);
+        g.setFont(new Font("SansSerif", Font.PLAIN, 25));
+        g.drawString(name, 400, 30);
         addScore(name, getTotalScore());
       }catch(IOException e){}
       addMouseListener(new MouseAdapter(){
         public void mousePressed(MouseEvent me){
           int mouseX = me.getX();
           int mouseY = me.getY();
-          if(mouseX>238 && mouseY> 340 && mouseX < 548 && mouseY < 437){
+          System.out.println(mouseX + " "+ mouseY);
+          if(mouseX>335 && mouseY> 700 && mouseX < 470 && mouseY < 790){
+            timer.stop();
+            map = null;
+            obstacles = null;
+            Game.this.removeMouseListener(this);
             el.exit();
           }
         }
@@ -420,8 +426,9 @@ public class Game extends Canvas implements ActionListener{
       for (int i = 0 ; i < 20 ; i++)
         fileLines [i] = br.readLine ();
       br.close ();
-      PrintWriter pw = new PrintWriter (new FileWriter ("scores.lexd"));
-      for (int i = 0 ; i < 20 ; i += 2)
+      PrintWriter pw = new PrintWriter (new FileWriter (information));
+      int i;
+      for (i = 0 ; i < 20 ; i += 2)
       {
         if (fileLines [i] == null)
         {
@@ -429,7 +436,7 @@ public class Game extends Canvas implements ActionListener{
           pw.println (score);
           break;
         }
-        if (Integer.parseInt (fileLines [i + 1]) < score)
+        if (Integer.parseInt (fileLines [i + 1]) >= score)
         {
           pw.println (fileLines [i]);
           pw.println (fileLines [i + 1]);
@@ -443,7 +450,9 @@ public class Game extends Canvas implements ActionListener{
           break;
         }
       }
+      pw.close();
     }catch(IOException e){
+      System.out.println("rip");
     }
   }
   
@@ -530,7 +539,7 @@ public class Game extends Canvas implements ActionListener{
                 checkNPC = false;//Tells the program to resume the game
                 inNPC = false;
                 i.setOn(false);//Tells the player to ignore this obstacle
-                if (((NPC) i).getTalked () == false);
+                if (!((NPC) i).getTalked())
                 {
                   finished[level-1]+=500;//Gives a reward
                   ((NPC) i).setTalked (true);
@@ -556,7 +565,7 @@ public class Game extends Canvas implements ActionListener{
                 inNPC = false;
                 ((NPC) i).setDialogue ("Hey there, nice to see you again."); 
                 i.setOn(false);//Tells the player to ignore this obstacle
-                if (((NPC) i).getTalked () == false);
+                if (!((NPC) i).getTalked())
                 {
                   finished[level-1]+=500;//Gives a reward
                   ((NPC) i).setTalked (true);

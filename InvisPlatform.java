@@ -15,8 +15,19 @@ import java.util.*;
  * @version 2.0
  */
 public class InvisPlatform extends Platform{
+
+  /**
+   * This indicates the bounds of the player, and helps calculate when to display the invis block
+   */
 	private Rectangle player;
 
+  /**
+   * Constructor
+   * 
+   * @param x indicates x location
+   * @param y indicates y location
+   * @param length indicates length of the block
+   */
   public InvisPlatform(int x, int y, int length){
     super(x, y, length);
     setOn(true);

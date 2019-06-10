@@ -10,8 +10,8 @@ import java.io.*;
 
 
 /**
-* @author Michael
-* @version 3.0
+* @author Michael Zhou, Feng Xiong
+* @version 4.0
 * Total time spend Michael: 0.5 hours
 * Modifications: May 24, 2019, Michael Zhou, Total time: 0.5 hours
 * added basic class structure

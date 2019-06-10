@@ -12,8 +12,8 @@ import java.awt.Rectangle;
 
 /**
 * This is an abstract class for all obstacles in the game. This allows for easier traversal and manipulation of objects on the map.
-* @author Feng, Michael
-* @version 2.0
+* @author Feng Xiong, Michael Zhou
+* @version 4.0
 * Total time spent Feng: 0.25 hours
 * Total time spend Michael: 0.25 hours
 * Modifications: May 26, 2019, Michael Zhou and feng, Total time: 0.5 hours

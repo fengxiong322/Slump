@@ -8,7 +8,7 @@ import java.awt.*;
 import javax.imageio.ImageIO;
 import java.io.*;
 /**
- * @author Feng, Michael
+ * @author Feng Xiong, Michael Zhou
  * @version 2.0
  * Total time spent Feng: 1 hour
  * Total time spend Michael: 5 hours
@@ -42,7 +42,7 @@ public class MainWindow extends JFrame implements ExitListener, ActionListener {
 //    remove (t);
     settingUp = true;
     timer = new Timer(20, this);
-    timer.setInitialDelay(30);
+    timer.setInitialDelay(50);
     timer.start();
     curScreen = "";
     canvas = new BufferedImage(811, 821, BufferedImage.TYPE_INT_RGB);
@@ -128,7 +128,7 @@ public class MainWindow extends JFrame implements ExitListener, ActionListener {
         int x = me.getX();
         int y = me.getY();
         //added coord detection for testing
-        System.out.println(x + " " + y);
+        System.out.println(curScreen);
         //added nagviagion between screens - Michael Zhou, May 24, 2019 5mins
         if(curScreen.equals("menu")){//When the screen is on menu
           if(x>201 && y> 224 && x < 598 && y < 320)
@@ -282,11 +282,16 @@ public class MainWindow extends JFrame implements ExitListener, ActionListener {
 
   public void setup(Graphics g){
     try{
-      BufferedImage image = ImageIO.read(new File("Screens/companylogo.png"));
+      BufferedImage image;
+      if(alpha < 1f)
+        image = ImageIO.read(new File("Screens/intro1.png"));
+      else
+        image = ImageIO.read(new File("Screens/intro2.png"));
+      
       BufferedImage screen = new BufferedImage(800, 800, BufferedImage.TYPE_INT_RGB);
     Graphics g1 = screen.getGraphics();
       Graphics2D g2d = (Graphics2D) g.create();
-      g2d.setComposite(AlphaComposite.SrcOver.derive(alpha));
+      g2d.setComposite(AlphaComposite.SrcOver.derive(alpha%1));
     g1.setColor(new Color(255, 255, 255));
     g1.fillRect(0, 0, 800, 800);
     g1.drawImage(image, 0, 0, 800, 800, null);
@@ -296,7 +301,7 @@ public class MainWindow extends JFrame implements ExitListener, ActionListener {
 
   public void actionPerformed(ActionEvent evt) {
     alpha = alpha + 0.01f;
-    if(alpha > 1f){
+    if(alpha > 2f){
       timer.stop();
       timer = null;
       settingUp = false;
@@ -334,7 +339,7 @@ public class MainWindow extends JFrame implements ExitListener, ActionListener {
     if(curScreen.equals( "game") || curScreen.equals("resume")){
       remove(gameScreen);
       if(gameScreen.getEnd()){
-        curScreen = "game";
+        curScreen = "menu";
         gameScreen = null;
       }else
         curScreen = "resume";

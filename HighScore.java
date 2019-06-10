@@ -10,7 +10,7 @@ import java.io.*;
 import java.util.*;
 
 /**
-* @author Feng
+* @author Feng Xiong, Michael Zhou
 * @version 2.0
 * Total time spent Feng: 1 hour
 * Modifications: Added file management 1 hour May 26
@@ -58,10 +58,12 @@ public class HighScore extends Canvas{
 		g.drawImage(background, 0, 0, 811, 821, null);
 		try{
 			BufferedReader br = new BufferedReader(new FileReader(information));
-			for(int i = 100; i < 800; i+=100){
+			for(int i = 200; i < 600; i+=40){
 				String temp = br.readLine();
 				if(temp == null)
 					break;
+				g.setColor(Color.WHITE);
+				g.setFont(new Font("SansSerif", Font.PLAIN, 30));
 				g.drawString(temp, 20, i);
 				g.drawString(br.readLine(), 400, i);
 			}
