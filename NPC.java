@@ -9,24 +9,25 @@ import javax.imageio.ImageIO;
 import java.io.*;
 
 /**
-* @author Michael
-* @version 2.0
-* Total time spend Michael: 0.5 hours
-* Modifications: May 24, 2019, Michael Zhou, Total time: 0.5 hours
-* added basic class structure
-* impleneted all the needed methods from OBstacle
-*added constuctor
+ * @author Michael
+ * @version 2.0
+ * Total time spend Michael: 0.5 hours
+ * Modifications: May 24, 2019, Michael Zhou, Total time: 0.5 hours
+ * added basic class structure
+ * impleneted all the needed methods from OBstacle
+ *added constuctor
  Modifications: May 29, 2019, Michael Zhou, Total time: 0.5 hours
-* modified the speak method so the the dialogue box will be properly formaed on the screen
-* made the text properly formated on the screen, if there is a \n the the text will start on a new line as inteneded
-*/
+ * modified the speak method so the the dialogue box will be properly formaed on the screen
+ * made the text properly formated on the screen, if there is a \n the the text will start on a new line as inteneded
+ */
 
 public class NPC extends Obstacle {
   private String dialogue;
-  BufferedImage dialogueBox;
-  String answer;
-  String [] options;
-  boolean question;
+  private BufferedImage dialogueBox;
+  private String answer;
+  private String [] options;
+  private boolean question;
+  private boolean talked = false;
   
   //May 24, Michael created constructor for class
   public NPC (int x, int y, int xSize, int ySize, BufferedImage image, String text) //added constuctor
@@ -50,13 +51,14 @@ public class NPC extends Obstacle {
     if (dialogue.indexOf ("/q") < 0)
     {
       question = false;
-      dialogue += "\n\nPress any key to close...";
+      if (dialogue.indexOf ("/nPress any key to close...") < 0)
+        dialogue += "/nPress any key to close...";
       g.drawImage(dialogueBox, 0, 600,800,800, 0,0,1520, 470, null); 
-    int y = 650 - g.getFontMetrics().getHeight();
-    for (String line : dialogue.split("/n"))
-    {
+      int y = 650 - g.getFontMetrics().getHeight();
+      for (String line : dialogue.split("/n"))
+      {
         g.drawString(line, 50, y += g.getFontMetrics().getHeight());
-    }
+      }
     }
     else 
     {
@@ -82,15 +84,15 @@ public class NPC extends Obstacle {
       }
       
       g.drawImage(dialogueBox, 0, 530,800,800, 0,0,1520, 470, null); 
-    for (String line : text.split("/n"))
-    {
+      for (String line : text.split("/n"))
+      {
         g.drawString(line, 50, y += g.getFontMetrics().getHeight());
-    }
-    g.drawString("Press the number that coorasponds with your answer:", 50, y += g.getFontMetrics().getHeight());
-    g.drawString("1. " + options [0], 50, y += g.getFontMetrics().getHeight());
-    g.drawString("2. " + options [1], 50, y += g.getFontMetrics().getHeight());
-    g.drawString("3. " + options [2], 50, y += g.getFontMetrics().getHeight());
-    g.drawString("4. " + options [3], 50, y += g.getFontMetrics().getHeight());
+      }
+      g.drawString("Press the number that coorasponds with your answer:", 50, y += g.getFontMetrics().getHeight());
+      g.drawString("1. " + options [0], 50, y += g.getFontMetrics().getHeight());
+      g.drawString("2. " + options [1], 50, y += g.getFontMetrics().getHeight());
+      g.drawString("3. " + options [2], 50, y += g.getFontMetrics().getHeight());
+      g.drawString("4. " + options [3], 50, y += g.getFontMetrics().getHeight());
     }
   }
   
@@ -99,13 +101,28 @@ public class NPC extends Obstacle {
     return answer;
   }
   
+  public boolean getTalked ()
+  {
+    return talked;
+  }
+  
+  public void setTalked (boolean isTalked)
+  {
+    talked = isTalked;
+  }
   public boolean isQuestion ()
   {
     return question;
   }
+  
   public String getOption (int optionNumber)
   {
     return options [optionNumber-1];
+  }
+  
+  public void setDialogue (String newDialogue)
+  {
+    dialogue = newDialogue;
   }
   
   //May 24, Michael implemented method

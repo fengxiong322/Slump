@@ -83,29 +83,43 @@ public class Game extends Canvas implements ActionListener{
   public void level1(){//Created a basic level set up Feng Xiong May 15 1 hour
     level =1;
     ArrayList <String> dialogue = new ArrayList <String> ();
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+    dialogue.add ("But sometimes, you might encounter failure in your journey whether its "
+                   +"/nbecause you failed a test, an assignment, or lost a soccer game, it okay "
+                   +"/nbecause everyone has been through times like this. Sometimes we just get" 
+                   +"/nstuck, in a slump…");
+    dialogue.add ("In the journey of life you will encounter all sorts of ups and downs..."
+                   +"/nWe all have our successes which we hold dear, and we all make mistakes "
+                   +"/nthat we can learn from.");
+    dialogue.add ("Jump over these platform, I believe in you");
     dialogue.add ("Welcome player! Use the arrow keys or WASD keys to move around. You can talk "
-      +"/n to others like you talked to me by using the down or S key. If u ever "
-      +"/nwant to leave, you can press escape, you can also press the r key to restart "
-      +"/nthe level. Your goal in each level is to reach the brown door. The one in this"
-      +"/nlevel is over to the right");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
-    dialogue.add ("Hahaha this works ez pz feng is wing aghaas/n reeeee/q ree/q asdas/q fgfg/a gfg");
+               +"/n to others like you talked to me by using the down or S key. If u ever "
+               +"/nwant to leave, you can press escape, you can also press the r key to restart "
+               +"/nthe level. Your goal in each level is to reach the brown door. The one in "
+               +"/nthis level is over to the right");
+    dialogue.add ("Use your up arrow and overome the obstacle ahead.");
+    dialogue.add ("Hey, I have just failed my science test, what should I ask myself?/qWhy did I fail, is it because I’m a failure? /a What’s one thing I can learn from this? What is my next plan of action?/qShould I go home, play video games, and just forget about this?/qHmm? What science test?");             
+    dialogue.add ("I missed the last shot in my soccer game and my team lost. What should I do?/q Go home and eat junk food to get rid of your worries /q Leave the soccer team/q Blame the rest of the team /aTalk to my friends and family");
+    dialogue.add ("I tried my best to study for the test but I was distracted by video game. /n I failed the test, what do I take from this situation? /a I should learn from my mistakes and spend time more wisely /q I am a failure and I should quit school /q I should skip all future tests /q Blame your parents");
+     dialogue.add ("Good job, you completed the first level! I hope you talked to most of the/ncharacters in the level for some sweet score points.");
+    dialogue.add ("Plan out your path, and take action right away. The hardest part is "
+                   +"/nbeginning to take action, but once you start moving, it gets much easier to "
+                   +"/ncontinue. If you find this hard, split your plan into small steps and take "
+                   +"/nthose steps every once in a while.");
+    dialogue.add ("The next step is to understand the situation and learn all you can from it. "
+                   +"/nIts okay to make mistakes and fail, but the important thing is that you "
+                   +"/nlearned from this situations (like you are now by talking to us).");
+    dialogue.add ("The first step to overcoming this is accepting what happened and how you feel"
+                   +"/nabout it. Denial will only leave you stuck around here longer.");
+    dialogue.add ("You make can a mistake, have setback or you simply fail. I know its not be "
+                   +"/nmost fun situation. You can’t avoid it unless you avoid doing anything at all.");
+    dialogue.add ("It's not easy, leaving a slump, you will face all sorts of challenges… but "
+                   +"/nthere will always be people out there to help you. Talk to as many characters"
+                   +"/nas you can and you will not only learn many things, but get some sweet score "
+                  +"/npoints doing so. ");
+    dialogue.add ("But, you will never be stuck forever, you will learn from your actions, and"
+                   +"/nyou can reach the highest peaks you have ever reached.");
+    
+    
     try {
       createLevel (new BufferedReader(new FileReader ("Levels/Level1.txt")), dialogue);
       background = ImageIO.read(new File("Screens/surface.jpg"));
@@ -249,7 +263,7 @@ public class Game extends Canvas implements ActionListener{
   //added method to create level based of reading text file
   public void createLevel (BufferedReader br, ArrayList<String> dialogue)
   {
-    finished[level-1] = 0;
+    finished[level-1] = 1000;
     inNPC = false;
     canvasX = 0;
     canvasY = 0;
@@ -271,75 +285,75 @@ public class Game extends Canvas implements ActionListener{
       {
         for (i = 0; i <line.length(); i++)
         {
-
+          
           switch(line.charAt(i)){
             case '@':
-            obstacles.add(new Platform (i *30, lineCount * 30, 30));
-            break;
+              obstacles.add(new Platform (i *30, lineCount * 30, 30));
+              break;
             case '\'':
-            obstacles.add(new InvisPlatform(i*30, lineCount * 30, 30));
-            break;
+              obstacles.add(new InvisPlatform(i*30, lineCount * 30, 30));
+              break;
             case 'd':
-            obstacles.add(new Door(i*30, lineCount * 30, 60, 90));
-            break;
+              obstacles.add(new Door(i*30, lineCount * 30, 60, 90));
+              break;
             case 'W'://A white block, meaning clear.
-            obstacles.add(new StateSwitchPlatform(i*30, lineCount * 30, 30, true));
-            break;
+              obstacles.add(new StateSwitchPlatform(i*30, lineCount * 30, 30, true));
+              break;
             case 'B'://A black block, cannot exist with white blocks.
-            obstacles.add(new StateSwitchPlatform(i*30, lineCount * 30, 30, false));
-            break;
+              obstacles.add(new StateSwitchPlatform(i*30, lineCount * 30, 30, false));
+              break;
             case 'N':
-            obstacles.add (new NPC (i*30, lineCount * 30 + 5, 30, 85, ImageIO.read(new File("Player/idleLeft.png")), dialogue.get (npcCount)));
-            npcCount++;
-            break;
+              obstacles.add (new NPC (i*30, lineCount * 30 + 5, 30, 85, ImageIO.read(new File("Player/idleLeft.png")), dialogue.get (npcCount)));
+              npcCount++;
+              break;
             case 'n':
-            obstacles.add (new NPC (i*30, lineCount * 30 + 5, 30, 85, ImageIO.read(new File("Player/idleLeft.png")), dialogue.get (npcCount)));
-            npcCount++;
-            break;
+              obstacles.add (new NPC (i*30, lineCount * 30 + 5, 30, 85, ImageIO.read(new File("Player/idleLeft.png")), dialogue.get (npcCount)));
+              npcCount++;
+              break;
             case 's':
-            spawnX = i*30;
-            spawnY = lineCount * 30;
+              spawnX = i*30;
+              spawnY = lineCount * 30;
             default:
               if((int)line.charAt(i) >0 && (int)line.charAt(i) <10){//left
-                obstacles.add(new Projectile(i*30, lineCount *30, false, (int)line.charAt(i) - 64, 0));
-                obstacles.add(new Generator(i*30, lineCount *30, 30));
-              }
+              obstacles.add(new Projectile(i*30, lineCount *30, false, (int)line.charAt(i) - 64, 0));
+              obstacles.add(new Generator(i*30, lineCount *30, 30));
+            }
               if(line.charAt(i)-'0' >0 && line.charAt(i)-'0' <10){//right
                 obstacles.add(new Projectile(i*30, lineCount *30, true, Integer.parseInt(line.charAt(i) + ""), edgeX));
                 obstacles.add(new Generator(i*30, lineCount *30, 30));
               }
               
-            }
           }
-          line = br.readLine();
-          lineCount++;
         }
-        edgeY = (lineCount) * 30;
-        map =  new Map(i, lineCount);
-        for(Obstacle j : obstacles)
-          map.add(j, j.getX()/30, j.getY()/30);
-
-        canvas = new BufferedImage(edgeX, edgeY, BufferedImage.TYPE_INT_RGB);
-        clear = new BufferedImage(edgeX, edgeY, BufferedImage.TYPE_INT_RGB);
-        br.close();
+        line = br.readLine();
+        lineCount++;
       }
-      catch (IOException e)
-      {
-      }
-      timer = new Timer(20, this);
-      timer.setInitialDelay(30);
-      timer.start();
-
+      edgeY = (lineCount) * 30;
+      map =  new Map(i, lineCount);
+      for(Obstacle j : obstacles)
+        map.add(j, j.getX()/30, j.getY()/30);
+      
+      canvas = new BufferedImage(edgeX, edgeY, BufferedImage.TYPE_INT_RGB);
+      clear = new BufferedImage(edgeX, edgeY, BufferedImage.TYPE_INT_RGB);
+      br.close();
     }
-
-    public long getTotalScore(){
-      long score = 0;
-      for(int i = 0; i < 5; i ++){
-        score += finished[i];
-      }
-      return score;
+    catch (IOException e)
+    {
     }
-
+    timer = new Timer(20, this);
+    timer.setInitialDelay(30);
+    timer.start();
+    
+  }
+  
+  public long getTotalScore(){
+    long score = 0;
+    for(int i = 0; i < 5; i ++){
+      score += finished[i];
+    }
+    return score;
+  }
+  
   /** Sets up the player spawn location
     *
     */
@@ -395,7 +409,7 @@ public class Game extends Canvas implements ActionListener{
       });
     }
   }
-
+  
   private void addScore(String name, long score){
     File directory = new File(System.getProperty("user.home") + "/slump");
     File information = new File(System.getProperty("user.home") + "/slump/highscores.txt");
@@ -449,7 +463,7 @@ public class Game extends Canvas implements ActionListener{
         gameEnd(g);
         return;
       }else if(i instanceof InvisPlatform)
-      ((InvisPlatform)i).setPlayer(player.getBounds());
+        ((InvisPlatform)i).setPlayer(player.getBounds());
       else if (i instanceof StateSwitchPlatform && finished[level-1]%3 ==0 && second ==0){
         ((StateSwitchPlatform)i).flipType();
         Rectangle tempRect = i.getBounds();
@@ -500,8 +514,8 @@ public class Game extends Canvas implements ActionListener{
     g2.drawImage(canvas, canvasX, canvasY, null);
     boolean detectedNPC = false;
     for(Obstacle i: obstacles){
-    //added checking for npc and talking May 22, 2019 - michael
-
+      //added checking for npc and talking May 22, 2019 - michael
+      
       if(checkNPC && i instanceof NPC)
       {         
         if (Math.abs (player.getX() - i.getX()) <= 33 && Math.abs (player.getY() - i.getY()) <= 102)
@@ -518,7 +532,11 @@ public class Game extends Canvas implements ActionListener{
                 checkNPC = false;//Tells the program to resume the game
                 inNPC = false;
                 i.setOn(false);//Tells the player to ignore this obstacle
-                finished[level-1]+=10;//Gives a reward
+                if (((NPC) i).getTalked () == false);
+                {
+                  finished[level-1]+=500;//Gives a reward
+                  ((NPC) i).setTalked (true);
+                }
                 Game.this.removeKeyListener(this);
               }
               int ch = event.getKeyCode();
@@ -535,19 +553,25 @@ public class Game extends Canvas implements ActionListener{
                 return;
               if (((NPC) i).getOption(key).equals (((NPC) i).getAnswer()))              
               {
-              //If the answer is correct, these 4 lines should be run to continue
-              checkNPC = false;//Tells the program to resume the game
-              inNPC = false;
-              i.setOn(false);//Tells the player to ignore this obstacle
-              finished[level-1]+=10;//Gives a reward
-              Game.this.removeKeyListener(this);
+                //If the answer is correct, these 4 lines should be run to continue
+                checkNPC = false;//Tells the program to resume the game
+                inNPC = false;
+                ((NPC) i).setDialogue ("Hey there, nice to see you again."); 
+                i.setOn(false);//Tells the player to ignore this obstacle
+                if (((NPC) i).getTalked () == false);
+                {
+                  finished[level-1]+=500;//Gives a reward
+                  ((NPC) i).setTalked (true);
+                }
+                Game.this.removeKeyListener(this);
+              }
+              else
+              {                
+                JOptionPane.showMessageDialog(null, "That wasn't the best answer... try again!");
+                finished[level-1]-=50;
+              }
             }
-            else
-            {                
-              JOptionPane.showMessageDialog(null, "That wasn't the best answer... try again!");
-            }
-          }
-        });
+          });
           
         }
       }
@@ -563,7 +587,7 @@ public class Game extends Canvas implements ActionListener{
     g1.dispose();
     g2.dispose();
   }
-
+  
   public boolean getEnd(){
     return gameOver;
   }
@@ -584,18 +608,14 @@ public class Game extends Canvas implements ActionListener{
   }
   
   private void respawn(){ //editied May 31, Michael - now respawns the player in the bottom left corner of the scneen
-    finished[level-1]-=10;
-    if(level == 1){
+    finished[level-1]-=50;
+    if(level == 1)
       setSpawn(spawnX, spawnY);
-    }else if(level == 2){
-      setSpawn(spawnX, spawnY);
-    }else{
-      setSpawn(spawnX, spawnY);
-    }
+    
   }
   
   class PlayerListener extends KeyAdapter{//Created a mouse listner class to read user input Feng Xiong May 16 1 hour
-
+    
     @Override
     public void keyPressed(KeyEvent event){
       int ch = event.getKeyCode();//Keep track of key presses
